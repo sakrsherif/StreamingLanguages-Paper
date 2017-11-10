@@ -2,7 +2,12 @@
 
 \usepackage{alltt}
 \usepackage{balance}
+
+\usepackage{etoolbox}
+\apptocmd{\thebibliography}{\scriptsize}{}{}
+
 \usepackage[paperwidth=8.5in,paperheight=11in,margin=1in]{geometry}
+
 
 \begin{document}
 
@@ -44,7 +49,7 @@ Akrivi Vlachou\\
 \input{whatsnext}
 \input{conclusion}
 
-\bibliographystyle{plain}
+\bibliographystyle{abbrv}
 \balance
 \bibliography{local}
 
