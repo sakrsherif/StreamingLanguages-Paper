@@ -1,6 +1,17 @@
 \section{Stream Processing Languages}\label{sec:languages}
 
-\begin{alltt}TODO\scriptsize ~2.6 pages total
+\begin{figure}
+\begin{lstlisting}
+SELECT IStream(Max(len) AS mxl,
+                 MaxCount(len) AS num,
+                 ArgMax(len, caller) as who)
+FROM Calls[Range 24 Hours Slide 1 Minute]
+\end{lstlisting}
+\vspace*{-4mm}
+\caption{\label{fig:cql}CQL code example.}
+\end{figure}
+
+\begin{alltt}TODO\scriptsize ~2.8 pages total
 - taxonomy/classification for the languages, maybe figure
   (each of the following descriptions should answer the following)
   - why: objective, audience, domain
@@ -11,19 +22,19 @@
   - whence: influenced-by and influences
 - descriptions of individual languages, ~0.3 pages per language
   - relational / CQL \cite{arasu_babu_widom_2006}
-    - why: precise semantics \cite{arasu_widom_2004}, linear-road \cite{arasu_et_al_2004}
+    - why: precise semantics \cite{arasu_widom_2004}, example app linear-road \cite{arasu_et_al_2004}
     - who: Arasu/Widom at Stanford
     - when: 2004
     - what: algebra of R2R (relational), S2R (windows), R2S (I/R/D);
-      data model relational; type system in \cite{soule_et_al_2016}; example TBD
+      data model relational; type system \cite{soule_et_al_2016}; example Figure~\ref{fig:cql}
     - where: Stanford STREAM no longer active
     - whence: influenced-by TelegraphCQ \cite{chandrasekaran_et_al_2003},
       influences StreamInsight \cite{ali_et_al_2009} and many others
-  - synchronous dataflow / StreamIt \cite{thies_et_al_2002} or Lustre
-  - explicit stream graph / SPL \cite{hirzel_schneider_gedik_2017} \cite{soule_et_al_2010}
+  - synchronous dataflow / Lustre \cite{caspi_et_al_1987}, StreamIt \cite{thies_et_al_2002}
+  - big-data streaming / SPL \cite{hirzel_schneider_gedik_2017} \cite{soule_et_al_2010}
   - CEP (complex event processing) / MATCH-RECOGNIZE \cite{zemke_et_al_2007} \cite{hirzel_2012}
-  - XML / (need to pick one)
-  - RDF / (need to pick one)
+  - XML / NiagaraCQ \cite{chen_et_al_2000}, YFilter \cite{diao_et_al_2002}
+  - RDF / C-SPARQL \cite{barbieri_et_al_2009}
   - reactive spreadsheets / ActiveSheets \cite{vaziri_et_al_2014}
   - controlled natural language / META \cite{arnold_et_al_2016}
 - close with summary/comparison table
