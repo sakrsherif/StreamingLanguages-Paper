@@ -12,15 +12,19 @@ FROM Calls[Range 24 Hours Slide 1 Minute]
 \end{figure}
 
 \begin{alltt}TODO\scriptsize ~2.8 pages total
-- taxonomy/classification for the languages, maybe figure
-  (each of the following descriptions should answer the following)
+- this section will have ~0.3 pages about each language, and
+  each of these snippets will be structured around questions:
+  why-who-when-what-where-whence
+  (see CQL for an example, but the others will be similar!)
+- before the snippets on each of the languages, we will briefly
+  introduce and explain these questions, as follows:
   - why: objective, audience, domain
   - who: inventors, supporters
   - when: first release / first paper
   - what: key idea, data model, type system, code example
   - where: being developed or offered today, license
   - whence: influenced-by and influences
-- descriptions of individual languages, ~0.3 pages per language
+- descriptions of individual languages
   - relational / CQL \cite{arasu_babu_widom_2006}
     - why: precise semantics \cite{arasu_widom_2004}, example app linear-road \cite{arasu_et_al_2004}
     - who: Arasu/Widom at Stanford
@@ -30,13 +34,14 @@ FROM Calls[Range 24 Hours Slide 1 Minute]
     - where: Stanford STREAM no longer active
     - whence: influenced-by TelegraphCQ \cite{chandrasekaran_et_al_2003},
       influences StreamInsight \cite{ali_et_al_2009} and many others
-  - synchronous dataflow / Lustre \cite{caspi_et_al_1987}, StreamIt \cite{thies_et_al_2002}
-  - big-data streaming / SPL \cite{hirzel_schneider_gedik_2017} \cite{soule_et_al_2010}
+  - synchronous dataflow / Lustre \cite{caspi_et_al_1987} \textcolor{red}{Guillaume}
+  - big-data streaming / SPL \cite{hirzel_schneider_gedik_2017} \textcolor{red}{Martin, Emanuele}
   - CEP (complex event processing) / MATCH-RECOGNIZE \cite{zemke_et_al_2007} \cite{hirzel_2012}
   - XML / NiagaraCQ \cite{chen_et_al_2000}, YFilter \cite{diao_et_al_2002}
-  - RDF / C-SPARQL \cite{barbieri_et_al_2009}
-  - reactive spreadsheets / ActiveSheets \cite{vaziri_et_al_2014}
-  - controlled natural language / META \cite{arnold_et_al_2016}
+  - RDF / C-SPARQL \cite{barbieri_et_al_2009} \textcolor{red}{Emanuele, Akrivi}
+  - stream reasoning \textcolor{red}{Emanuele}
+  - reactive spreadsheets / ActiveSheets \cite{vaziri_et_al_2014} \textcolor{red}{Martin}
+  - controlled natural language / META \cite{arnold_et_al_2016} \textcolor{red}{Martin}
 - close with summary/comparison table
   - perhaps according to performance/generality/productivity
 \end{alltt}
