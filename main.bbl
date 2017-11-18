@@ -1,0 +1,117 @@
+\begin{thebibliography}{10}
+
+\bibitem{ali_et_al_2009}
+M.~H. Ali, C.~Gerea, B.~Raman, B.~Sezgin, T.~Tarnavski, T.~Verona, P.~Wang,
+  P.~Zabback, A.~Kirilov, A.~Ananthanarayan, M.~Lu, A.~Raizman, R.~Krishnan,
+  R.~Schindlauer, T.~Grabs, S.~Bjeletich, B.~Chandramouli, J.~Goldstein,
+  S.~Bhat, Y.~Li, V.~{Di Nicola}, X.~Wang, D.~Maier, I.~Santos, O.~Nano, and
+  S.~Grell.
+\newblock Microsoft {CEP} server and online behavioral targeting.
+\newblock In {\em Demo at Very Large Data Bases (VLDB-Demo)}, pages 1558--1561,
+  2009.
+
+\bibitem{arasu_babu_widom_2006}
+A.~Arasu, S.~Babu, and J.~Widom.
+\newblock The {CQL} continuous query language: semantic foundations and query
+  execution.
+\newblock {\em Journal on Very Large Data Bases (VLDB J.)}, 15(2):121--142,
+  2006.
+
+\bibitem{arasu_et_al_2004}
+A.~Arasu, M.~Cherniack, E.~Galvez, D.~Maier, A.~S. Maskey, E.~Ryvkina,
+  M.~Stonebraker, and R.~Tibbetts.
+\newblock Linear road: A stream data management benchmark.
+\newblock In {\em Conference on Very Large Data Bases (VLDB)}, pages 480--491,
+  2004.
+
+\bibitem{arasu_widom_2004}
+A.~Arasu and J.~Widom.
+\newblock A denotational semantics for continuous queries over streams and
+  relations.
+\newblock {\em SIGMOD Record}, 33(3), Sept. 2004.
+
+\bibitem{arnold_et_al_2016}
+M.~Arnold, D.~Grove, B.~Herta, M.~Hind, M.~Hirzel, A.~Iyengar, L.~Mandel,
+  V.~Saraswat, A.~Shinnar, J.~Sim\'{e}on, M.~Takeuchi, O.~Tardieu, and
+  W.~Zhang.
+\newblock {META}: Middleware for events, transactions, and analytics.
+\newblock {\em IBM Journal of Research and Development}, 60(2--3):15:1--15:10,
+  2016.
+
+\bibitem{barbieri_et_al_2009}
+D.~F. Barbieri, D.~Braga, S.~Ceri, E.~Della~Valle, and M.~Grossniklaus.
+\newblock {C-SPARQL}: {SPARQL} for continuous querying.
+\newblock In {\em Poster at International World Wide Web Conferences
+  (WWW-Poster)}, pages 1061--1062, 2009.
+
+\bibitem{caspi_et_al_1987}
+P.~Caspi, D.~Pilaud, N.~Halbwachs, and P.~Raymond.
+\newblock {LUSTRE}: a declarative language for real-time programming.
+\newblock In {\em Symposium on Principles of Programming Languages (POPL)},
+  pages 178--188, 1987.
+
+\bibitem{chandrasekaran_et_al_2003}
+S.~Chandrasekaran, O.~Cooper, A.~Deshpande, M.~J. Franklin, J.~M. Hellerstein,
+  W.~Hong, S.~Krishnamurthy, S.~Madden, V.~Raman, F.~Reiss, and M.~A. Shah.
+\newblock {TelegraphCQ}: continuous dataflow processing for an uncertain world.
+\newblock In {\em Conference on Innovative Data Systems Research (CIDR)}, 2003.
+
+\bibitem{chen_et_al_2000}
+J.~Chen, D.~J. DeWitt, F.~Tian, and Y.~Wang.
+\newblock {NiagaraCQ}: A scalable continuous query system for internet
+  databases.
+\newblock In {\em International Conference on Management of Data (SIGMOD)},
+  pages 379--390, 2000.
+
+\bibitem{diao_et_al_2002}
+Y.~Diao, P.~M. Fischer, M.~J. Franklin, and R.~To.
+\newblock {YFilter}: Efficient and scalable filtering of {XML} documents.
+\newblock In {\em Demo at International Conference on Data Engineering
+  (ICDE-Demo)}, pages 341--342, 2002.
+
+\bibitem{hirzel_2012}
+M.~Hirzel.
+\newblock Partition and compose: Parallel complex event processing.
+\newblock In {\em Conference on Distributed Event-Based Systems (DEBS)}, pages
+  191--200, 2012.
+
+\bibitem{hirzel_schneider_gedik_2017}
+M.~Hirzel, S.~Schneider, and B.~Gedik.
+\newblock {SPL}: An extensible language for distributed stream processing.
+\newblock {\em Transactions on Programming Languages and Systems (TOPLAS)},
+  39(1):5:1--5:39, March 2017.
+
+\bibitem{hudak_1998}
+P.~Hudak.
+\newblock Modular domain specific languages and tools.
+\newblock In {\em International Conference on Software Reuse (ICSR)}, pages
+  134--142, 1998.
+
+\bibitem{johnston_hanna_millar_2004}
+W.~M. Johnston, J.~R.~P. Hanna, and R.~J. Millar.
+\newblock Advances in dataflow programming languages.
+\newblock {\em ACM Computing Surveys (CSUR)}, 36(1):1--34, 2004.
+
+\bibitem{soule_et_al_2016}
+R.~Soul\'{e}, M.~Hirzel, B.~Gedik, and R.~Grimm.
+\newblock River: An intermediate language for stream processing.
+\newblock {\em Software -- Practice and Experience (SP\&E)}, 46(7):891--929,
+  July 2016.
+
+\bibitem{stephens_1997}
+R.~Stephens.
+\newblock A survey of stream processing.
+\newblock {\em Acta Informatica}, 34(7):491--541, 1997.
+
+\bibitem{vaziri_et_al_2014}
+M.~Vaziri, O.~Tardieu, R.~Rabbah, P.~Suter, and M.~Hirzel.
+\newblock Stream processing with a spreadsheet.
+\newblock In {\em European Conference on Object-Oriented Programming (ECOOP)},
+  pages 360--384, 2014.
+
+\bibitem{zemke_et_al_2007}
+F.~Zemke, A.~Witkowski, M.~Cherniak, and L.~Colby.
+\newblock Pattern matching in sequences of rows.
+\newblock Technical report, ANSI Standard Proposal, 2007.
+
+\end{thebibliography}
