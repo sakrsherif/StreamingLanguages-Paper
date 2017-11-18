@@ -1,0 +1,11 @@
+main.pdf
+.DS_Store
+*~
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.rel
+*.synctex
+*.synctex.gz
