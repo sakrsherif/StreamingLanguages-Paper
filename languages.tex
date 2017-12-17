@@ -1,15 +1,6 @@
 \section{Stream Processing Languages}\label{sec:languages}
 
-\begin{figure}
-\begin{lstlisting}
-SELECT IStream(Max(len) AS mxl,
-                 MaxCount(len) AS num,
-                 ArgMax(len, caller) as who)
-FROM Calls[Range 24 Hours Slide 1 Minute]
-\end{lstlisting}
-\vspace*{-4mm}
-\caption{\label{fig:cql}CQL code example.}
-\end{figure}
+
 
 \begin{alltt}TODO\scriptsize ~2.8 pages total
 - this section will have ~0.3 pages about each language, and
@@ -45,3 +36,19 @@ FROM Calls[Range 24 Hours Slide 1 Minute]
 - close with summary/comparison table
   - perhaps according to performance/generality/productivity
 \end{alltt}
+
+
+
+In 2004, Arasu et al.~\cite{arasu_widom_2004} introduced  \texttt{CQL} (\textbf{C}ontinuous \textbf{Q}uery \textbf{L}anguage) as part of Stanford prototype system for data stream management, \texttt{STREAM}\footnote{\url{http://infolab.stanford.edu/stream/}}. CQL has been designed as an SQL-based declarative language for implementing continuous queries against streams of data. The design of this language has been influenced by the language of the \texttt{TelegraphCQ} system\footnote{\url{http://telegraph.cs.berkeley.edu/telegraphcq/v0.2/}} that proposed as a declarative language with a particular focus on expressive windowing constructs~\cite{chandrasekaran_et_al_2003}. The abstract semantics of CQL is based on two data types: \emph{streams} and \emph{relations}. It supports three classes of operators over
+these types: 1) \emph{stream-to-relation} operators: They produce a relation from a stream.  The design of these operators is based on the concept of a \emph{sliding window} over a stream, a window that at any point of time contains a historical snapshot of a finite portion of the stream. The definition of this sliding windows can be specified as \emph{time-based}, \emph{tuple-based},
+or \emph{partitioned}. 2) \emph{relation-to-relation} operators: they produce a relation from other relations. These operators are derived from traditional relational queries and are expressed using standard SQL. 3) \emph{stream-to-relation} operators: they produce a stream from a relation. CQL supports three operators of this class \emph{IStream} (Insert Stream), \emph{DStream} (Delete Stream), and \emph{RStream} (Relation Stream).  Figure~\ref{fig:cql} illustrates a CQL code example that uses a time-sliding window (per minute within the last 24 hours) over a stream-to-relation operator (IStream) of phone calls to return the maximum phone call length and the maximum number of calls with the caller information \textcolor{red}{Please Martin check if the query description is accurate}. CQL has influenced the design of many systems such as \texttt{Microsoft StreamInsight}\footnote{\url{https://technet.microsoft.com/library/ee362541(sql.105).aspx}} which has been designed as a platform to develop and deploy complex event processing (CEP) applications~\cite{ali_et_al_2009}.
+\begin{figure}
+\begin{lstlisting}
+SELECT IStream(Max(len) AS mxl,
+                 MaxCount(len) AS num,
+                 ArgMax(len, caller) as who)
+FROM Calls[Range 24 Hours Slide 1 Minute]
+\end{lstlisting}
+\vspace*{-4mm}
+\caption{\label{fig:cql}CQL code example.}
+\end{figure}
