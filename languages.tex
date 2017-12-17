@@ -52,3 +52,26 @@ FROM Calls[Range 24 Hours Slide 1 Minute]
 \vspace*{-4mm}
 \caption{\label{fig:cql}CQL code example.}
 \end{figure}
+
+
+\begin{figure}
+\begin{lstlisting}
+CREATE CQ
+XML-QL query expression
+DO action
+{START start_time} 
+{EVERY time_interval} 
+{EXPIRE expiration_time}
+\end{lstlisting}
+\caption{\label{fig:Niagra}NiagaraCQ code example}
+\end{figure}
+
+Chen et al. introduced  \texttt{NiagaraCQ}~\cite{chen_et_al_2000} as a continuous query sub-system of the \texttt{Niagara}
+Internet query engine\footnote{\url{http://research.cs.wisc.edu/niagara/}},  a distributed database system for querying distributed XML data sets which has been developed at University of Wisconsin and Oregon Graduate Institute~\cite{naughton2001niagara}. NiagaraCQ implements continuous query processing over multiple and distributed XML files by supporting incremental evaluation and considering only the changed portion of each updated XML file. It supports two types of continuous queries that differ on the criteria of triggering their execution:
+1) \emph{Change-based}  queries: they are triggered as soon as new relevant data becomes available. 2) \emph{Timer-based}  queries: they are triggered only at time intervals specified by the submitting user. The query language of NiagaraCQ is based on the \texttt{XML-QL}\footnote{\url{https://www.w3.org/TR/1998/NOTE-xml-ql-19980819/}} query language~\cite{deutsch1999query}.
+It provides a command language for creating continuous queries that follows the  form illustrated in Figure~\ref{fig:Niagra}. Using this command language, users can implement continuous queries that combines an ordinary XML-QL query with additional time information.
+According to illustrated form, the query ($CQ$) will become effective at the defined $start\textunderscore time$. The
+$time\textunderscore interval$ is used to indicate how often the query will be executed. A
+query is classified as a timer-based if its $time\textunderscore interval$ is not zero; otherwise, it
+is classified as a change-based. 
+The defined continuous query ($CQ$) will be deactivated after its $expiration\textunderscore time$. The specified query action $Action$ will be triggered once the results of the XML-QL query expression is returned.  A key optimization mechanism used  in the NiagaraCQ system is grouping the execution of similar queries to minimize redundant work.  Similar optimization approach has been adopted by Diao et al.~\cite{diao_et_al_2002} in the implementation of  \texttt{YFilter}, a filtering engine for streaming XML documents based on the W3C standard XML query languages: \texttt{XPath}\footnote{\url{https://www.w3.org/TR/1999/REC-xpath-19991116/}} and \texttt{XQuery}\footnote{\url{https://www.w3.org/XML/Query/}}. The main idea of YFilter is to use Finite State Machines (FSM)  to represent and evaluate XML path expressions and to combine the execution multiple queries into a single Nondeterministic Finite Automaton (NFA). 
