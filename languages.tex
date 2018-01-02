@@ -46,6 +46,7 @@ FROM Calls[Range 24 Hours Slide 1 Minute]
 \caption{\label{fig:cql}CQL code example.}
 \end{figure}
 
+\textbf{Relational Streaming.}
 In 2004, Arasu et al.\ at Stanford introduced CQL (for Continuous
 Query Language)~\cite{arasu_widom_2004}. CQL has been designed as an
 SQL-based declarative language for implementing continuous queries
@@ -84,6 +85,7 @@ DO action
 \caption{\label{fig:Niagra}NiagaraCQ code example}
 \end{figure}
 
+\textbf{XML Streaming.}
 Chen et al.\ introduced  \texttt{NiagaraCQ}~\cite{chen_et_al_2000} as a continuous query sub-system of the \texttt{Niagara}
 Internet query engine\footnote{\url{http://research.cs.wisc.edu/niagara/}},  a distributed database system for querying distributed XML data sets which has been developed at University of Wisconsin and Oregon Graduate Institute~\cite{naughton2001niagara}. NiagaraCQ implements continuous query processing over multiple and distributed XML files by supporting incremental evaluation and considering only the changed portion of each updated XML file. It supports two types of continuous queries that differ on the criteria of triggering their execution:
 1) \emph{Change-based}  queries: they are triggered as soon as new relevant data becomes available. 2) \emph{Timer-based}  queries: they are triggered only at time intervals specified by the submitting user. The query language of NiagaraCQ is based on the \texttt{XML-QL}\footnote{\url{https://www.w3.org/TR/1998/NOTE-xml-ql-19980819/}} query language~\cite{deutsch1999query}.
