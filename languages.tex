@@ -1,7 +1,5 @@
 \section{Stream Processing Languages}\label{sec:languages}
 
-
-
 \begin{alltt}TODO\scriptsize ~2.8 pages total
 - this section will have ~0.3 pages about each language, and
   each of these snippets will be structured around questions:
@@ -27,7 +25,7 @@
       influences StreamInsight \cite{ali_et_al_2009} and many others
   - synchronous dataflow / Lustre \cite{caspi_et_al_1987} \textcolor{red}{Guillaume}
   - big-data streaming / SPL \cite{hirzel_schneider_gedik_2017} \textcolor{red}{Martin, Emanuele}
-  - CEP (complex event processing) / MATCH-RECOGNIZE \cite{zemke_et_al_2007} \cite{hirzel_2012} \color{red}{Angela}
+  - CEP (complex event processing) / MATCH-RECOGNIZE \cite{zemke_et_al_2007} \cite{hirzel_2012} \textcolor{red}{Angela}
   - XML / NiagaraCQ \cite{chen_et_al_2000}, YFilter \cite{diao_et_al_2002} \textcolor{red}{Sherif}
   - RDF / C-SPARQL \cite{barbieri_et_al_2009} \textcolor{red}{Emanuele, Akrivi}
   - stream reasoning \textcolor{red}{Emanuele}
@@ -37,11 +35,6 @@
   - perhaps according to performance/generality/productivity
 \end{alltt}
 
-
-
-In 2004, Arasu et al.~\cite{arasu_widom_2004} introduced  \texttt{CQL} (\textbf{C}ontinuous \textbf{Q}uery \textbf{L}anguage) as part of Stanford prototype system for data stream management, \texttt{STREAM}\footnote{\url{http://infolab.stanford.edu/stream/}}. CQL has been designed as an SQL-based declarative language for implementing continuous queries against streams of data. The design of this language has been influenced by the language of the \texttt{TelegraphCQ} system\footnote{\url{http://telegraph.cs.berkeley.edu/telegraphcq/v0.2/}} that proposed as a declarative language with a particular focus on expressive windowing constructs~\cite{chandrasekaran_et_al_2003}. The abstract semantics of CQL is based on two data types: \emph{streams} and \emph{relations}. It supports three classes of operators over
-these types: 1) \emph{stream-to-relation} operators: They produce a relation from a stream.  The design of these operators is based on the concept of a \emph{sliding window} over a stream, a window that at any point of time contains a historical snapshot of a finite portion of the stream. The definition of this sliding windows can be specified as \emph{time-based}, \emph{tuple-based},
-or \emph{partitioned}. 2) \emph{relation-to-relation} operators: they produce a relation from other relations. These operators are derived from traditional relational queries and are expressed using standard SQL. 3) \emph{stream-to-relation} operators: they produce a stream from a relation. CQL supports three operators of this class \emph{IStream} (Insert Stream), \emph{DStream} (Delete Stream), and \emph{RStream} (Relation Stream).  Figure~\ref{fig:cql} illustrates a CQL code example that uses a time-sliding window (per minute within the last 24 hours) over a stream-to-relation operator (IStream) of phone calls to return the maximum phone call length and the maximum number of calls with the caller information \textcolor{red}{Please Martin check if the query description is accurate}. CQL has influenced the design of many systems such as \texttt{Microsoft StreamInsight}\footnote{\url{https://technet.microsoft.com/library/ee362541(sql.105).aspx}} which has been designed as a platform to develop and deploy complex event processing (CEP) applications~\cite{ali_et_al_2009}.
 \begin{figure}
 \begin{lstlisting}
 SELECT IStream(Max(len) AS mxl,
@@ -53,6 +46,31 @@ FROM Calls[Range 24 Hours Slide 1 Minute]
 \caption{\label{fig:cql}CQL code example.}
 \end{figure}
 
+In 2004, Arasu et al.\ at Stanford introduced CQL (for Continuous
+Query Language)~\cite{arasu_widom_2004}. CQL has been designed as an
+SQL-based declarative language for implementing continuous queries
+against streams of data. The design was influenced by the language of
+the TelegraphCQ system that proposed a declarative language with a
+particular focus on expressive windowing
+constructs~\cite{chandrasekaran_et_al_2003}. The semantics of CQL are
+based on two data types: \emph{streams} and \emph{relations}. It
+supports three classes of operators over these types. First,
+\emph{stream-to-relation} operators, which produce a relation from a
+stream.  The design of these operators is based on the concept of a
+\emph{window} over a stream, which, at any point of time, contains a
+historical snapshot of a recent portion of the stream. CQL includes
+time-based and tuple-based windows, both with optional
+partitioning. Second, \emph{relation-to-relation} operators, which
+produce a relation from other relations. These operators are derived
+from traditional relational algebra and are expressed using standard
+SQL. Third, \emph{relation-to-stream} operators, which produce a
+stream from a relation. CQL supports three operators of this class:
+IStream, DStream, and RStream (to capture inserts, deletes, or the
+relation).  Figure~\ref{fig:cql} illustrates a CQL code example that
+uses a time-sliding window (per minute within the last 24 hours) over
+phone calls to return the maximum phone call length along with its
+count and caller information. CQL has influenced the design of many
+systems such as Microsoft StreamInsight~\cite{ali_et_al_2009}.
 
 \begin{figure}
 \begin{lstlisting}
@@ -66,7 +84,7 @@ DO action
 \caption{\label{fig:Niagra}NiagaraCQ code example}
 \end{figure}
 
-Chen et al. introduced  \texttt{NiagaraCQ}~\cite{chen_et_al_2000} as a continuous query sub-system of the \texttt{Niagara}
+Chen et al.\ introduced  \texttt{NiagaraCQ}~\cite{chen_et_al_2000} as a continuous query sub-system of the \texttt{Niagara}
 Internet query engine\footnote{\url{http://research.cs.wisc.edu/niagara/}},  a distributed database system for querying distributed XML data sets which has been developed at University of Wisconsin and Oregon Graduate Institute~\cite{naughton2001niagara}. NiagaraCQ implements continuous query processing over multiple and distributed XML files by supporting incremental evaluation and considering only the changed portion of each updated XML file. It supports two types of continuous queries that differ on the criteria of triggering their execution:
 1) \emph{Change-based}  queries: they are triggered as soon as new relevant data becomes available. 2) \emph{Timer-based}  queries: they are triggered only at time intervals specified by the submitting user. The query language of NiagaraCQ is based on the \texttt{XML-QL}\footnote{\url{https://www.w3.org/TR/1998/NOTE-xml-ql-19980819/}} query language~\cite{deutsch1999query}.
 It provides a command language for creating continuous queries that follows the  form illustrated in Figure~\ref{fig:Niagra}. Using this command language, users can implement continuous queries that combines an ordinary XML-QL query with additional time information.
