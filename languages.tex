@@ -73,13 +73,59 @@ phone calls to return the maximum phone call length along with its
 count and caller information. CQL has influenced the design of many
 systems such as Microsoft StreamInsight~\cite{ali_et_al_2009}.
 
+
+\begin{figure}
+  \begin{lstlisting}
+node tracker (speed, limit: int) returns (t: int);
+var x: bool; cpt: int when x;
+let
+  x = (speed > limit);
+  cpt = counter((0, 1) when x);
+  t = current(cpt);
+tel
+  \end{lstlisting}
+  \caption{\label{fig:lustre} Lustre code example}
+\end{figure}
+
+\textbf{Dataflow Synchronous Languages}
+Synchronous dataflow languages were introduced to ease the design of
+real-time embedded systems. They allow to write a well-defined
+deterministic specification of the system. It is then possible to
+test, verify, and generate embedded code.
+The first dataflow synchronous languages Lustre~\cite{lustre_1987}
+(Caspi and Halbwachs) and Signal~\cite{signal_1991} (Le Guernic,
+A. Benveniste, and Gautier) were proposed in France in the late 80s.
+A dataflow synchronous program is a set of equations defining streams
+of values. Time proceeds by discrete logical steps, and at each step,
+the program computes the value of each stream depending on its inputs
+and possibly previously computed values.
+This approach is reminiscent of block diagrams, a popular notation to
+describe control systems.
+Figure~\ref{fig:lustre} presents a Lustre code example that tracks the
+number of times the speed of a vehicle exceeds the speed limit. The
+counter \lstinline{cpt} starts with~$0$ and is incremented by~$1$ each
+time the current speed exceed the current limit (\lstinline{when x}.
+The return value \lstinline{t} maintain the last computed value
+of \lstinline{cpt} between two occurences of~\lstinline{x}
+(\lstinline{current(cpt)}).
+The dataflow synchronous approach has inspired
+multiple languages: Lucid Synchrone~\cite{lucid_2006} combines the
+dataflow synchronous approach with functional features \`a la ML,
+StreamIt~\cite{streamit_2002} focuses on efficient processing of large
+streaming applications, Z\'elus~\cite{zelus_2013} is a Lustre-like
+language extended with ordinary differential equations to define
+continuous-time dynamics. Lustre is also the backbone of the
+industrial language and compiler Scade~\cite{scade_2017} routinely
+used to program embedded controllers in many critical applications.
+
+
 \begin{figure}
 \begin{lstlisting}
 CREATE CQ
 XML-QL query expression
 DO action
-{START start_time} 
-{EVERY time_interval} 
+{START start_time}
+{EVERY time_interval}
 {EXPIRE expiration_time}
 \end{lstlisting}
 \caption{\label{fig:Niagra}NiagaraCQ code example}
@@ -93,5 +139,5 @@ It provides a command language for creating continuous queries that follows the 
 According to illustrated form, the query ($CQ$) will become effective at the defined $start\textunderscore time$. The
 $time\textunderscore interval$ is used to indicate how often the query will be executed. A
 query is classified as a timer-based if its $time\textunderscore interval$ is not zero; otherwise, it
-is classified as a change-based. 
-The defined continuous query ($CQ$) will be deactivated after its $expiration\textunderscore time$. The specified query action $Action$ will be triggered once the results of the XML-QL query expression is returned.  A key optimization mechanism used  in the NiagaraCQ system is grouping the execution of similar queries to minimize redundant work.  Similar optimization approach has been adopted by Diao et al.~\cite{diao_et_al_2002} in the implementation of  \texttt{YFilter}, a filtering engine for streaming XML documents based on the W3C standard XML query languages: \texttt{XPath}\footnote{\url{https://www.w3.org/TR/1999/REC-xpath-19991116/}} and \texttt{XQuery}\footnote{\url{https://www.w3.org/XML/Query/}}. The main idea of YFilter is to use Finite State Machines (FSM)  to represent and evaluate XML path expressions and to combine the execution multiple queries into a single Nondeterministic Finite Automaton (NFA). 
+is classified as a change-based.
+The defined continuous query ($CQ$) will be deactivated after its $expiration\textunderscore time$. The specified query action $Action$ will be triggered once the results of the XML-QL query expression is returned.  A key optimization mechanism used  in the NiagaraCQ system is grouping the execution of similar queries to minimize redundant work.  Similar optimization approach has been adopted by Diao et al.~\cite{diao_et_al_2002} in the implementation of  \texttt{YFilter}, a filtering engine for streaming XML documents based on the W3C standard XML query languages: \texttt{XPath}\footnote{\url{https://www.w3.org/TR/1999/REC-xpath-19991116/}} and \texttt{XQuery}\footnote{\url{https://www.w3.org/XML/Query/}}. The main idea of YFilter is to use Finite State Machines (FSM)  to represent and evaluate XML path expressions and to combine the execution multiple queries into a single Nondeterministic Finite Automaton (NFA).
