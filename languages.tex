@@ -35,7 +35,7 @@
   - perhaps according to performance/generality/productivity
 \end{alltt}
 
-\begin{figure}
+\begin{figure}[!h]
 \begin{lstlisting}
 SELECT IStream(Max(len) AS mxl,
                  MaxCount(len) AS num,
@@ -74,7 +74,7 @@ count and caller information. CQL has influenced the design of many
 systems such as Microsoft StreamInsight~\cite{ali_et_al_2009}.
 
 
-\begin{figure}
+\begin{figure}[!h]
   \begin{lstlisting}
 node tracker (speed, limit: int) returns (t: int);
 var x: bool; cpt: int when x;
@@ -87,14 +87,14 @@ tel
   \caption{\label{fig:lustre} Lustre code example}
 \end{figure}
 
-\textbf{Dataflow Synchronous Languages}
-Synchronous dataflow languages were introduced to ease the design of
+\textbf{Synchronous Dataflow.}
+Dataflow synchronous languages were introduced to ease the design of
 real-time embedded systems. They allow to write a well-defined
 deterministic specification of the system. It is then possible to
 test, verify, and generate embedded code.
 The first dataflow synchronous languages Lustre~\cite{lustre_1987}
 (Caspi and Halbwachs) and Signal~\cite{signal_1991} (Le Guernic,
-A. Benveniste, and Gautier) were proposed in France in the late 80s.
+Benveniste, and Gautier) were proposed in France in the late 80s.
 A dataflow synchronous program is a set of equations defining streams
 of values. Time proceeds by discrete logical steps, and at each step,
 the program computes the value of each stream depending on its inputs
@@ -104,7 +104,7 @@ describe control systems.
 Figure~\ref{fig:lustre} presents a Lustre code example that tracks the
 number of times the speed of a vehicle exceeds the speed limit. The
 counter \lstinline{cpt} starts with~$0$ and is incremented by~$1$ each
-time the current speed exceed the current limit (\lstinline{when x}.
+time the current speed exceed the current limit (\lstinline{when x}).
 The return value \lstinline{t} maintain the last computed value
 of \lstinline{cpt} between two occurences of~\lstinline{x}
 (\lstinline{current(cpt)}).
@@ -119,7 +119,7 @@ industrial language and compiler Scade~\cite{scade_2017} routinely
 used to program embedded controllers in many critical applications.
 
 
-\begin{figure}
+\begin{figure}[!h]
 \begin{lstlisting}
 CREATE CQ
 XML-QL query expression
