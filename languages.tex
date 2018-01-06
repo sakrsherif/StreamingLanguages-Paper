@@ -89,7 +89,7 @@ number of times the speed of a vehicle exceeds the speed limit. The
 counter \lstinline{cpt} starts with~$0$ and is incremented by~$1$ each
 time the current speed exceed the current limit (\lstinline{when x}).
 The return value \lstinline{t} maintain the last computed value
-of \lstinline{cpt} between two occurences of~\lstinline{x}
+of \lstinline{cpt} between two occurrences of~\lstinline{x}
 (\lstinline{current(cpt)}).
 The dataflow synchronous approach has inspired
 multiple languages: Lucid Synchrone~\cite{lucid_2006} combines the
@@ -114,8 +114,8 @@ used to program embedded controllers in many critical applications.
 \begin{figure}[!h]
 \begin{lstlisting}
 CREATE ~\textit{cq\_name}~
-    ~\textit{xml\_ql\_query}~
-  DO ~\textit{action}~
+         ~\textit{xml\_ql\_query}~
+     DO ~\textit{action}~
   {START ~\textit{start\_time}~}
   {EVERY ~\textit{time\_interval}~}
   {EXPIRE ~\textit{expiration\_time}~}
@@ -125,7 +125,6 @@ CREATE ~\textit{cq\_name}~
 \end{figure}
 
 \textbf{XML Streaming.}
-%
 Chen et al.\ introduced NiagaraCQ~\cite{chen_et_al_2000} as a
 continuous query sub-system of the Niagara internet query engine, a
 database for querying distributed XML data sets developed at
@@ -148,14 +147,14 @@ defined \textsf{\small\textit{start\_time}}.  The
 will be executed. A query is timer-based if its
 \textsf{\small\textit{time\_interval}} is non-zero; otherwise, it is
 change-based.  The continuous query will be deactivated after its
-\textsf{\small\textit{expiration\_time}}. The specified query action
+\textsf{\small\textit{expiration\_time}}. The
 \textsf{\small\textit{action}} triggers once the results of the XML-QL
 query expression is returned.  A key optimization mechanism used in
 the NiagaraCQ system is grouping the execution of similar queries to
 minimize redundant work.  YFilter~\cite{diao_et_al_2002} implements
 continuous queries based on XPath~\cite{clark_derose_1999}, also with
 multi-query optimization. The main idea of YFilter is to use a single
-finite state machines (FSM) to represent and evaluate several XPath
+finite state machine to represent and evaluate several XPath
 expressions.
 
 \textbf{RDF Streaming.}
