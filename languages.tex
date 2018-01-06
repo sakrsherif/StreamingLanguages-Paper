@@ -127,8 +127,16 @@ stream<StatsT> StatsS = Aggregate(Calls) {
   - for precise semantics see core calculus~\cite{soule_et_al_2016}
 - where: IBM Streams product
 - whence: Borealis is evolutionary link from relational \cite{abadi_et_al_2005},
-  followed by Storm~\cite{toshniwal_et_al_2014}, Spark Streaming~\cite{zaharia_et_al_2013}
+  followed by Spark Streaming~\cite{zaharia_et_al_2013}, Storm~\cite{toshniwal_et_al_2014}, Flink~\cite{carbone_et_al_2015}
 \end{alltt}
+
+\begin{figure}[!h]
+\begin{lstlisting}
+TODO: CEP example
+\end{lstlisting}
+\vspace*{-4mm}
+\caption{\label{fig:cep}CEP example.}
+\end{figure}
 
 \textbf{Complex Event Processing.}
 \begin{alltt}TODO\scriptsize, ~0.3 pages, \textcolor{red}{Angela}
@@ -181,15 +189,32 @@ multi-query optimization. The main idea of YFilter is to use a single
 finite state machine to represent and evaluate several XPath
 expressions.
 
+\begin{figure}[!h]
+\begin{lstlisting}
+TODO: RDF streaming example
+\end{lstlisting}
+\vspace*{-4mm}
+\caption{\label{fig:rdf}RDF streaming example.}
+\end{figure}
+
 \textbf{RDF Streaming.}
 \begin{alltt}TODO\scriptsize, ~0.3 pages, \textcolor{red}{Emanuele, Akrivi}
 - C-SPARQL \cite{barbieri_et_al_2009}
 - stream reasoning
 \end{alltt}
 
+\begin{figure}[!h]
+\begin{lstlisting}
+TODO: ActiveSheets example
+\end{lstlisting}
+\vspace*{-4mm}
+\caption{\label{fig:activesheets}ActiveSheets example.}
+\end{figure}
+
 \textbf{Reactive Programming.}
 \begin{alltt}TODO\scriptsize, ~0.3 pages, \textcolor{red}{Martin}
-- why: ease of use, anyone who knows spreadsheets
+- why: spreadsheet formulas reactive since 1979~\cite{bricklin_frankston_1979},
+  ease of use, large user base
 - who: Vaziri et al.\ \cite{vaziri_et_al_2014}
 - when: 2014
 - what: key idea, data model, type system, code example
