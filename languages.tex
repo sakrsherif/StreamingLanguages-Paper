@@ -14,25 +14,6 @@
   - where: being developed or offered today, license
   - whence: influenced-by and influences
 - descriptions of individual languages
-  - relational / CQL \cite{arasu_babu_widom_2006}   \textcolor{red}{Sherif}
-    - why: precise semantics \cite{arasu_widom_2004}, example app linear-road \cite{arasu_et_al_2004}
-    - who: Arasu/Widom at Stanford
-    - when: 2004
-    - what: algebra of R2R (relational), S2R (windows), R2S (I/R/D);
-      data model relational; type system \cite{soule_et_al_2016}; example Figure~\ref{fig:cql}
-    - where: Stanford STREAM no longer active
-    - whence: influenced-by TelegraphCQ \cite{chandrasekaran_et_al_2003},
-      influences StreamInsight \cite{ali_et_al_2009} and many others
-  - synchronous dataflow / Lustre \cite{caspi_et_al_1987} \textcolor{red}{Guillaume}
-  - big-data streaming / SPL \cite{hirzel_schneider_gedik_2017} \textcolor{red}{Martin, Emanuele}
-  - CEP (complex event processing) / MATCH-RECOGNIZE \cite{zemke_et_al_2007} \cite{hirzel_2012} \textcolor{red}{Angela}
-  - XML / NiagaraCQ \cite{chen_et_al_2000}, YFilter \cite{diao_et_al_2002} \textcolor{red}{Sherif}
-  - RDF / C-SPARQL \cite{barbieri_et_al_2009} \textcolor{red}{Emanuele, Akrivi}
-  - stream reasoning \textcolor{red}{Emanuele}
-  - reactive spreadsheets / ActiveSheets \cite{vaziri_et_al_2014} \textcolor{red}{Martin}
-  - controlled natural language / META \cite{arnold_et_al_2016} \textcolor{red}{Martin}
-- close with summary/comparison table
-  - perhaps according to performance/generality/productivity
 \end{alltt}
 
 \begin{figure}[!h]
@@ -50,7 +31,8 @@ FROM Calls[Range 24 Hours Slide 1 Minute]
 In 2004, Arasu et al.\ at Stanford introduced CQL (for Continuous
 Query Language)~\cite{arasu_widom_2004}. CQL has been designed as an
 SQL-based declarative language for implementing continuous queries
-against streams of data. The design was influenced by the language of
+against streams of data, such as the LinearRoad
+benchmark~\cite{arasu_et_al_2004}. The design was influenced by the language of
 the TelegraphCQ system that proposed a declarative language with a
 particular focus on expressive windowing
 constructs~\cite{chandrasekaran_et_al_2003}. The semantics of CQL are
@@ -75,7 +57,7 @@ systems such as Microsoft StreamInsight~\cite{ali_et_al_2009}.
 
 
 \begin{figure}[!h]
-  \begin{lstlisting}
+\begin{lstlisting}
 node tracker (speed, limit: int) returns (t: int);
 var x: bool; cpt: int when x;
 let
@@ -83,8 +65,8 @@ let
   cpt = counter((0, 1) when x);
   t = current(cpt);
 tel
-  \end{lstlisting}
-  \caption{\label{fig:lustre} Lustre code example}
+\end{lstlisting}
+\caption{\label{fig:lustre} Lustre code example}
 \end{figure}
 
 \textbf{Synchronous Dataflow.}
@@ -118,6 +100,15 @@ continuous-time dynamics. Lustre is also the backbone of the
 industrial language and compiler Scade~\cite{scade_2017} routinely
 used to program embedded controllers in many critical applications.
 
+\textbf{Big-Data Streaming.}
+\begin{alltt}TODO\scriptsize, ~0.3 pages, \textcolor{red}{Martin, Emanuele}
+- SPL \cite{hirzel_schneider_gedik_2017}
+\end{alltt}
+
+\textbf{Complex Event Processing.}
+\begin{alltt}TODO\scriptsize, ~0.3 pages, \textcolor{red}{Angela}
+- MATCH-RECOGNIZE \cite{zemke_et_al_2007}, MatchRegex \cite{hirzel_2012}
+\end{alltt}
 
 \begin{figure}[!h]
 \begin{lstlisting}
@@ -141,3 +132,20 @@ $time\textunderscore interval$ is used to indicate how often the query will be e
 query is classified as a timer-based if its $time\textunderscore interval$ is not zero; otherwise, it
 is classified as a change-based.
 The defined continuous query ($CQ$) will be deactivated after its $expiration\textunderscore time$. The specified query action $Action$ will be triggered once the results of the XML-QL query expression is returned.  A key optimization mechanism used  in the NiagaraCQ system is grouping the execution of similar queries to minimize redundant work.  Similar optimization approach has been adopted by Diao et al.~\cite{diao_et_al_2002} in the implementation of  \texttt{YFilter}, a filtering engine for streaming XML documents based on the W3C standard XML query languages: \texttt{XPath}\footnote{\url{https://www.w3.org/TR/1999/REC-xpath-19991116/}} and \texttt{XQuery}\footnote{\url{https://www.w3.org/XML/Query/}}. The main idea of YFilter is to use Finite State Machines (FSM)  to represent and evaluate XML path expressions and to combine the execution multiple queries into a single Nondeterministic Finite Automaton (NFA).
+
+\textbf{RDF Streaming.}
+\begin{alltt}TODO\scriptsize, ~0.3 pages, \textcolor{red}{Emanuele, Akrivi}
+- C-SPARQL \cite{barbieri_et_al_2009}
+- stream reasoning
+\end{alltt}
+
+\textbf{Reactive Programming.}
+\begin{alltt}TODO\scriptsize, ~0.3 pages, \textcolor{red}{Martin}
+- ActiveSheets \cite{vaziri_et_al_2014}
+\end{alltt}
+
+\textbf{Summary.}
+\begin{alltt}TODO\scriptsize
+- close with comparison table
+- perhaps according to performance/generality/productivity
+\end{alltt}
