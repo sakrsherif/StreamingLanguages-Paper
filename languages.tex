@@ -128,40 +128,35 @@ CREATE ~\textit{cq\_name}~
 %
 Chen et al.\ introduced NiagaraCQ~\cite{chen_et_al_2000} as a
 continuous query sub-system of the Niagara internet query engine, a
-distributed database system for querying distributed XML data sets
-developed at University of Wisconsin and Oregon Graduate
+database for querying distributed XML data sets developed at
+University of Wisconsin and Oregon Graduate
 Institute~\cite{naughton2001niagara}. NiagaraCQ implements continuous
-query processing over multiple and distributed XML files by supporting
-incremental evaluation and considering only the changed portion of
-each updated XML file. It supports two types of continuous queries
-that differ in the criteria triggering their execution:
-\emph{change-based} queries, which are triggered as soon as new
-relevant data becomes available, and \emph{timer-based} queries, which
-are triggered only at time intervals specified by the submitting
-user. The query language of NiagaraCQ is based on the XML-QL query
-language~\cite{deutsch1999query}.  It provides a command language for
-creating continuous queries that follows the form illustrated in
-Figure~\ref{fig:Niagra}. Using this command language, users can
-implement continuous queries that combines an ordinary XML-QL query
-with additional time information.  According to illustrated form, the
-query ($CQ$) will become effective at the defined
-$start\textunderscore time$. The $time\textunderscore interval$ is
-used to indicate how often the query will be executed. A query is
-timer-based if its $time\textunderscore interval$ is not zero;
-otherwise, it is change-based.  The defined continuous query ($CQ$)
-will be deactivated after its $expiration\textunderscore time$. The
-specified query action $Action$ will be triggered once the results of
-the XML-QL query expression is returned.  A key optimization mechanism
-used in the NiagaraCQ system is grouping the execution of similar
-queries to minimize redundant work.  Similar optimization approach has
-been adopted by Diao et al.~\cite{diao_et_al_2002} in the
-implementation of YFilter, a filtering engine for streaming XML
-documents based on the W3C standard XML query languages:
-XPath\footnote{\url{https://www.w3.org/TR/1999/REC-xpath-19991116/}}
-and XQuery\footnote{\url{https://www.w3.org/XML/Query/}}. The main
-idea of YFilter is to use Finite State Machines (FSM) to represent and
-evaluate XML path expressions and to combine the execution multiple
-queries into a single Nondeterministic Finite Automaton (NFA).
+query processing over XML files by supporting incremental evaluation
+and considering only the changed portion of each updated XML file. It
+supports two types of continuous queries that differ in the criteria
+triggering their execution: \emph{change-based} queries, which trigger
+as soon as new relevant data becomes available, and \emph{timer-based}
+queries, which trigger only at specified time intervals.  NiagaraCQ is
+based on XML-QL~\cite{deutsch1999query}.  It provides a command
+language for creating continuous queries that follows the form
+illustrated in Figure~\ref{fig:Niagra}. Using this command language,
+users can implement continuous queries that combines an ordinary
+XML-QL query with additional time information.  The
+\textsf{\small\textit{xml\_ql\_query}} becomes effective at the
+defined \textsf{\small\textit{start\_time}}.  The
+\textsf{\small\textit{time\_interval}} indicates how often the query
+will be executed. A query is timer-based if its
+\textsf{\small\textit{time\_interval}} is non-zero; otherwise, it is
+change-based.  The continuous query will be deactivated after its
+\textsf{\small\textit{expiration\_time}}. The specified query action
+\textsf{\small\textit{action}} triggers once the results of the XML-QL
+query expression is returned.  A key optimization mechanism used in
+the NiagaraCQ system is grouping the execution of similar queries to
+minimize redundant work.  YFilter~\cite{diao_et_al_2002} implements
+continuous queries based on XPath~\cite{clark_derose_1999}, also with
+multi-query optimization. The main idea of YFilter is to use a single
+finite state machines (FSM) to represent and evaluate several XPath
+expressions.
 
 \textbf{RDF Streaming.}
 \begin{alltt}TODO\scriptsize, ~0.3 pages, \textcolor{red}{Emanuele, Akrivi}
