@@ -103,7 +103,7 @@ used to program embedded controllers in many critical applications.
 
 \begin{figure}[!h]
 \begin{lstlisting}
-stream<float64 len, rstring caller> Calls = CallsSrc() { }
+stream<float64 len, rstring caller> Calls = CallsSrc() {}
 type StatsT = tuple<float64 len, int32 num, rstring who>;
 stream<StatsT> StatsS = Aggregate(Calls) {
    window Calls: sliding, time(24.0*60.0*60.0), time(60.0);
@@ -117,18 +117,34 @@ stream<StatsT> StatsS = Aggregate(Calls) {
 \end{figure}
 
 \textbf{Big-Data Streaming.}
-\begin{alltt}TODO\scriptsize, ~0.3 pages, \textcolor{red}{Martin, Emanuele}
-- why: scale, and diverse data and processing needs
-- who: SPL~\cite{hirzel_schneider_gedik_2017}, Hirzel et al., IBM
-- when: 2010
-- what: Figure~\ref{fig:spl}, explicit graph of streams and operators,
-  operators defined by users or in library (not built-in),
-  streams carry tuples, tuples nest other tuples, lists, maps
-  - for precise semantics see core calculus~\cite{soule_et_al_2016}
-- where: IBM Streams product
-- whence: Borealis is evolutionary link from relational \cite{abadi_et_al_2005},
-  followed by Spark Streaming~\cite{zaharia_et_al_2013}, Storm~\cite{toshniwal_et_al_2014}, Flink~\cite{carbone_et_al_2015}
-\end{alltt}
+%
+The need to handle diverse data and processing needs at scale
+motivated several recent big-data streaming languages and
+systems~\cite{carbone_et_al_2015,hirzel_schneider_gedik_2017,toshniwal_et_al_2014,zaharia_et_al_2013}.
+Each of them makes it easy to integrate operators written in
+general-purpose languages and to parallelize them on clusters of
+multicore computers. Hirzel et al.\ introduced the SPL
+language~\cite{hirzel_schneider_gedik_2017} as part of the IBM~Streams
+product in~2010. Figure~\ref{fig:spl} shows an example for a similar
+use-case as Figure~\ref{fig:cql}. Line~1 defines a stream
+\lstinline{Calls} by invoking an operator \lstinline{CallsSrc}, and
+\mbox{Lines 3-8} define a stream \lstinline{StatsS} by invoking an
+operator \lstinline{Aggregate}. An SPL program explicitly specifies a
+directed graph of stream edges and operator nodes. Streams carry
+tuples; in the examples, tuple attributes contain primitive values,
+but in general, they can also contain compound values such as other
+tuples or lists.  Operators create and transform streams; operators
+are defined by users or libraries, not built into the
+language. Operators can be further configured upon invocation, for
+example, with windows or output assignments. To facilitate
+distribution, SPL's semantics are defined to require minimal
+synchronization between operators~\cite{soule_et_al_2016}. One can
+view Borealis as the evolutionary link between relational streaming
+and big-data streaming languages~\cite{abadi_et_al_2005}. In the
+big-data domain, SPL has been followed by
+Storm~\cite{toshniwal_et_al_2014}, Spark
+Streaming~\cite{zaharia_et_al_2013}, Flink~\cite{carbone_et_al_2015},
+and others.
 
 \begin{figure}[!h]
 \begin{lstlisting}
@@ -157,9 +173,9 @@ CREATE ~\textit{cq\_name}~
 \end{figure}
 
 \textbf{XML Streaming.}
-Chen et al.\ introduced NiagaraCQ~\cite{chen_et_al_2000} as a
+Chen et al.\ introduced NiagaraCQ~\cite{chen_et_al_2000} in 2000 as a
 continuous query sub-system of the Niagara internet query engine, a
-database for querying distributed XML data sets developed at
+data\-base for querying distributed XML data sets developed at
 University of Wisconsin and Oregon Graduate
 Institute~\cite{naughton2001niagara}. NiagaraCQ implements continuous
 query processing over XML files by supporting incremental evaluation
