@@ -4,7 +4,6 @@
 - this section will have ~0.3 pages about each language, and
   each of these snippets will be structured around questions:
   why-who-when-what-where-whence
-  (see CQL for an example, but the others will be similar!)
 - before the snippets on each of the languages, we will briefly
   introduce and explain these questions, as follows:
   - why: objective, audience, domain
@@ -216,7 +215,7 @@ TODO: RDF streaming example
 \textbf{RDF Streaming.}
 \begin{alltt}TODO\scriptsize, ~0.3 pages, ~5 citations, \textcolor{red}{Emanuele, Akrivi}
 - C-SPARQL \cite{barbieri_et_al_2009}
-- stream reasoning
+- stream reasoning (either separate snippet, or included here)
 \end{alltt}
 
 \begin{figure}[!h]
@@ -225,17 +224,32 @@ TODO: RDF streaming example
 \caption{\label{fig:activesheets}ActiveSheets example.}
 \end{figure}
 
-\textbf{Streaming Spreadsheets.}
-\begin{alltt}TODO\scriptsize, ~0.3 pages, ~5 citations, \textcolor{red}{Martin}
-- why: spreadsheet formulas reactive since 1979~\cite{bricklin_frankston_1979},
-  ease of use, large user base
-- who: Vaziri et al.\ \cite{vaziri_et_al_2014}
-- when: 2014
-- what: key idea, data model, type system, code example
-- where: being developed or offered today, license
-- whence: influenced-by SDF \cite{lustre_1987}, FRP \cite{hudak_et_al_2003},
-  extended with windows, partitions, opt \cite{hirzel_et_al_2016}
-\end{alltt}
+\textbf{Streaming for End-Users.}
+%
+We use the term \emph{end-users} to refer to users without particular
+software development training. Probably the most successful
+programming tool for end-users is spreadsheet formulas. And from the
+early days of VisiCalc in 1979~\cite{bricklin_frankston_1979},
+spreadsheet formulas have been \emph{reactive} in the sense that any
+changes in their inputs trigger an automatic recomputation of their
+outputs. Therefore, in 2014, Vaziri et al.\ designed ActiveSheets, a
+spreadsheet-based stream programming model~\cite{vaziri_et_al_2014}.
+Figure~\ref{fig:activesheets} gives an example that implements a
+similar computation as Figures \mbox{\ref{fig:cql} and \ref{fig:spl}}.
+Cells \lstinline{A3:B8} contain a sliding window of recent call
+records, which ActiveSheets updates from live input data. Cells
+\lstinline{D3:F3} contain the output data, \mbox{(re-)}com\-pu\-ted
+using reactive spreadsheet formulas. The formula
+\mbox{\lstinline{E3=COUNTIF(A3:A8,D3)}} counts how many calls in the
+window are as long as a longest call. The formula
+\mbox{\lstinline{F3=INDEX(B3:B8,MATCH(D3,A3:A8,0))}} retrieves a
+caller corresponding to a longest call. ActiveSheets was influenced by
+synchronous dataflow~\cite{lustre_1987} and has been extended with
+time-based windows, partitions, and performance
+optimizations~\cite{hirzel_et_al_2016}. Other ideas besides
+spreadsheets that have been used to let end-users build streaming
+applications include trigger-action programming~\cite{ifttt} and
+controlled natural language~\cite{arnold_et_al_2016}.
 
 \textbf{Summary.}
 \begin{alltt}TODO\scriptsize
