@@ -150,13 +150,14 @@ and others.
 \begin{lstlisting}
 stream<MatchT> Matches = MatchRegex(Quotes) {
 param
-pattern : ". rise*";
+pattern : ". rise+ drop+";
 partitionBy : symbol;
 predicates : {
-rise = speed>Max(speed) && speed > limit };
+rise = speed > Max(speed) && speed > limit + 5,
+drop = speed < Min(speed) && speed < limit  };
 output
 Matches : symbol=symbol, seqNum=First(seqNum),
-count=Count(), maxSpeed=Max(speed);
+count=Count(), maxSpeed=Max(speed), minSpeed=Min(speed);
 \end{lstlisting}
 \vspace*{-4mm}
 \caption{\label{fig:cep}CEP example.}
@@ -167,11 +168,13 @@ count=Count(), maxSpeed=Max(speed);
 Complex Event Processing (CEP) is another technology with respect to stream processing, which is oftentimes 
 considered as an alternative or as a special case of stream processing. The latter thesis has led to define CEP 
 operators in classical streams processing languages. A prominent example on top of SPL~\cite{hirzel_schneider_gedik_2017} described above is the  
-MatchRegex~\cite{hirzel_2012} operator for the System S distributed streaming platform. This operator has been introduced by Hirzel in 2012 and influenced by the MATCH-RECOGNIZE~\cite{zemke_et_al_2007} version, which is part of the SQL ANSI 
+MatchRegex~\cite{hirzel_2012} operator, whose implementation is available in the System S distributed streaming platform. This operator has been introduced by Hirzel in 2012 and influenced by the MATCH-RECOGNIZE~\cite{zemke_et_al_2007} version, which is part of the SQL ANSI 
 standard. With respect to its SQL counterpart,  MatchRegex is much more simplified and concise in terms of syntax as well as easy to deploy as a library operator. 
 Figure~\label{fig:cep} shows an example of SPL source code with MatchRegex operator. 
 It permits to capture a composite event in which the speed of a vehicle already overcoming the limit rises beyond the maximum value of the speed 
-observed so far. This even can be repeated several times due to the presence of the Kleene-star in the regular expression of the pattern. 
+observed so far (corresponding to the first predicate rise). This event can be repeated several times due to the presence of the Kleene-plus in the regular expression of the pattern. Similarly, 
+the minimum speed registered within the speed bound is captured in the second predicate and its value is provided as output, along with the number of times when these rises and drops occurs and the first 
+foreseen event of either kind. The MatchRegex~\cite{hirzel_2012} operator is implemented via code generation and translates to an automaton, which permits space and time-efficient incremental computation of aggregates. Other functionalities beyond pattern matching are not supported, such as join operations and reporting tasks. 
 
 %\begin{alltt}TODO\scriptsize, ~0.75 pages, ~8 citations, \textcolor{red}{Angela}
 %- e.g. MATCH-RECOGNIZE \cite{zemke_et_al_2007}, MatchRegex \cite{hirzel_2012}
