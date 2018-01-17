@@ -154,18 +154,37 @@ Storm~\cite{toshniwal_et_al_2014}, Spark
 Streaming~\cite{zaharia_et_al_2013}, Flink~\cite{carbone_et_al_2015},
 and others.
 
+\begin{alltt}TODO\scriptsize Martin
+- more extensively describe Storm, Spark, and Flink
+\end{alltt}
+
 \begin{figure}[!h]
 \begin{lstlisting}
-stream<MatchT> Matches = MatchRegex(Quotes) {
-param
-pattern : ". rise+ drop+";
-partitionBy : symbol;
-predicates : {
-rise = speed > Max(speed) && speed > limit + 5,
-drop = speed < Min(speed) && speed < limit  };
-output
-Matches : symbol=symbol, seqNum=First(seqNum),
-count=Count(), maxSpeed=Max(speed), minSpeed=Min(speed);
+/* Either from similar domain as CQL example:
+  alert when calls from locations over
+  10 miles apart within 60 seconds. */
+stream<Alert> Alerts = MatchRegex(Calls) {
+  param
+    partitionBy: caller;
+    pattern    : ".+ tooFarTooFast";
+    predicates : {
+      tooFarTooFast =
+            geoDist(First(loc), Last(loc)) >= 10.0
+        && timeDist(First(ts), Last(ts)) <= 60.0; };
+  output
+    Alerts: who=caller, where=Last(loc), when=Last(ts);
+}
+/* Or from similar domain as Lustre example:
+   simple edge detector, each time a car's speed
+   increases over the speed limit, emit a tuple
+   with a count of 1. */
+stream<Edge> Edges = MatchRegex(CarUpdates) {
+  param  pattern    : "below above";
+         partitionBy: car;
+         predicates : { below = speed <= limit;
+                        above = speed > limit; };
+  output Edge: car=car, speed=Max(speed), count=1;
+}
 \end{lstlisting}
 \vspace*{-4mm}
 \caption{\label{fig:cep}CEP example.}
