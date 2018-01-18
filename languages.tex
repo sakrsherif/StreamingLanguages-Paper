@@ -61,7 +61,14 @@ phone calls to return the maximum phone call length along with its
 count and caller information. CQL has influenced the design of many
 systems such as Microsoft StreamInsight~\cite{ali_et_al_2009}.
 
-
+GSQL~\cite{cranor_et_al_2003} is another streaming  language with SQL-like syntax.
+It has been designed in the context of the Gigascope system~\cite{cranor2003gigascope}, a stream database for network applications
+including traffic analysis, intrusion detection, router configuration analysis and network monitoring.
+In GSQL, all queries operate over streams, as inputs and outputs. 
+In addition to the standard SQL operator (e.g., selection, projection, join, aggregation), GSQL supports  the \emph{merge} operator that combines streams from multiple sources into a single stream. It acts as a union operator that preserves the \emph{ordering} properties of an attribute.
+GSQL supports the join of two streams as long as it can determine
+a join window from the join predicates. However, GSQL does
+not support the join of a stream to a non-stream relation.
 
 
 \begin{figure}[!h]
