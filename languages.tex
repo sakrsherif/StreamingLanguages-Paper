@@ -216,13 +216,27 @@ It permits to capture a composite event in which the calls issued from locations
 a stream of alerts. This event can be repeated several times due to the presence of the Kleene-plus in the regular expression of the pattern. 
 The location and duration are captured in the corresponding predicates and their values are provided as output, along with the corresponding alert. 
 We now turn to discuss two close predecessors of MatchRegex, namely the MATCH-RECOGNIZE~\cite{zemke_et_al_2007} clause of SQL and 
-~\cite{}. The former has been introduced in order to capture pattern recognition in rows of a table. Patterns are described by a regular 
+~\cite{WuDR06}. The former has been introduced in order to capture pattern recognition in rows of a table. Patterns are described by a regular 
 expression included in the PATTERN argument of the MATCH-RECOGNIZE clause and represented by variables. For instance, in our example of Figure~\ref{fig:cep}, the PATTERN argument contains a group variable given by $A+$ due to the presence of the Kleene-plus quantifier (where $A$ is defined AS
 LAST(G.Loc) - FIRST(G.Loc) >= 10.0
         AND Last(T.ts) - FIRST(T.ts) <= 60.0 with G and T indicating the geodistance and timestamp relations). The clause permits to specify the output as a singleton (ONE ROW PER MATCH, also the default) or as a set of rows (ALL ROWS PER MATCH). The first option makes visible the columns specified in   the partition
 columns, order by columns and columns defined in the MEASURES clause. For ALL
 ROWS PER MATCH the visible columns include also all columns of the initial tables even though they are not used in the previous fields.
+Since MATCH-RECOGNIZE is embedded in SQL, join conditions can be readily specified. 
+With the advent of Big Data, handling higher volumes of streaming data and being capable of accommodating larger windows become imperative. To address these two challenges, the SASE event system proposes to execute complex event queries on real-time streams. 
+Figure~\ref{fig:SASE} shows the high-level syntax of the language, where the first clause EVENT specifies the types of events that need to be captured, while the second clause WHERE allows to filter those events by imposing suitable predicates applied to the events attributes and the third clause WITHIN indicates a time period in a sliding window over the input stream.  The first clause also allows to specify a sequence of types of events or their non occurrence 
+via the special symbol $!$. However, it is not permitted to specify complex patterns under the form of regular expressions (thus with Kleene-star or Kleene-plus operator) and aggregates. Thus, the above example in Figure~\label{fig:cep} is not expressible in SASE. The idea behind SASE is to have at disposal 
+a self-contained language which can be translated to suitable algebraic query expressions. 
 
+\begin{figure}[!h]
+\begin{lstlisting}
+EVENT ~\textit{event\_pattern}~
+[WHERE ~\textit{qualification}~]
+[WITHIN ~\textit{window}~]
+\end{lstlisting}
+\vspace*{-4mm}
+\caption{\label{fig:SASE}Syntax of the Sase CEP Language.}
+\end{figure}
 
 %\begin{alltt}TODO\scriptsize, ~0.75 pages, ~8 citations, \textcolor{red}{Angela}
 %- e.g. MATCH-RECOGNIZE \cite{zemke_et_al_2007}, MatchRegex \cite{hirzel_2012}
