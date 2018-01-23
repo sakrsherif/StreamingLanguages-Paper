@@ -262,22 +262,71 @@ expressions. In particular, YFilter exploits the commonality among path queries 
 of the paths so that they are processed at most once. This  shared processing mechanism provides significant performance
 improvement by avoiding redundant processing for duplicate path expressions. In order to handle value-based predicates that address contents of elements, YFilter applies two alternative approaches. The first approach approach evaluates the  predicates once the addressed elements are read from a document, while the other approach postpones predicate evaluation until the corresponding path expression has been entirely matched.
 
-
-\begin{figure}[!h]
-\begin{lstlisting}
-TODO: RDF streaming example
-\end{lstlisting}
-\vspace*{-4mm}
-\caption{\label{fig:rdf}RDF streaming example.}
-\end{figure}
-
-\textbf{RDF Streaming.}
+\textbf{RDF Streaming and Stream Reasoning.}
 \begin{alltt}TODO\scriptsize, ~0.75 pages, ~8 citations, \textcolor{red}{Emanuele, Akrivi}
 - e.g., C-SPARQL \cite{barbieri_et_al_2009}
 - stream reasoning (either separate snippet, or included here)
 \end{alltt}
 
-checking if I can put my changes
+In 2009, Della~Valle~et~al.~\cite{DBLP:journals/expert/ValleCHF09} called the Semantic Web and AI communities to investigate languages, tools and methodologies for representing, managing and reasoning on heterogenous data streams and complex events in presence of expressive domain models (captured by the means of ontologies). Those communities were still focusing on rather static data. In existing work on logical reasoning, the knowledge base was always assumed to be static (or slowly evolving). The work on changing beliefs~\cite{583243} on the basis of new observations was proposing solutions that were far too complex to be applicable to gigantic data streams. Della Valle et al.~\cite{DBLP:journals/expert/ValleCHF09} proposes to name this new research topic Stream Reasoning~\cite{DellAglioDataScience2017}.
+
+\sloppy The research on Stream Reasoning investigated two parallel, but interleaved, research questions: one on modelling and one on optimisation. On the \textbf{modelling} side, early works extend the Semantic Web stack \cite{DBLP:books/daglib/0036180} in order to represent heterogenous data streams, continuous queries, and continuous reasoning tasks. Inspired by CQL~\cite{arasu_widom_2004}, Della Valle et al.~\cite{DBLP:conf/fis/ValleCBBC08} proposed the notions of RDF Stream and Continuous SPARQL (C-SPARQL). Those notions were adopted in SPARQL$_{stream}$~\cite{Calbimonte2010}, CQELS~\cite{LePhuoc2012c} and EP-SPARQL~\cite{DBLP:journals/semweb/AnicicRFS12} that introduced variants in syntax and semantics. Building on all those efforts an RDF Stream Processing (RSP) community group\footnote{\url{http://www.w3.org/community/rsp/}} was established at W3C in 2013  to define RSP-QL syntax~\cite{DBLP:conf/esws/DellAglioCVC15} and semantics~\cite{DBLP:journals/ijswis/DellAglioVCC14}.
+
+In RSP-QL, an \textit{RDF Stream} is as an unbound sequence of \emph{time-varing graphs} $< t,\tau>$ where $t$ is an RDF graph and $\tau \in \mathbb{Z}^{*}$ is a non-decreasing timestamp; while a RQL-QL query is a continuous query on multiple RDF streams as well as static information stored in RDF graphs. 
+
+As running example, consider a social network micro-blogging stream, which
+contains microposts emitted over time (e.g., $\tau_1$ and $\tau_2$) by users as in the RDF stream snippet in Figure~\ref{fig:rdfstream}. Notably, each RDF graph contains a small tree, but altogether the RDF graphs form a graph (e.g., notice that the two posts are about the same topic and \textsf{post2} mentions the author of \textsf{post1}.).
+
+\begin{figure}[!h]
+\begin{lstlisting}[escapeinside={(*}{*)}]
+:graph1 :generatedAt "(*$\tau_1$*)"
+:graph1 { 
+  :post1 :has_creator :Alice .
+  :post1 :topic :wonderLand .
+  :post1 :content "If I had a world of my own (*$\dots$*)" }
+:graph2 :generatedAt "(*$\tau_2$*)" 
+:graph2 { :post2 :has_creator :WhiteRappit .
+  :post2 :mentions :Alice .
+  :post2 :topic :wonderLand .
+  (*$\dots$*)  }  
+\end{lstlisting}
+\vspace*{-4mm}
+\caption{\label{fig:rdfstream}an RDF stream snippet.}
+\end{figure}
+
+Figure \ref{fig:rspql} illustrates an RSP-QL query that continuously identifies the emerging topics on this stream by finding out those which are frequently appearing lately, and less before. To do so, on Lines 3-6, it opens  on the RDF stream \textsf{in} a short window \textsf{swin} of 10 minutes that tumbles and a long window \textsf{lwin} of 120 minutes that slides every 10 minutes. It counts the number of posts per topic in the long window and in short window respectively on Lines 8-11, and Lines 12-15. On Line 16-17, it fetches the standard deviation of the mentions per each topic appearing in the window from a static graph and checks if the Z-Score\footnote{\url{https://en.wikipedia.org/wiki/Standard_score}} is larger than 2. 
+
+\begin{figure}[!h]
+\begin{lstlisting}[language=rsp-ql]
+REGISTER STREAM :out
+AS CONSTRUCT RSTREAM { ?tshort a :EmergingTopic }
+FROM NAMED WINDOW :lwin 
+       ON :in [ RANGE PT120M STEP PT10M]
+FROM NAMED WINDOW :swin 
+       ON :in [ RANGE PT10M STEP PT10M]
+WHERE { 
+  WINDOW :lwin{
+   SELECT ?topic ( COUNT(*) AS totalLong)
+   WHERE { ?m1 :topic ?topic. }
+   GROUP BY ?topic }
+  WINDOW :swin{
+   SELECT ?topic ( COUNT(*) AS totalShort)
+   WHERE { ?m2 :topic ?tshort. }
+   GROUP BY ?topic }
+  GRAPH :bg {?topic :hasStandardDeviation ?s 
+   FILTER ((?totalShort - ?totalLong/12)/?s > 2)
+  }
+}
+\end{lstlisting}
+\vspace*{-4mm}
+\caption{\label{fig:rspql}RSP-QL example.}
+\end{figure}
+
+\sloppy The novelty of RDF streams w.r.t. data streams is not in its definition, but in what it enables. When the information flow is a graph evolving over time, RDF streams are more adequate data model than (relational) data stream. The same RDF stream can accommodate a variety of data elements, whereas a relational data stream allows only tuples corresponding to a defined relation to be streamed. It is also worth to note that the term RDF stream denotes a data model. It does not imply that data has to be \emph{physically} represented as time-varying triples. It also allows to represent non-RDF data stream as \emph{virtual RDF streams}, just as virtual RDF graphs can represent non-RDF databases~\cite{bizer2004d2rq}. 
+
+However, when working with data streams, providing reactive answers is as important as capturing complex models. For this reason the Stream Reasoning community also focused on \textbf{optimising} continuous querying and continuous reasoning tasks so to provide reactive answers. 
+
+
 
 \begin{figure}[!h]
 \centerline{\includegraphics[width=\columnwidth]{CallStats.jpg}}
