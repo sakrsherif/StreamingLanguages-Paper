@@ -350,9 +350,22 @@ WHERE {
 \caption{\label{fig:rspql}RSP-QL example.}
 \end{figure}
 
-\sloppy The novelty of RDF streams w.r.t. data streams is not in its definition, but in what it enables. When the information flow is a graph evolving over time, RDF streams are more adequate data model than (relational) data stream. The same RDF stream can accommodate a variety of data elements, whereas a relational data stream allows only tuples corresponding to a defined relation to be streamed. It is also worth to note that the term RDF stream denotes a data model. It does not imply that data has to be \emph{physically} represented as time-varying triples. It also allows to represent non-RDF data stream as \emph{virtual RDF streams}, just as virtual RDF graphs can represent non-RDF databases~\cite{bizer2004d2rq}. 
+The novelty of RDF streams w.r.t. data streams is not in its definition, but in what it enables. When the information flow is a graph evolving over time, RDF streams are more adequate data model than (relational) data stream. The same RDF stream can accommodate a variety of data elements, whereas a relational data stream allows only tuples corresponding to a defined relation to be streamed. 
 
-However, when working with data streams, providing reactive answers is as important as capturing complex models. For this reason the Stream Reasoning community also focused on \textbf{optimising} continuous querying and continuous reasoning tasks so to provide reactive answers. 
+Last, but not least, RDF streams enable the encoding of continuous reasoning tasks as continuous query answering under a given entailment regime.For instance, a continuous Description Logic reasoning task involves 
+a static TBox $T$ and a sequence of ABoxes about $T$ called
+ontology stream S$^T$(i).
+A windowed ontology stream S$^T$(o,c] is the unions to all the ABoxes
+S$^T$(i) where $o<i\leq c$.
+Reasoning over a windowed ontology stream is as reasoning in static DL, the only problem is to optimise the reasoning task in order to remain reactive\cite{Ren2011,DBLP:conf/debs/KomazecCF12,DBLP:books/crc/linked14/DellAglioV14}.
+
+<< add temporal reasoning >>
+
+<< add cascading stream reasoning >>
+
+\sloppy  It is also worth to note that the term RDF stream denotes a data model. It does not imply that data has to be \emph{physically} represented as time-varying triples. It also allows to represent non-RDF data stream as \emph{virtual RDF streams}, just as virtual RDF graphs can represent non-RDF databases~\cite{bizer2004d2rq}. 
+
+
 
 
 
