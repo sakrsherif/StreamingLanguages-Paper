@@ -352,21 +352,14 @@ WHERE {
 
 The novelty of RDF streams w.r.t. data streams is not in its definition, but in what it enables. When the information flow is a graph evolving over time, RDF streams are more adequate data model than (relational) data stream. The same RDF stream can accommodate a variety of data elements, whereas a relational data stream allows only tuples corresponding to a defined relation to be streamed. 
 
-Last, but not least, RDF streams enable the encoding of continuous reasoning tasks as continuous query answering under a given entailment regime.For instance, a continuous Description Logic reasoning task involves 
+Last, but not least, RDF streams enable the encoding of continuous reasoning tasks as continuous query answering under a given entailment regime. For instance, a continuous Description Logic reasoning task involves 
 a static TBox $T$ and a sequence of ABoxes about $T$ called
 ontology stream S$^T$(i).
 A windowed ontology stream S$^T$(o,c] is the unions to all the ABoxes
 S$^T$(i) where $o<i\leq c$.
-Reasoning over a windowed ontology stream is as reasoning in static DL, the only problem is to optimise the reasoning task in order to remain reactive\cite{Ren2011,DBLP:conf/debs/KomazecCF12,DBLP:books/crc/linked14/DellAglioV14}.
+Reasoning over a windowed ontology stream is as reasoning in static DL~\cite{Walavalkar2008}, the only problem is to optimise the reasoning task in order to remain reactive. Barbieri~et~al.~\cite{DBLP:conf/esws/BarbieriBCVG10} made the first step in this direction enhancing the DRed algorithm. Few years later Komazec~et~al.~\cite{DBLP:conf/debs/KomazecCF12} realised its first implementation extending the RETE algorithm. In parallel, Y. Ren and J. Pan proposed an alternative approach via Truth Maintenance Systems~\cite{Ren2011}. The state-of-the-art in this setting is the work of Motik~et~al.~\cite{DBLP:conf/aaai/MotikNPH15a}.  It is also worth to note that the term RDF stream denotes a data model. It does not imply that data has to be \emph{physically} represented as time-varying triples. It also allows to represent non-RDF data stream as \emph{virtual RDF streams} and to reason on it by rewriting continuous ontological queries on an underlying data stream processing system. The state-of-the-art in this setting is the work of Calbimonte~et~al.~\cite{DBLP:conf/esws/CalbimonteMC16}.
 
-<< add temporal reasoning >>
-
-<< add cascading stream reasoning >>
-
-\sloppy  It is also worth to note that the term RDF stream denotes a data model. It does not imply that data has to be \emph{physically} represented as time-varying triples. It also allows to represent non-RDF data stream as \emph{virtual RDF streams}, just as virtual RDF graphs can represent non-RDF databases~\cite{bizer2004d2rq}. 
-
-
-
+However, alternative reasoning tasks can be performed, too. Anicic~et~al.~\cite{DBLP:journals/semweb/AnicicRFS12} bridged Stream Reasoning with Complex Event Processing grounding both in Logic Programming. Beck et al., instead, used Answer Set Programming to model expressive Stream Reasoning tasks~\cite{DBLP:conf/aaai/BeckDEF15} and built systems able to perform those tasks, e.g.,  Ticker~\cite{DBLP:journals/tplp/BeckEB17} and Laser~\cite{DBLP:conf/semweb/BazoobandiBU17}.
 
 
 \begin{figure}[!h]
