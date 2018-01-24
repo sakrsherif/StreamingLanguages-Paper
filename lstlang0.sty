@@ -1,0 +1,38 @@
+%%
+%% This is file `lstlang0.sty',
+%% generated with the fingers of the BDm with a laptop behind
+%% 
+%% The listings package is copyright 1996--2004 Carsten Heinz, and
+%% continued maintenance on the package is copyright 2006--2007 Brooks Moses.
+%%
+%% This file is completely free and comes without any warranty.
+%%
+%% Send comments and ideas on the package, error reports and additional
+%% programming languages to Brooks Moses at <bmoses@dpdx.net>.
+%%
+\ProvidesFile{lstrspql.sty}
+    [2018/01/23 0.1 listings language file]
+%%
+%% C-SPARQL definition (c) 2009 DanieleBraga
+%%
+\lst@definelanguage{RSP-QL}%
+  {morekeywords={BASE,PREFIX,SELECT,DISTINCT,CONSTRUCT,DESCRIBE,ASK,%
+        %
+        WINDOW,ON,RSTREAM,ISTREAM,DSTREAM,AGGREGATE,REGISTER,STREAM,QUERY,RANGE,STEP,TUMBLING,AS,COMPUTED,EVERY,
+        COUNT,SUM,MAX,MIN,AVG,
+        %MS,S,M,H,D,
+        AND,NOT,OR,
+        %
+        GROUP,HAVING,
+        %
+        FROM,NAMED,WHERE,ORDER,BY,ASC,DESC,LIMIT,OFFSET,OPTIONAL,%
+        GRAPH,UNION,FILTER,a,STR,LANG,LANGMATCHES,DATATYPE,BOUND,%
+        isIRI,isURI,isBLANK,isLITERAL,REGEX,true,false},%
+   sensitive=false,%
+   morecomment=[l]\#,%
+   morestring=[d]',%
+   morestring=[d]"%
+  }[keywords,comments,strings]%
+\endinput
+%%
+%% End of file `lstlang0.sty'.
