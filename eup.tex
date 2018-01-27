@@ -25,13 +25,17 @@ window are as long as a longest call. The formula
 \mbox{\lstinline{F6=INDEX(B3:B8,F2)}} uses the relative index \lstinline{F2}
 of the longest \lstinline{len} to retrieve the corresponding
 caller.  ActiveSheets was influenced by
-synchronous data\-flow~\cite{lustre_1987} and has been extended with
-time-based windows, key-based partitions, and performance
-optimizations~\cite{hirzel_et_al_2016}.
+synchronous data\-flow~\cite{lustre_1987}.
 
-\begin{alltt}TODO\scriptsize
-- more spreadsheets \cite{chang_myers_2015}, \cite{etzion_et_al_2016}
-- trigger-action programming~\cite{ifttt}
-- CNL: survey \cite{kuhn_2014}, META \cite{arnold_et_al_2016}
-- search-based programming \cite{riabov_et_al_2008}
-\end{alltt}
+After the initial ActiveSheets paper, there has been additional work
+on using spreadsheets to develop stream processing applications.
+ActiveSheets has been extended with time-based windows, key-based
+partitions, and performance optimizations~\cite{hirzel_et_al_2016}.
+And Chang et al.\ hooked up spreadsheets with REST APIs and
+JSON~\cite{chang_myers_2015}.  Of course, spreadsheets are not the
+only approach for end-user programming. For instance, META used a
+controlled natural language for specifying event processing
+rules~\cite{arnold_et_al_2016}. TEM used model-driven development
+based on a spreadsheet~\cite{etzion_et_al_2016}. And MARIO even went
+so far as to construct streaming applications automatically based on
+search terms~\cite{riabov_et_al_2008}.
