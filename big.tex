@@ -1,7 +1,7 @@
 \subsection{Big-Data Streaming}\label{sec:big} % Martin
 
 \begin{figure}[!h]
-\begin{lstlisting}
+\begin{lstlisting}[xleftmargin=1mm]
 stream<float64 len, rstring caller> Calls = CallsSrc() {}
 type StatsT = tuple<float64 len, int32 num, rstring who>;
 stream<StatsT> StatsS = Aggregate(Calls) {
@@ -15,9 +15,9 @@ stream<StatsT> StatsS = Aggregate(Calls) {
 \caption{\label{fig:spl}SPL code example.}
 \end{figure}
 
-The need to handle diverse data and processing needs at scale
+The need to handle diverse data and processing requirements at scale
 motivated several recent big-data streaming languages and
-systems~\cite{carbone_et_al_2015,hirzel_schneider_gedik_2017,toshniwal_et_al_2014,zaharia_et_al_2013}.
+systems~\cite{akidau_et_al_2013,carbone_et_al_2015,hirzel_schneider_gedik_2017,toshniwal_et_al_2014,zaharia_et_al_2013}.
 Each of them makes it easy to integrate operators written in
 general-purpose languages and to parallelize them on clusters of
 multicore computers. Hirzel et al.\ introduced the SPL
@@ -37,12 +37,20 @@ example, with windows or output assignments. To facilitate
 distribution, SPL's semantics are defined to require minimal
 synchronization between operators~\cite{soule_et_al_2016}. One can
 view Borealis as the evolutionary link between relational streaming
-and big-data streaming languages~\cite{abadi_et_al_2005}. In the
-big-data domain, SPL has been followed by
-Storm~\cite{toshniwal_et_al_2014}, Spark
-Streaming~\cite{zaharia_et_al_2013}, Flink~\cite{carbone_et_al_2015},
-and others.
+and big-data streaming languages~\cite{abadi_et_al_2005}.
 
-\begin{alltt}TODO\scriptsize Martin
-- more extensively describe Storm, Spark, and Flink
-\end{alltt}
+In the big-data domain, SPL has been followed by
+MillWheel~\cite{akidau_et_al_2013}, Spark
+Streaming~\cite{zaharia_et_al_2013},
+Storm~\cite{toshniwal_et_al_2014}, Flink~\cite{carbone_et_al_2015},
+and others.  Unlike SPL, which is a stand-alone languages, these
+systems offer languages that are embedded in a general-purpose host
+language, typically Java. An embedded language is essentially an
+advanced library or framework that makes heavy use of host-language
+features such as lambdas, generics, and local variable type
+inference. Embedded languages benefit from simple interoperability
+with their host language. Also, they can leverage tools and skills
+from the host language~\cite{hudak_1998}. On the downside, since they
+are not self-contained, it is hard to isolate clear core semantics
+without pulling in the host language. This inhibits debugging and
+standardization.
