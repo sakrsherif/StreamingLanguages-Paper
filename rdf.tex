@@ -1,0 +1,69 @@
+\subsection{RDF Streaming \& Stream Reasoning}\label{sec:rdf} % Emanuele
+
+\begin{alltt}TODO\scriptsize, ~0.75 pages, ~8 citations, \textcolor{red}{Emanuele, Akrivi}
+- e.g., C-SPARQL \cite{barbieri_et_al_2009}
+- stream reasoning (either separate snippet, or included here)
+\end{alltt}
+
+In 2009, Della~Valle~et~al.~\cite{DBLP:journals/expert/ValleCHF09} called the Semantic Web and AI communities to investigate languages, tools and methodologies for representing, managing and reasoning on heterogenous data streams and complex events in presence of expressive domain models (captured by the means of ontologies). Those communities were still focusing on rather static data: knowledge bases were assumed to be static and solutions to incorporate changes were far too complex to be applicable to gigantic data streams. Della Valle et al.~\cite{DBLP:journals/expert/ValleCHF09} proposes to name this new research topic Stream Reasoning~\cite{DellAglioDataScience2017}.
+
+\sloppy The research on Stream Reasoning investigated two parallel, but interleaved, research questions: one on modelling and one on optimisation. On the \textbf{modelling} side, early works extend the Semantic Web stack \cite{DBLP:books/daglib/0036180} in order to represent heterogenous data streams, continuous queries, and continuous reasoning tasks. Inspired by CQL~\cite{arasu_widom_2004}, Della Valle et al.~\cite{DBLP:conf/fis/ValleCBBC08} proposed the notions of RDF Stream and Continuous SPARQL (C-SPARQL). Those notions were extended in SPARQL$_{stream}$~\cite{Calbimonte2010}, CQELS~\cite{LePhuoc2012c} and EP-SPARQL~\cite{DBLP:journals/semweb/AnicicRFS12} introducing variants in syntax and semantics. Building on all those efforts an RDF Stream Processing (RSP) community group\footnote{\url{http://www.w3.org/community/rsp/}} was established at W3C in 2013  to define RSP-QL syntax~\cite{DBLP:conf/esws/DellAglioCVC15} and semantics~\cite{DBLP:journals/ijswis/DellAglioVCC14}.
+
+In RSP-QL, an \textit{RDF Stream} is as an unbound sequence of \emph{time-varing graphs} $< t,\tau>$ where $t$ is an RDF graph and $\tau \in \mathbb{Z}^{*}$ is a non-decreasing timestamp; while a RQL-QL query is a continuous query on multiple RDF streams as well as static information stored in RDF graphs. 
+
+Figure~\ref{fig:rdfstream} illustrates a RDF stream snippet in the context of a social network micro-blogging system. It shows two RDF graphs emitted respectively at $\tau_1$ and $\tau_2$. Each RDF graph contains a micropost. Notably, even if each micropost is a tree, merging multiple microposts results in a graph: the two posts are about the same topic and \textsf{post2} mentions the author of \textsf{post1}.
+
+\begin{figure}[!h]
+\begin{lstlisting}[escapeinside={(*}{*)}]
+:graph1 :generatedAt "(*$\tau_1$*)"
+:graph1 { 
+  :post1 :has_creator :Alice .
+  :post1 :topic :wonderLand .
+  :post1 :content "If I had a world of my own (*$\dots$*)" }
+:graph2 :generatedAt "(*$\tau_2$*)" 
+:graph2 { :post2 :has_creator :WhiteRappit .
+  :post2 :mentions :Alice .
+  :post2 :topic :wonderLand .
+  (*$\dots$*)  }  
+\end{lstlisting}
+\vspace*{-4mm}
+\caption{\label{fig:rdfstream}an RDF stream snippet.}
+\end{figure}
+
+Figure \ref{fig:rspql} illustrates an RSP-QL query that continuously identifies the emerging topics on this stream by finding out those which in the last 10 minutes appear more frequently then in the last 2 hours. To do so, on Line 1 it register a query. On Lines 3-6, it opens on the RDF stream \textsf{in} a short window \textsf{swin} of 10 minutes that tumbles and a long window \textsf{lwin} of 120 minutes that slides every 10 minutes. It counts the number of posts per topic in the long window and in short window respectively on Lines 8-11, and Lines 12-15. On Line 16-17, it fetches the standard deviation of the mentions per each topic appearing in the windows from a static graph and checks if the Z-Score\footnote{\url{https://en.wikipedia.org/wiki/Standard_score}} is larger than 2. Last but not least, Line 2 declares out to emit results as a new RDF stream.
+
+\begin{figure}[!h]
+\begin{lstlisting}[language=rsp-ql]
+REGISTER STREAM :out
+AS CONSTRUCT RSTREAM { ?topic a :EmergingTopic }
+FROM NAMED WINDOW :lwin 
+       ON :in [ RANGE PT120M STEP PT10M]
+FROM NAMED WINDOW :swin 
+       ON :in [ RANGE PT10M STEP PT10M]
+WHERE { 
+  WINDOW :lwin{
+    SELECT ?topic ( COUNT(*) AS ?totalLong)
+    WHERE { ?m1 :topic ?topic. }
+    GROUP BY ?topic }
+  WINDOW :swin{
+    SELECT ?topic ( COUNT(*) AS ?totalShort)
+    WHERE { ?m2 :topic ?topic. }
+    GROUP BY ?topic }
+  GRAPH :bg {?topic :hasStandardDeviation ?s }
+  FILTER ((?totalShort - ?totalLong/12)/?s > 2)
+} GROUP BY ?topic
+\end{lstlisting}
+\vspace*{-4mm}
+\caption{\label{fig:rspql}RSP-QL example.}
+\end{figure}
+
+The novelty of RDF streams w.r.t. relational data streams is not in its definition, but in what it enables. When the information flow is a graph evolving over time, RDF stream data model is more adequate than relational data stream, because the same RDF stream can accommodate a variety of data elements, whereas a relational data stream allows only tuples corresponding to a defined relation to be streamed. 
+
+Moreover, RDF streams enable the encoding of continuous reasoning tasks as continuous query answering under a given entailment regime. For instance, a continuous Description Logic reasoning task~\cite{Walavalkar2008} involves 
+a static TBox $T$ and a sequence of ABoxes about $T$ called
+ontology stream S$^T$(i).
+A windowed ontology stream S$^T$(o,c] is the unions to all the ABoxes
+S$^T$(i) where $o<i\leq c$.
+Reasoning over a windowed ontology stream is as reasoning in static DL, the only problem is to optimise the reasoning task in order to remain reactive. Barbieri~et~al.~\cite{DBLP:conf/esws/BarbieriBCVG10} made the first step in this direction optimising the DRed algorithm when deletion becomes predictable. Few years later Komazec~et~al.~\cite{DBLP:conf/debs/KomazecCF12} realised its first implementation extending the RETE algorithm. In parallel, Y. Ren and J. Pan proposed an alternative approach via Truth Maintenance Systems~\cite{Ren2011}. The state-of-the-art in this setting is the work of Motik~et~al.~\cite{DBLP:conf/aaai/MotikNPH15a}.  It is also worth to note that the term RDF stream denotes a data model. It does not imply that data has to be \emph{physically} represented as time-varying RDF graphs. It also allows to represent non-RDF data stream as \emph{virtual RDF streams} and to reason on it by rewriting continuous ontological queries on an underlying data stream processing system using Ontology Based Data Access principles. The state-of-the-art in this setting is the work of Calbimonte~et~al.~\cite{DBLP:conf/esws/CalbimonteMC16}.
+
+However, alternative reasoning tasks can be performed, too. Anicic~et~al.~\cite{DBLP:journals/semweb/AnicicRFS12} bridged Stream Reasoning with Complex Event Processing grounding both in Logic Programming. Beck et al. used Answer Set Programming to model expressive Stream Reasoning tasks~\cite{DBLP:conf/aaai/BeckDEF15} and built systems able to perform those tasks, e.g.,  Ticker~\cite{DBLP:journals/tplp/BeckEB17} and Laser~\cite{DBLP:conf/semweb/BazoobandiBU17}. Inductive Stream Reasoning, i.e. applying Machine Learning techniques to RDF streams or to Ontology streams, is also an active field \cite{DBLP:conf/ijcai/ChenLPC17,DBLP:conf/ijcai/LecueP13,DBLP:journals/expert/BarbieriBCVHTRW10} .

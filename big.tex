@@ -1,0 +1,48 @@
+\subsection{Big-Data Streaming}\label{sec:big} % Martin
+
+\begin{figure}[!h]
+\begin{lstlisting}
+stream<float64 len, rstring caller> Calls = CallsSrc() {}
+type StatsT = tuple<float64 len, int32 num, rstring who>;
+stream<StatsT> StatsS = Aggregate(Calls) {
+   window Calls: sliding, time(24.0*60.0*60.0), time(60.0);
+   output StatsS: len = Max(Calls.len),
+                  num = MaxCount(Calls.len),
+                  who = ArgMax(Calls.len, Calls.caller);
+}
+\end{lstlisting}
+\vspace*{-4mm}
+\caption{\label{fig:spl}SPL code example.}
+\end{figure}
+
+The need to handle diverse data and processing needs at scale
+motivated several recent big-data streaming languages and
+systems~\cite{carbone_et_al_2015,hirzel_schneider_gedik_2017,toshniwal_et_al_2014,zaharia_et_al_2013}.
+Each of them makes it easy to integrate operators written in
+general-purpose languages and to parallelize them on clusters of
+multicore computers. Hirzel et al.\ introduced the SPL
+language~\cite{hirzel_schneider_gedik_2017} as part of the IBM~Streams
+product in~2010. Figure~\ref{fig:spl} shows an example for a similar
+use-case as Figure~\ref{fig:cql}. Line~1 defines a stream
+\lstinline{Calls} by invoking an operator \lstinline{CallsSrc}, and
+\mbox{Lines 3-8} define a stream \lstinline{StatsS} by invoking an
+operator \lstinline{Aggregate}. An SPL program explicitly specifies a
+directed graph of stream edges and operator nodes. Streams carry
+tuples; in the examples, tuple attributes contain primitive values,
+but in general, they can also contain compound values such as other
+tuples or lists.  Operators create and transform streams; operators
+are defined by users or libraries, not built into the
+language. Operators can be further configured upon invocation, for
+example, with windows or output assignments. To facilitate
+distribution, SPL's semantics are defined to require minimal
+synchronization between operators~\cite{soule_et_al_2016}. One can
+view Borealis as the evolutionary link between relational streaming
+and big-data streaming languages~\cite{abadi_et_al_2005}. In the
+big-data domain, SPL has been followed by
+Storm~\cite{toshniwal_et_al_2014}, Spark
+Streaming~\cite{zaharia_et_al_2013}, Flink~\cite{carbone_et_al_2015},
+and others.
+
+\begin{alltt}TODO\scriptsize Martin
+- more extensively describe Storm, Spark, and Flink
+\end{alltt}
