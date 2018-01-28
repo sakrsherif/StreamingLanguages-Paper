@@ -1,9 +1,50 @@
 \subsection{Adoption}\label{sec:adoption} % Martin
 
 \begin{alltt}TODO\scriptsize ~1 page
-- challenge: getting broad adoption for a streaming language
 - what's the problem
+  - as Section~\ref{sec:languages} illustrates, many languages in
+    many families, but none broadly adopted
+  - out of the language families, the big-data ones (Section~\ref{sec:big})
+    are collectively most broadly adopted, but most of them are
+    not stand-alone languages but libraries ("embedded languages")
+  - that makes them hard to define in isolation and limits their
+    adoption to that of their host language
+  - challenge: getting broad adoption for a streaming language
 - why is solving it useful
+  - when streaming languages become adopted more,
+    streaming systems will too
+  - students can direct their learning efforts
+  - companies have more skilled candidates for hiring
+  - researchers can direct their innovation
+  - benchmark results become easier to compare across systems,
+    leading to (hopefully healthy) competition
+    - on the other hand, broad adoption of one language leads to
+      a a less diverse eco-system, which can reduce competition
+  - systems become more robust and faster
 - why is it hard
+  - if it were easy it would have happened by now, but it has not
+  - because of interoperability and expediency, several big-data
+    languages are embedded in a host language
+  - but broad adoption benefits from stable and clear semantic
+    foundation, as can be seen from SQL and relational databases
+  - embedded languages tend to lack stable and clear semantics,
+    because entangled with host language
+  - no agreement on the most important features to include,
+    for instance, in the areas of veracity and variety,
+    discussed above
+  - language adoption not driven just by the technical merits of
+    the language, but by external factors, such as industry
+    support, or open-source with open governance
 - what makes it a streaming languages problem
+  - while streaming in general is not new, big-data streaming is
+    relatively new
+  - the industry trends that drive big-data streaming, including
+    IoT, cloud, and AI, are all actively shifting
+  - streaming research itself is also actively shifting
+  - in some of the industry trends (e.g. AI), innovation starts
+    first in an at-rest setting, and then later gets transferred
+    to the in-motion setting
+  - people come to streaming research from different perspective,
+    and may not be familiar with each other's work; this survey
+    aims at mitigating that
 \end{alltt}
