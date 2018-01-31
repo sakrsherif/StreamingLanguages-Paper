@@ -1,5 +1,15 @@
 \section{Introduction}\label{sec:introduction}
 
+We have entered the big-data era: the world is awash with data, and
+more of it is produced every minute of every day. Data analytics
+solutions must contend with big data both in the static-data sense of
+an ocean of many bytes and in the streaming sense of a firehose of
+many bytes-per-second. In fact, the data technology industry is
+focusing increasingly on data-in-motion.  The point of view is that
+static data is merely a snapshot of parts of a data stream. Analyzing
+the stream instead of the ocean yields more timely insights and saves
+storage resources.
+
 \begin{alltt}TODO\scriptsize ~1.5 pages
 - motivation
   - unpack the title
@@ -12,6 +22,20 @@
   - requirements: performance, generality, productivity
   - most streaming languages are declarative, so the traditional
     paradigm categories imperative or functional don't apply
+- common ideas/principles/tropes:
+  - streaming specific
+    - keep syntax of non-streaming featurs similar to non-streaming languages
+    - to-and-from static
+    - reactivity as a pun
+    - graph of operators
+  - general
+    - keep concepts orthogonal (independent, composable, and regular)
+    - unify similar concept into a single, more general concept
+    - reserve the most concise syntax for the most common tasks
+    - keep the core language slim by enabling extensions in the library
+    - keep the syntax of definitions, declarations, and uses similar
+    - follow the code direction with both scope and control dominance
+    - favor restrictions that simultaneously improve performance and safety
 - roadmap for rest of paper
 - take-home message: democratization of streaming
 \end{alltt}
