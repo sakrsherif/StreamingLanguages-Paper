@@ -12,37 +12,46 @@ storage resources.
 
 Stream processing languages facilitate the development of stream
 processing applications. Streaming languages make common tasks easy to
-write, reduce clutter to make code more readable and maintainable, and
-their compilers catch programming mistakes and apply optimizing code
-transformations. Stephens published a survey on stream processing
-languages back in~1997. Much has happened since then, from new
-database-inspired streaming languages to the rise of big data and
-beyond. Our survey continues where Stephens left off, giving an
-overview of streaming languages in the big-data era.
+write and make code more readable and maintainable, and their
+compilers catch programming mistakes and apply optimizing code
+transformations. The landscape of streaming languages is diverse and
+lacks broadly accepted standards.  Stephens~\cite{stephens_1997} and
+Johnston et al.~\cite{johnston_hanna_millar_2004} published surveys on
+stream processing languages in 1997 and 2004. Much has happened since
+then, from database-inspired streaming languages to the rise of big
+data and beyond. Our survey continues where prior surveys left off,
+focusing on streaming languages in the big-data era.
 
-\begin{alltt}TODO\scriptsize ~1.5 pages
-- motivation
-  - diversity of languages, lack of standard
-  - lack of a recent survey \cite{stephens_1997} \cite{johnston_hanna_millar_2004}
-- background / definitions
-  - stream, streaming application, DSL, stream processing language
-  - requirements: performance, generality, productivity
-  - most streaming languages are declarative, so the traditional
-    paradigm categories imperative or functional don't apply
-- common ideas/principles/tropes:
-  - streaming specific
-    - keep syntax of non-streaming featurs similar to non-streaming languages
-    - to-and-from static
-    - reactivity as a pun
-    - graph of operators
-  - general
-    - keep concepts orthogonal (independent, composable, and regular)
-    - unify similar concept into a single, more general concept
-    - reserve the most concise syntax for the most common tasks
-    - keep the core language slim by enabling extensions in the library
-    - keep the syntax of definitions, declarations, and uses similar
-    - follow the code direction with both scope and control dominance
-    - favor restrictions that simultaneously improve performance and safety
-- roadmap for rest of paper
-- take-home message: democratization of streaming
-\end{alltt}
+A \emph{stream} is a sequence of data items, and the length of a
+stream is conceptually infinite, in the sense that waiting for it to
+end is ill-defined. A streaming application is a computer program that
+consumes and produces streams. A stream processing language is a
+domain-specific language designed for expressing streaming
+applications. The goal of a stream processing language is to strike a
+balance between the three requirements of performance, generality, and
+productivity. Performance is about handling high-throughput input
+streams with low-latency output streams. Generality is about making it
+possible to handle a variety of processing needs and data formats. And
+productivity is about enabling developers to write correct code
+quickly.
+
+Traditionally, programming languages have been characterized by their
+paradigm, including imperative, functional, declarative,
+object-oriented, etc. However, for streaming languages, the paradigm
+is not the most important characteristic; most streaming languages are
+more-or-less declarative. What is more important is the underlying
+data model (e.g., relational, XML, RDF), execution model (e.g.,
+synchronous, big-data), and targeted domain and user base (e.g., event
+detection, end-users).  Section~\ref{sec:languages} surveys languages
+based on these characteristics.
+
+Section~\ref{sec:principles} generalizes from individual languages to
+extract recurring concepts and principles. Section~\ref{sec:whatsnext}
+takes the opposite point of view: instead of looking at what most
+streaming languages have in common, it explores what most streaming
+languages lack and formulates open challenges. Finally,
+Section~\ref{sec:conclusion} concludes. Given how many stream
+processing languages have been invented recently, it appears likely
+that more will be invented soon. We hope this survey will help
+inventors of new stream processing languages do a better job by giving
+them a good understanding of the state of the art.
