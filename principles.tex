@@ -1,17 +1,43 @@
 \section{Principles}\label{sec:principles}
 
 \begin{alltt}TODO\scriptsize
+- introductory paragraph
+  - now that we have seen concrete languages, we will take a
+    bigger-picture view and explore recurring tricks and concepts
+  - in fact, we will identify the principles behind the concepts
+  - explicitly articulating principles helps demystify the
+    art of language design and turn it into more of a science
+- for each principle:
+  - name
+  - tagline
+  - motivation
+  - concrete example drawn from one of the figures in Section~\ref{}
 - streaming specific
-  - keep syntax of non-streaming featurs similar to non-streaming languages
+  - keep syntax of non-streaming features similar to non-streaming languages
+    - e.g., CQL, select-from-where
   - to-and-from static
-  - reactivity as a pun
+    - e.g., CQL, S2R and R2S operators
   - graph of operators
+    - e.g., SPL, stream<T> S = O(S) \{..\}
+  - reactivity as a pun
+    - e.g., Lustre, basic operators lifted from values to signals
 - general
-  - keep concepts orthogonal (independent, composable, and regular)
-  - unify similar concept into a single, more general concept
+  - keep concepts orthogonal (independent, irredundant, composable, regular)
+    - e.g., CQL, relational algebra works as expected
   - reserve the most concise syntax for the most common tasks
+    - e.g., MatchRegex, sequencing in regex by juxtaposition
   - keep the core language slim by enabling extensions in the library
-  - keep the syntax of definitions, declarations, and uses similar
+    - e.g., SPL, relational operators are not built-in but in library
   - follow the code direction with both scope and control dominance
+    - e.g., Lustre; on the other hand, CQL is a counter-example!
+  - unify similar concept into a single, more general concept
+    - e.g., SPL, param clause can take thunk expressions
+  - keep the syntax of definitions/declarations, and uses similar
+    - e.g., RSP-QL, patterns resemble data \{ ?m1 :topic ?topic \}
   - favor restrictions that simultaneously improve performance and safety
+    - e.g., ActiveSheets, cyclic dependencies must be marked with delay
+- closing paragraph / transition
+  - now that we have seen concepts that are present in most streaming
+    languages, the next section will explore concepts that are missing
+    or underdeveloped
 \end{alltt}
