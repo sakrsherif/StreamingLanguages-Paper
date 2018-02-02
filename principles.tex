@@ -1,29 +1,42 @@
 \section{Principles}\label{sec:principles}
 
+The previous section described concrete stream processing languages
+belonging to several language families. This section takes a
+cross-cutting view and explores concepts that many of these languages
+have in common by identifying the language design principles behind
+the concepts.  Explicitly articulating principles demystifies the art
+of language design, turning it into more of a science. We categorize
+language design principles according to the three requirements from
+Section~\ref{sec:introduction}, namely performance, generality, and
+productivity.
+
+The performance requirement is addressed by the following streaming
+language design principles:
+\begin{description}
+  \item[Windowing principle:] Windows turn streaming data into static
+    data suitable for optimized static computation.  For instance, in
+    CQL, windows produce relations suitable for classic relational
+    algebra~\cite{arasu_babu_widom_2006}, optimizable via relational
+    rewrite rules (see Section~\ref{sec:sql}).
+  \item[Partitioning principle:] Key-based partitions enable
+    independent computation over disjoint state, thus simplifying data
+    parallelism. For instance, MatchRegex performs complex event
+    processing separately by partition~\cite{hirzel_2012} (see Line~3
+    of Figure~\ref{fig:cep}).
+  \item[Stream graph principle:] Streaming applications are graphs of
+    operators that communicate almost exclusively via streams, making
+    them easy to place on different cores or machines. For instance,
+    SPL programs are explicit stream
+    graphs~\cite{hirzel_schneider_gedik_2017} (see
+    Figure~\ref{fig:spl}).
+  \item[Restriction principle:] The schedules and communication rates
+    in a streaming application are restricted for both performance and
+    safety. For instance, Lustre programs can only have causal cycles
+    that have explicit delays~\cite{lustre_1987} (see
+    Section~\ref{sec:sdf}).
+\end{description}
+
 \begin{alltt}TODO\scriptsize
-- introductory paragraph
-  - now that we have seen concrete languages, we will take a
-    cross-cutting view and explore recurring tricks and concepts
-  - in fact, we will go one step further and identify the
-    principles behind the concepts
-  - explicitly articulating principles helps demystify the
-    art of language design and turn it into more of a science
-  - we can categorize the principles according to requirements
-    from intro: performance, generality, productivity
-- for each principle:
-  - name
-  - tagline
-  - motivation
-  - concrete example from one of the figures in Section~\ref{sec:languages}
-- performance
-  - windows define static view
-    - e.g., CQL, can then apply static relational algebra
-  - favor restrictions that simultaneously improve performance and safety
-    - e.g., Lustre, causal cycles require delay
-  - graph of operators
-    - e.g., SPL, stream<T> S = O(S) \{..\}
-  - partition independence
-    - e.g., MatchRegex
 - generality
   - keep concepts orthogonal (independent, irredundant, composable, regular)
     - e.g., CQL, relational algebra works as expected
