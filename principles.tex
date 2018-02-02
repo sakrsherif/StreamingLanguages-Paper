@@ -13,11 +13,11 @@ productivity.
 The \textbf{performance} requirement is addressed by the following streaming
 language design principles:
 \begin{description}
-  \item[P1.] Windowing principle: Windows turn streaming data into static
-    data suitable for optimized static computation.  For instance, in
-    CQL, windows produce relations suitable for classic relational
-    algebra~\cite{arasu_babu_widom_2006}, optimizable via classic relational
-    rewrite rules (see Section~\ref{sec:sql}).
+  \item[P1.] Windowing principle: Windows turn streaming data into
+    static data suitable for optimized static computation.  For
+    instance, in CQL, windows produce relations suitable for classic
+    relational algebra~\cite{arasu_babu_widom_2006}, optimizable via
+    classic relational rewrite rules (see Figure~\ref{fig:cqlops}).
   \item[P2.] Partitioning principle: Key-based partitions enable
     independent computation over disjoint state, thus simplifying data
     parallelism. For instance, MatchRegex performs complex event
@@ -50,28 +50,47 @@ streaming language design principles:
     user-defined in the library
     instead~\cite{hirzel_schneider_gedik_2017} (see \mbox{Lines 3--8}
     of Figure~\ref{fig:spl}).
-  \item[P7.] Auto-update principle: Overload the syntax of
+  \item[P7.] Auto-update principle: Overload the syntax of conventional
     non-streaming only-once computation to also support reactive
     computation. For instance, ActiveSheets uses conventional
     spreadsheet formulas, updating their output when input cells
-    change~\cite{vaziri_et_al_2014} (see
-    Figure~\ref{fig:activesheets}).
+    change~\cite{vaziri_et_al_2014} (see Figure~\ref{fig:activesheets}).
+  \item[P8.] General-feature principle: Replace similar special-case
+    features by a single more-general feature. For instance, operator
+    parameters in SPL~\cite{hirzel_schneider_gedik_2017} accept
+    general uninterpreted expressions, including predicates for the
+    special case of CEP~\cite{hirzel_2012} (see \mbox{Lines 5--8} of
+    Figure~\ref{fig:cep}).
+\end{description}
+
+The \textbf{productivity} requirement is addressed by the following
+streaming language design principles:
+\begin{description}
+  \item[P9.] Familiarity principle: Keep the syntax of non-streaming
+    features in streaming languages the same as in non-streaming
+    languages. This makes the streaming language easier to learn. For
+    instance, CQL~\cite{arasu_widom_2004} adopts the select-from-where
+    syntax of SQL (see Figure~\ref{fig:cql}).
+  \item[P10.] Conciseness principle: Reserve the most concise syntax
+    for the most common tasks. This increases productivity since there
+    is less code to write and read. For instance, regular expressions
+    represent ``followed-by'' concisely via juxtaposition
+    \mbox{$e_1\,e_2$} (see Line~4 of Figure~\ref{fig:cep}).
+  \item[P11.] Regularity principle: Use similar syntax for data
+    literals as for patterns that match them. For instance, RDF data
+    has triples of the form
 \end{description}
 
 \begin{alltt}TODO\scriptsize
-- generality
-  - unify similar concept into a single, more general concept
-    - e.g., SPL, param clause can take thunk expressions
 - productivity
-  - keep syntax of non-streaming features similar to non-streaming languages
-    - e.g., CQL, select-from-where
-  - reserve the most concise syntax for the most common tasks
-    - e.g., MatchRegex, sequencing in regex by juxtaposition
   - keep the syntax of definitions/declarations, and uses similar
     - e.g., RSP-QL, patterns resemble data \{ ?m1 :topic ?topic \}
   - follow the code direction with both scope and control dominance
     - e.g., Lustre; on the other hand, CQL is a counter-example!
 - closing paragraph / transition
+  - some of the principles are specific to stream processing languages,
+    but many are well-known from designs of other programming languages
+  - language design is an exercise in prioritizing among these principles
   - comparison table (one row per language/category,
     one column each for performance, generality, and productivity)
   - now that we have seen concepts that are present in most streaming
