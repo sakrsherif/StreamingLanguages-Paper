@@ -20,3 +20,42 @@
 \input{veracity}
 \input{variety}
 \input{adoption}
+
+\subsection{Challenges}
+
+\begin{table}
+  \centerline{\begin{tabular}{@{}lccc@{}}
+    \toprule
+    \emph{Languages} & \emph{Veracity} & \emph{Variety} & \emph{Adoption}\\
+    \midrule
+    Relational   &       C$_2$       &                   &       C$_8$ C$_9$\\
+    Synchronous  &                   & C$_4$             & C$_7$            \\
+    Big-data     & C$_1$ C$_2$       & C$_4$ C$_5$ C$_6$ & C$_7$            \\
+    CEP          &       C$_2$       & C$_4$             &       C$_8$      \\
+    XML          &                   & C$_4$       C$_6$ &                  \\
+    RDF          & TODO & TODO & TODO\\
+    End-user     &                   & C$_4$             &                  \\
+    \bottomrule
+  \end{tabular}}
+  \caption{\label{tab:challenges}Which of the language families from
+    Section~\ref{sec:languages} address which of the streaming
+    language challenges in Section~\ref{sec:whatsnext}.}
+\end{table}
+
+\begin{alltt}TODO\scriptsize ~3 pages total
+- list of challenges, for Table~\ref{tab:challenges}
+  - veracity:
+    C1. fault-tolerance, checkpoint-restart
+    C2. out-of-order handling
+    C3. inaccurate value handling
+  - variety:
+    C4. expressive data model
+    C5. multiple representations
+    C6. new sources with new formats
+  - adoption:
+    C7. widely-used implementation
+    C8. standard proposal
+    C9. multiple implementations of same language
+- of course, Table~\ref{tab:challenges} is more sparse
+  than Table~\ref{tab:principles} on coverage of principles
+\end{alltt}
