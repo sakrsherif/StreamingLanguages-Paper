@@ -50,15 +50,28 @@ IStream, DStream, and RStream (to capture inserts, deletes, or the entire
 relation).  CQL has influenced the design of many
 systems, for example, Microsoft StreamInsight~\cite{ali_et_al_2009}.
 
-GSQL~\cite{cranor_et_al_2003} is another streaming  language with SQL-like syntax.
-It has been designed in the context of the Gigascope system~\cite{cranor2003gigascope}, a stream database for network applications
+GSQL~\cite{cranor_et_al_2003} is another streaming  language with SQL-like syntax that has been designed in the context of the Gigascope system~\cite{cranor2003gigascope}. \iffalse , a stream database for network applications
 including traffic analysis, intrusion detection, router configuration
-analysis, and network monitoring.
-In GSQL, all queries operate over streams, as inputs and outputs. 
-In addition to the standard SQL operators (e.g., $\sigma$, $\pi$,
-$\gamma$,~$\bowtie$), GSQL supports the \emph{merge} operator that
+analysis, and network monitoring.\fi
+In GSQL, \iffalse all queries operate over streams, as inputs and outputs.\fi
+in addition to the standard SQL operators (e.g., $\sigma$, $\pi$,
+$\gamma$,~$\bowtie$), it supports the \emph{merge} operator that
 combines streams from multiple sources in order as specified by
 ordered attributes.
-GSQL supports the join of two streams as long as it can determine
-a join window from the join predicates. However, GSQL does
-not support the join of a stream to a non-stream relation.
+In particular, GSQL supports the join of two streams as long as it can determine
+a join window from the join predicates. \iffalse However, GSQL does
+not support the join of a stream to a non-stream relation.\fi
+
+
+Jain et al.~\cite{jain_et_al_2008} described an approach to merge and unify two different proposed SQL
+extensions for streams. The first proposal, presented by Oracle and  based on CQL~\cite{arasu_babu_widom_2006},
+uses a time-based execution model that provides a
+way to model simultaneity while the second proposal, proposed by StreamBase, uses a
+tuple-based execution model that provides a
+way to react to primitive events as soon as they are seen by the
+system. In addition, the proposed unified model  captures ordering and simultaneity through partial orders on
+batches of tuples using a new operator called \emph{SPREAD}~\cite{jain_et_al_2008}. 
+
+Soul\'{e} et al.~\cite{soule_et_al_2016} presented River as an intermediate language for stream processing which is based on 
+a calculus for stream processing, named Brooklet~\cite{soule_et_al_2010}. For this intermediate language,
+they presented front-ends dialects for three  different streaming languages (CQL~\cite{arasu_babu_widom_2006}, Sawzall~\cite{pike2005interpreting}, and StreamIt~\cite{thies_et_al_2002})  and a back-end execution engine on System S~\cite{amini2006spc}.
