@@ -13,24 +13,24 @@ productivity.
 The \textbf{performance} requirement is addressed by streaming
 language design principles $\mathbf{P_1}$--$\mathbf{P_4}$:
 \begin{itemize}
-  \item[$\mathbf{P_1}$] \emph{Windowing principle}: Windows turn streaming
+  \item[$\mathbf{P_1}$] \emph{Windowing principle.} Windows turn streaming
     data into static data suitable for optimized static computation.
     For instance, in CQL, windows produce relations suitable for
     classic relational algebra~\cite{arasu_babu_widom_2006},
     optimizable via classic relational rewrite rules (see
     Figure~\ref{fig:cqlops}).
-  \item[$\mathbf{P_2}$] \emph{Partitioning principle}: Key-based partitions
+  \item[$\mathbf{P_2}$] \emph{Partitioning principle.} Key-based partitions
     enable independent computation over disjoint state, thus
     simplifying data parallelism. For instance, MatchRegex performs
     complex event processing separately by
     partition~\cite{hirzel_2012} (see Line~3 of Figure~\ref{fig:cep}).
-  \item[$\mathbf{P_3}$] \emph{Stream graph principle}: Streaming
+  \item[$\mathbf{P_3}$] \emph{Stream graph principle.} Streaming
     applications are graphs of operators that communicate almost
     exclusively via streams, making them easy to place on different
     cores or machines. For instance, SPL programs are explicit stream
     graphs~\cite{hirzel_schneider_gedik_2017} (see
     Figure~\ref{fig:spl}).
-  \item[$\mathbf{P_4}$] \emph{Restriction principle}: The schedules and
+  \item[$\mathbf{P_4}$] \emph{Restriction principle.} The schedules and
     communication rates in a streaming application are restricted for
     both performance and safety. For instance, Lustre can be compiled
     to a simple imperative control loop without communication
@@ -40,25 +40,25 @@ language design principles $\mathbf{P_1}$--$\mathbf{P_4}$:
 The \textbf{generality} requirement is addressed by streaming language
 design principles $\mathbf{P_5}$--$\mathbf{P_8}$:
 \begin{itemize}
-  \item[$\mathbf{P_5}$] \emph{Orthogonality principle}: Basic language
+  \item[$\mathbf{P_5}$] \emph{Orthogonality principle.} Basic language
     features are irredundant and work the same independently of how
     they are composed. For instance, in CQL, relational-algebra
     operators behave the same no matter which windows they are
     composed with~\cite{arasu_babu_widom_2006} (see
     Section~\ref{sec:sql}).
-  \item[$\mathbf{P_6}$] \emph{No-built-ins principle}: The core language
+  \item[$\mathbf{P_6}$] \emph{No-built-ins principle.} The core language
     remains slim and regular by enabling extensions in the library. For
     instance, in SPL, relational operators are not built into the
     language, but are user-defined in the library
     instead~\cite{hirzel_schneider_gedik_2017} (see \mbox{Lines 3--8}
     of Figure~\ref{fig:spl}).
-  \item[$\mathbf{P_7}$] \emph{Auto-update principle}: The syntax of
+  \item[$\mathbf{P_7}$] \emph{Auto-update principle.} The syntax of
     conventional non-streaming computation is overloaded to also
     support reactive computation. For instance, ActiveSheets uses
     conventional spreadsheet formulas, updating their output when
     input cells change~\cite{vaziri_et_al_2014} (see
     Figure~\ref{fig:activesheets}).
-  \item[$\mathbf{P_8}$] \emph{General-feature principle}: Similar
+  \item[$\mathbf{P_8}$] \emph{General-feature principle.} Similar
     special-case features are replaced by a single more-general
     feature. For instance, operator parameters in
     SPL~\cite{hirzel_schneider_gedik_2017} accept general
@@ -70,23 +70,23 @@ design principles $\mathbf{P_5}$--$\mathbf{P_8}$:
 The \textbf{productivity} requirement is addressed by streaming
 language design principles $\mathbf{P_9}$--$\mathbf{P_{12}}$:
 \begin{itemize}
-  \item[$\mathbf{P_9}$] \emph{Familiarity principle}: The syntax of
+  \item[$\mathbf{P_9}$] \emph{Familiarity principle.} The syntax of
     non-streaming features in streaming languages is the same as in
     non-streaming languages. This makes the streaming language easier
     to learn. For instance, CQL~\cite{arasu_widom_2004} adopts the
     select-from-where syntax of SQL (see Figure~\ref{fig:cql}).
-  \item[$\mathbf{P_{10}}$] \emph{Conciseness principle}: The most concise
+  \item[$\mathbf{P_{10}}$] \emph{Conciseness principle.} The most concise
     syntax is reserved for the most common tasks. This increases
     productivity since there is less code to write and read. For
     instance, regular expressions represent ``followed-by'' concisely
     via juxtaposition \mbox{$e_1\,e_2$} (see Line~8 of
     Figure~\ref{fig:cep}).
-  \item[$\mathbf{P_{11}}$] \emph{Regularity principle}: Data literals,
+  \item[$\mathbf{P_{11}}$] \emph{Regularity principle.} Data literals,
     patterns that match them, and/or declarations all use similar
     syntax. For instance, RSP-QL uses pattern syntax resembling
     concrete RDF triples (compare Line~4 of Figure~\ref{fig:rdfstream}
     with Line~10 of Figure~\ref{fig:rspql}).
-  \item[$\mathbf{P_{12}}$] \emph{Backward reference principle}: The code
+  \item[$\mathbf{P_{12}}$] \emph{Backward reference principle.} The code
     direction is consistent with both scope and control dominance.
     This reduces confusion when reading code. For example, Lustre has
     declarations for parameters, return values, and local variables
