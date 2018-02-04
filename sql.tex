@@ -34,18 +34,18 @@ The semantics of CQL are
 based on two phases of data, \emph{streams} and \emph{relations}.
 As Figure~\ref{fig:cqlops} illustrates, CQL
 supports three classes of operators over these types. First,
-\emph{stream-to-relation} operators produce a relation from a
-stream.  The design of these operators is based on the concept of a
-\emph{window} over a stream, which, at any point of time, contains a
+\emph{stream-to-relation} operators freeze a stream into a relation.
+These operators are based on
+\emph{windows} that, at any point of time, contain a
 historical snapshot of a recent portion of the stream. CQL includes
 time-based and tuple-based windows, both with optional
 partitioning. Second, \emph{relation-to-relation} operators, which
-produce a relation from other relations. These operators are expressed
+turn relations into another relation. These operators are expressed
 using standard SQL syntax and come from traditional relational
 algebra, such as select~($\sigma$), project~($\pi$),
 group-by-aggregate~($\gamma$), and join~($\bowtie$).
-Third, \emph{rela\-tion-to-stream} operators, which produce a
-stream from a relation. CQL supports three operators of this class:
+Third, \emph{rela\-tion-to-stream} operators, which thaw a relation
+back into a stream. CQL supports three operators of this class:
 IStream, DStream, and RStream (to capture inserts, deletes, or the entire
 relation).  CQL has influenced the design of many
 systems, for example, Microsoft StreamInsight~\cite{ali_et_al_2009}.
@@ -53,9 +53,9 @@ systems, for example, Microsoft StreamInsight~\cite{ali_et_al_2009}.
 GSQL~\cite{cranor_et_al_2003} is another streaming  language with SQL-like syntax that has been designed in the context of the Gigascope system~\cite{cranor2003gigascope}. \iffalse , a stream database for network applications
 including traffic analysis, intrusion detection, router configuration
 analysis, and network monitoring.\fi
-In GSQL, \iffalse all queries operate over streams, as inputs and outputs.\fi
+GSQL, \iffalse all queries operate over streams, as inputs and outputs.\fi
 in addition to the standard SQL operators (e.g., $\sigma$, $\pi$,
-$\gamma$,~$\bowtie$), it supports the \emph{merge} operator that
+$\gamma$,~$\bowtie$), supports the \emph{merge} operator that
 combines streams from multiple sources in order as specified by
 ordered attributes.
 In particular, GSQL supports the join of two streams as long as it can determine
@@ -63,15 +63,16 @@ a join window from the join predicates. \iffalse However, GSQL does
 not support the join of a stream to a non-stream relation.\fi
 
 
-Jain et al.~\cite{jain_et_al_2008} described an approach to merge and unify two different proposed SQL
-extensions for streams. The first proposal, presented by Oracle and  based on CQL~\cite{arasu_babu_widom_2006},
-uses a time-based execution model that provides a
-way to model simultaneity while the second proposal, proposed by StreamBase, uses a
-tuple-based execution model that provides a
-way to react to primitive events as soon as they are seen by the
-system. In addition, the proposed unified model  captures ordering and simultaneity through partial orders on
-batches of tuples using a new operator called \emph{SPREAD}~\cite{jain_et_al_2008}. 
+Jain et al.~\cite{jain_et_al_2008} described an approach to unify two
+different proposed SQL extensions for streams. The first proposal,
+presented by Oracle and based on CQL~\cite{arasu_babu_widom_2006},
+uses a time-based execution model that provides a way to model
+simultaneity. The second proposal, presented by StreamBase, uses a
+tuple-based execution model that provides a way to react to primitive
+events as soon as they are seen by the system. Jain et al.\ captured
+ordering and simultaneity through partial orders on batches of tuples
+using a new operator called \emph{SPREAD}.
 
-Soul\'{e} et al.~\cite{soule_et_al_2016} presented River as an intermediate language for stream processing which is based on 
-a calculus for stream processing, named Brooklet~\cite{soule_et_al_2010}. For this intermediate language,
+Soul\'{e} et al.~\cite{soule_et_al_2016} presented River as an intermediate language for stream processing based on 
+a calculus for stream processing named Brooklet~\cite{soule_et_al_2010}. For this intermediate language,
 they presented front-ends dialects for three  different streaming languages (CQL~\cite{arasu_babu_widom_2006}, Sawzall~\cite{pike2005interpreting}, and StreamIt~\cite{thies_et_al_2002})  and a back-end execution engine on System S~\cite{amini2006spc}.
