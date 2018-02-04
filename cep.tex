@@ -47,7 +47,7 @@ SQL~\cite{zemke_et_al_2007}.  Compared to its SQL counterpart,
 MatchRegex is simplified, syntactically concise, and easy to deploy as
 a library operator. MatchRegex is implemented via code generation and
 translates to an automaton for space- and time-efficient incremental
-computation of aggregates. But it does not support other
+computation of aggregates. But it omits other
 functionalities beyond pattern matching, such as joins and reporting
 tasks. Figure~\ref{fig:cep} shows an example for detecting a complex
 event when simple phone-call events occur over 10~miles apart within
@@ -57,7 +57,7 @@ indicates at-least-once repetition; and \lstinline{tooFarTooFast} is a
 simple event defined via a predicate in \mbox{Lines 5--7}. The
 \lstinline{First} and \lstinline{Last} functions reference
 corresponding simple events in the overall match: in this case, the
-start of the \lstinline{.+} and the simple event matched by
+start of the sequence matched by \lstinline{.+} and the simple event matched by
 \lstinline{tooFarTooFast}.
 
 In principle, there were two close predecessors of MatchRegex, namely the MATCH-RECOGNIZE~\cite{zemke_et_al_2007} clause of SQL and
