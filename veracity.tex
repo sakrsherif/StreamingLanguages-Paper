@@ -4,8 +4,11 @@
 
 %Veracity: English definition: Conformance to the facts. Accuracy.
 
-\subsubsection{Why is this important}
+\begin{alltt}TODO\scriptsize \textcolor{red}{Akrivi}
+- introductory paragraph: what is veracity
+\end{alltt}
 
+\textbf{Why is this important?}
 In the Big Data era, veracity is one of the most important problems even for non-streaming data processing, while streaming processing poses even more challenges than for the static case. Streams are dynamic by nature and usually operate in a distributed environment with minimal control over the underlying infrastructure. Such loosely coupled model can lead to situations where any data source can join and leave on the fly. Moreover, data streams produced by sensors have multiple limitations such as processing power, energy level, memory consumption. All these limitations can easily lead to veracity challenges including data incompleteness, lack of quality and/or concept drifts. Additionally, in a dynamic environment where data is evolving over time and can change its properties and statistics, which demand novel veracity handling algorithms compared to static datastores.  
 
 Ability of the stream management systems to handle veracity will facilitate handling robust application design and ensure correctness of results. With the evolution of internet of things and relevant technologies, a large number of applications are designed for end users which require real-time stream processing and analytics on the fly such as applications designed in the domains of IoT, healthcare and data on the Web. 
@@ -14,8 +17,27 @@ Particularly for stream mining, the traditional data mining algorithms which foc
 
 Benchmarking is a very important aspect of any data processing systems to ensure correctness, validation, testing and reproducibility. Traditional benchmarking systems focus mainly on performance evaluation, but since stream processing brings a few additional dimensions including veracity of data. Hence, benchmarking systems designed for testing stream processing systems should cover a broad range of parameters including veracity. 
 
+\textbf{How can we measure the challenge?}
+The streaming language veracity challenge can be broken down
+into the following measures $\mathbf{C_1}$--$\mathbf{C_3}$:
 
-\subsubsection{Challenges}
+\begin{itemize}
+  \item[$\mathbf{C_1}$] \emph{Fault-tolerance.}
+    \begin{alltt}TODO\scriptsize
+- explain the measure
+- give example language, with citation
+    \end{alltt}
+  \item[$\mathbf{C_2}$] \emph{Out-of-order handling.}
+    \begin{alltt}TODO\scriptsize
+- explain the measure
+- give example language, with citation
+    \end{alltt}
+  \item[$\mathbf{C_3}$] \emph{Inaccurate value handling.}
+    \begin{alltt}TODO\scriptsize
+- explain the measure
+- give example language, with citation
+    \end{alltt}
+\end{itemize}
 
 Veracity refers to several data quality dimensions, such as accuracy, conformance, completeness, correctness and timeliness. When shifting from a static or batch setting to a streaming one, these dimensions need a different interpretation. We can classify the aspects of veracity into two broad categories: those related to the data itself and those dependent of the underlying stream processing. The inherent characteristics of streaming data such as the unboundedness, the uncertainty, the incompleteness and the non-deterministic order are definitely more challenging in the case of streams with respect to static data. Where the unboundedness and non-deterministic order are tied to the streaming setting, the uncertainty and the incompleteness are also crucial in the static case. The latter are however exacerbated in the presence of streams. On the other hand, timeliness which refers to the freshness of the data is more guaranteed in a streaming system than in a static environment. 
 One open problem is to come up with algorithms and techniques to check the validity of the streaming data in an online fashion. One obstacle to address is the lack of ground truth (or, gold standard) and the partial availability of the ground truth (if we assume to build the ground truth incrementally as new streaming data come)
@@ -29,10 +51,9 @@ Veracity of streaming data is also affected by the results of streaming processi
 Veracity shall be handled at the level of data instances and at the level of stream processing algorithms. Data has inherently different degrees of veracity (out of order, data loss, delay in the data delivery etc.) and checking the validity of streaming data poses new challenges than in the static case. As an example, a snapshot-centered definition of validity on the data is needed. 
 For what concerns the streaming processing algorithms, they bring approximate results that may introduce further veracity problems. How can we ensure that these algorithms do not worsen the veracity degree of the underlying data and lead to minimize the introduced errors and uncertainties? 
 
-\subsubsection{Metrics}
+%% \subsubsection{Metrics}
 One major issue is if an stream processing approach is robust to veracity. In order to estimate the robustness of an approach to data lost or data that are out of date we define as ground truth the result of the stream processing in the absence of data loss or data that are delayed. Then we can quantify the error produced by the veracity. Let $error$ be a function that compare the produced result of an approach with and without veracity. An approach is robust to veracity of streaming data if $error$ sccale linearly with respect to size of the data and the number of errors. The types of errors of concern in a streaming setting include timeliness of delivery of stream elements, fraction of elements that arrive out-of-order, element loss rate, and element integrity verification failure rate. An example of an $error$ function is the number of false positives and false negatives compared to the ground truth.
 
-\subsubsection{Why is this difficult}
-
+\textbf{Why is this difficult?}
 Typically, data is sent on a best-effort basis in streaming computing settings. As a result, it is possible for data in the stream to be lost (resulting in missing values), incorrect, arrive out of order, or be approximate. This poses a challenge since there is limited opportunity to compensate for these issues. These problems can be further exacerbated by intermediate processing, such as machine learning and approximate computing, which increase the uncertainty of the data. An important aspect of streaming data is ordering, typically characterized by time.  Determining the correctness of the response to queries depends on the source of ordering, such as the creation, processing, or delivery time.  Stream processing often requires that each piece of data must be processed within a window, which can be characterized by predefined size or temporal constraints. In stream settings, sources typically do not receive control feedback. Consequently, when exceptions occur, recovery must occur at the destination. This reduces the space of possibilities for handling transaction rollbacks and fault tolerance.
 
