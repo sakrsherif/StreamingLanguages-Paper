@@ -47,7 +47,7 @@ SQL~\cite{zemke_et_al_2007}.  Compared to its SQL counterpart,
 MatchRegex is simplified, syntactically concise, and easy to deploy as
 a library operator. MatchRegex is implemented via code generation and
 translates to an automaton for space- and time-efficient incremental
-computation of aggregates. But it omits other
+computation of aggregates. However, it omits other
 functionalities beyond pattern matching, such as joins and reporting
 tasks. Figure~\ref{fig:cep} shows an example for detecting a complex
 event when simple phone-call events occur over 10~miles apart within
@@ -60,26 +60,37 @@ corresponding simple events in the overall match: in this case, the
 start of the sequence matched by \lstinline{.+} and the simple event matched by
 \lstinline{tooFarTooFast}.
 
-In principle, there were two close predecessors of MatchRegex, namely the MATCH-RECOGNIZE~\cite{zemke_et_al_2007} clause of SQL and
-SASE~\cite{WuDR06}. The former has been introduced in order to capture pattern recognition in rows of a table. Patterns are described by a regular
+%In principle, there were two close predecessors of MatchRegex, namely the MATCH-RECOGNIZE~\cite{zemke_et_al_2007} clause of SQL and
+%SASE~\cite{WuDR06}. 
+A close predecessor of MatchRegex, namely the MATCH-RECOGNIZE~\cite{zemke_et_al_2007} clause of SQL, has been introduced in order to capture pattern recognition in relational rows. Patterns are described by a regular
 expression included in the PATTERN argument of the MATCH-RECOGNIZE clause and represented by variables. For instance, in our example of Figure~\ref{fig:cep}, the PATTERN argument contains a group variable given by $A+$ due to the presence of the Kleene-plus quantifier (where $A$ is defined AS
 LAST(G.Loc) - FIRST(G.Loc) $\geq$ 10.0
-        AND Last(T.ts) - FIRST(T.ts) $\leq$ 60.0 with $G$ and $T$ indicating the geodistance and timestamp relations). The clause permits to specify the output as a singleton (ONE ROW PER MATCH, also the default) or as a set of rows (ALL ROWS PER MATCH). The first option makes visible the columns specified in   the partition
-columns, order by columns and columns defined in the MEASURES clause. For ALL
-ROWS PER MATCH the visible columns include also all columns of the initial tables even though they are not used in the previous fields.
+        AND Last(T.ts) - FIRST(T.ts) $\leq$ 60.0 with $G$ and $T$ indicating the geodistance and timestamp relations).      
+        %The clause permits to specify the output as a singleton (ONE ROW PER MATCH, also the default) or as a set of rows (ALL ROWS PER MATCH). The first option makes visible the columns specified in   the partition
+%columns, order by columns and columns defined in the MEASURES clause. For ALL
+%ROWS PER MATCH the visible columns include also all columns of the initial tables even though they are not used in the previous fields.
 Since MATCH-RECOGNIZE is embedded in SQL, join conditions can be readily specified.
 
-With the advent of Big Data, handling higher volumes of streaming data and being capable of accommodating larger windows become imperative. To address these two challenges, the SASE event system proposes to execute complex event queries on real-time streams.
-Figure~\ref{fig:SASE} shows the high-level syntax of the language, where the first clause EVENT specifies the types of events that need to be captured, while the second clause WHERE allows to filter those events by imposing suitable predicates applied to the events attributes and the third clause WITHIN indicates a time period in a sliding window over the input stream.  The first clause also allows to specify a sequence of types of events or their non occurrence
-via the special symbol $!$. However, it is not permitted to specify complex patterns under the form of regular expressions (thus with Kleene-star or Kleene-plus operator) and aggregates. Thus, the above example in Figure~\ref{fig:cep} is not expressible in SASE. The idea behind SASE is to have at disposal
-a self-contained language which can be translated to suitable algebraic query expressions.
-
-\begin{figure}[!h]
-\begin{lstlisting}
-EVENT ~\textit{event\_pattern}~
-[WHERE ~\textit{qualification}~]
-[WITHIN ~\textit{window}~]
-\end{lstlisting}
-\vspace*{-4mm}
-\caption{\label{fig:SASE}Syntax of the Sase CEP Language.}
-\end{figure}
+With the advent of Big Data, handling higher volumes of streaming data and being capable of accommodating larger windows become imperative. To address these two challenges, the SASE event system~\cite{WuDR06} proposes to execute complex event queries on real-time streams.
+The idea behind SASE is to have at disposal
+a self-contained language that can be readily translated to suitable algebraic query expressions.
+%Figure~\ref{fig:SASE} shows the high-level syntax of the language, where the first clause EVENT specifies the types of events that need to be captured, while the second clause WHERE allows to filter those events by imposing suitable predicates applied to the events attributes and the third clause WITHIN indicates a time period in a sliding window over the input stream.  The first clause also allows to specify a sequence of types of events or their non occurrence
+%via the special symbol $!$. 
+However, it is not permitted to specify complex patterns under the form of regular expressions (thus with Kleene-star or Kleene-plus operator) and aggregates. Thus, the above example in Figure~\ref{fig:cep} is not expressible in SASE. 
+SASE relies on partitioning even though without parallelization, similarly to EventScript~\cite{cohen_kalleberg_2008}, which allows to 
+specify complex patterns as regular expressions interspersed with action
+blocks. 
+The Cayuga system~\cite{demers_et_al_2007} is an algebraic CEP system with partitions
+based on equality on keys and in a sense is a predecessor of MatchRegex, as it also relies on parallelization
+even though not fully automated as in the latter. 
+Dealing with regular expressions that vary over time, including the time of evaluation of event processing, has been addressed in~\cite{chandramouli_goldstein_maier_2010}, where AFA (augmented finite automaton) are equipped with registers whose content is dynamic during transitions. As such, this system anticipates the veracity 
+challenge (further discussed in Section~\ref{sec:whatsnext} in our paper). 
+%\begin{figure}[!h]
+%\begin{lstlisting}
+%EVENT ~\textit{event\_pattern}~
+%[WHERE ~\textit{qualification}~]
+%[WITHIN ~\textit{window}~]
+%\end{lstlisting}
+%\vspace*{-4mm}
+%\caption{\label{fig:SASE}Syntax of the Sase CEP Language.}
+%\end{figure}
