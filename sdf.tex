@@ -35,16 +35,17 @@ The return value \lstinline{t} maintain the last computed value
 of \lstinline{cpt} between two occurrences of~\lstinline{x}
 (\lstinline{current(cpt)}).
 
-
-Compared to the other languages presented here, SDF
-languages are relatively low level and target embedded
-controllers. The focus is on compiling efficient code that executes
-in bounded memory with a predictible execution time. Compilers produce
-imperative code that can be executed in a control loop triggered by
-external events or on a periodic signal (e.g., every millisecond). The
-link between logical and real time is left to the designer of the
-system.
-
+Compared to the other languages presented here, SDF languages are
+relatively low level and target embedded controllers. The focus is on
+compiling efficient code that executes in bounded memory with a
+predictible execution time.  In particular, this imposes that the
+schedule and communication rates can be statically computed by the
+compiler. Additional static analyses reject programs with potential
+initialization, or causality issues. Compilers produce imperative code
+that can be executed in a control loop without communication buffers
+triggered by external events or on a periodic signal (e.g., every
+millisecond). The link between logical and real time is left to the
+designer of the system.
 
 The dataflow synchronous approach has inspired
 multiple languages: Lucid Synchrone~\cite{lucid_2006} combines the
