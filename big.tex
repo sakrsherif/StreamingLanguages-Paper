@@ -1,7 +1,7 @@
 \subsection{Big-Data Streaming}\label{sec:big} % Martin
 
 \begin{figure}[!h]
-\begin{lstlisting}[xleftmargin=1mm]
+\begin{lstlisting}[xleftmargin=1.5mm,morekeywords={stream,float64,rstring,type,int32,window,output}]
 stream<float64 len, rstring caller> Calls = CallsSrc() {}
 type StatsT = tuple<float64 len, int32 num, rstring who>;
 stream<StatsT> StatsS = Aggregate(Calls) {

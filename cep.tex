@@ -5,7 +5,7 @@
 %  10 miles apart within 60 seconds. */
 
 \begin{figure}[!h]
-\begin{lstlisting}
+\begin{lstlisting}[morekeywords={stream,param,output}]
 stream<Alert> Alerts = MatchRegex(Calls) {
   param
     partitionBy: caller;

@@ -1,11 +1,11 @@
 \subsection{Relational Streaming}\label{sec:sql} % Sherif
 
 \begin{figure}[!h]
-\begin{lstlisting}
-SELECT IStream(Max(len) AS mxl,
-                 MaxCount(len) AS num,
-                 ArgMax(len, caller) as who)
-FROM Calls[Range 24 Hours Slide 1 Minute]
+\begin{lstlisting}[morekeywords={Select,IStream,As,From,Range,Slide}]
+Select IStream( Max(len) As mxl,
+                MaxCount(len) As num,
+                ArgMax(len, caller) As who )
+From Calls[Range 24 Hours Slide 1 Minute]
 \end{lstlisting}
 \vspace*{-4mm}
 \caption{\label{fig:cql}CQL code example.}
