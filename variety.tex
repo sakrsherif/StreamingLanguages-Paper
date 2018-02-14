@@ -1,34 +1,21 @@
 \subsection{Data Variety}
 
-\begin{alltt}TODO\scriptsize \textcolor{red}{Emanuele}
-- introductory paragraph: what is variety
-\end{alltt}
+Data variety refers to the presence of different data formats, data types, data semantics and associated data management solutions within the scope of a single information system. The term emerged with the advent of Big Data, but the problem of taming variety is well known in Computer Science that also refers to it when discussing about machine understanding, interoperability, and data integration. 
+
+Having to tame data variety means that deriving value from the data is tougher than deriving value from a single well-structured data source. This is because solutions that analyse data require in input homogeneous well-formed data and, thus, a number of differente data management solutions must be used at the same time to prepare such a data. Moreover, each solution takes time in performing its part of the processing as well as in coordinating with the other solutions. This time is particularly relevant in the stream processing domain, where answers should be generated within well-specified latency bounds. Even if the time available to answer depends on the application domain (in call centres, routing needs to be decided in sub-seconds, while in oil operations, the detection of dangerous situations must occur within minutes), still traditional feature extraction and Extraction Transformation and Load pipelines may take so long to make the information available for analysis layer that the results, when computed, are no longer useful.
 
 \textbf{Why is this important?}
 
-\begin{alltt}TODO\scriptsize
-\end{alltt}
+Increasingly, applications require real-time processing of heterogeneous data streams together with large background knowledge bases. Consider the following examples taken from~\cite{DellAglioDataScience2017}. Which electricity-producing turbine has sensor readings similar (i.e., Pearson correlated by at least 0.75) to any turbine that subsequently had a critical failure in the past year? When a sensor on a drill in an oil-rig indicates that it is about to get stuck, how long—according to historical records—can I keep drilling? Where am I likely going to run into a traffic jam during my commute tonight and how long will it take, given current weather and traffic conditions? Who are the current top influencer users that are driving the discussion about the top emerging topics across all the social networks? Where shall I spend my evening given the presence of people and what their doing (predicted analysing the spatio-temporal correlation between privacy-preserving aggregates of Mobile Telecom Data and of geo-located Social Media posts)? Who should be asked to go exercising, given people’s past, possibly sedentary behaviour and allergies (accessed in a privacy-preserving manner) as well as current weather conditions and pollution/allergen levels?
 
 \textbf{How can we measure the challenge?}
 The streaming language data variety challenge can be broken down
 into the following measures $\mathbf{C_4}$--$\mathbf{C_6}$:
 
 \begin{itemize}
-  \item[$\mathbf{C_4}$] \emph{Expressive data model.}
-    \begin{alltt}TODO\scriptsize
-- explain the measure
-- give example language, with citation
-    \end{alltt}
-  \item[$\mathbf{C_5}$] \emph{Multiple representations.}
-    \begin{alltt}TODO\scriptsize
-- explain the measure
-- give example language, with citation
-    \end{alltt}
-  \item[$\mathbf{C_6}$] \emph{New sources with new formats.}
-    \begin{alltt}TODO\scriptsize
-- explain the measure
-- give example language, with citation
-    \end{alltt}
+  \item[$\mathbf{C_4}$] \emph{Expressive data model.}  The data model used to logically represent information is expressive and allows encoding multiple data types, data structures and data semantics.	This is the path investigated by RSP-QL~\cite{DellAglioDataScience2017,DBLP:conf/debs/ValleDM16}.
+  \item[$\mathbf{C_5}$] \emph{Multiple representations.} The language is variety proof, in the sense that it ingests data in multiple representation and while offering a unified set of logical operators it includes physical operators able to process the various representations and delay as much as possible the usage of a common representation. See for instance, the most recent evolution of the Streaming Linked Data framework~\cite{DBLP:conf/esws/BalduiniV017a}. 
+  \item[$\mathbf{C_6}$] \emph{New sources with new formats.} The language as well as it implementation should allow to add new sources where data are represented in a new form that was not foreseen when the language was released. The idea is to extend the approach of R2RML\footnote{\url{https://www.w3.org/TR/r2rml}} -- a language for expressing customized mappings from relational databases to RDF datasets -- to any data source of any format.
 \end{itemize}
 
 \textbf{Why is this difficult?}
