@@ -103,10 +103,12 @@ language design principles $\mathbf{P_9}$--$\mathbf{P_{12}}$:
     SPL          & P$_1$ P$_2$ P$_3$       & P$_5$ P$_6$       P$_8$ & P$_9$          P$_{11}$ P$_{12}$\\
     MatchRegex   &       P$_2$             & P$_5$ P$_6$       P$_8$ & P$_9$ P$_{10}$          P$_{12}$\\
     YFilter      & P$_4$ & P$_5$ P$_6$ & P$_9$ P$_10$\\
-    RSP-QL       &       P$_2$             & P$_5$ P$_6$       P$_8$ & P$_9$          P$_{11}$         \\
+    RSP-QL       &       P$_1$ P$_3$    & P$_5$ P$_6$  P$_8$* & P$_9$ P$_{10}$* P$_{11}$         \\
     ActiveSheets & P$_1$ P$_2$       P$_4$ & P$_5$ P$_6$ P$_7$ P$_8$ & P$_9$ P$_{10}$                  \\
     \bottomrule
-  \end{tabular}}
+    \multicolumn{4}{l}{\scriptsize * only when used in combination with Stream Reasoning} 
+  \end{tabular}
+  }
   \caption{\label{tab:principles}Which of the languages that served as
     examples in Section~\ref{sec:languages} satisfy which of the
     language design principles in Section~\ref{sec:principles}.}
