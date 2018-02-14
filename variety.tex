@@ -1,8 +1,8 @@
 \subsection{Data Variety}
 
-Data variety refers to the presence of different data formats, data types, data semantics and associated data management solutions within the scope of a single information system. The term emerged with the advent of Big Data, but the problem of taming variety is well known in Computer Science that also refers to it when discussing about machine understanding, interoperability, and data integration. 
+Data variety refers to the presence of different data formats, data types, data semantics and associated data management solutions within the scope of an information system. The term emerged with the advent of Big Data, but the problem of taming variety is well known in Computer Science that also refers to it when discussing machine understanding, interoperability, and data integration. 
 
-Having to tame data variety means that deriving value from the data is tougher than deriving value from a single well-structured data source. This is because solutions that analyse data require in input homogeneous well-formed data and, thus, a number of differente data management solutions must be used at the same time to prepare such a data. Moreover, each solution takes time in performing its part of the processing as well as in coordinating with the other solutions. This time is particularly relevant in the stream processing domain, where answers should be generated within well-specified latency bounds. Even if the time available to answer depends on the application domain (in call centres, routing needs to be decided in sub-seconds, while in oil operations, the detection of dangerous situations must occur within minutes), still traditional feature extraction and Extraction Transformation and Load pipelines may take so long to make the information available for analysis layer that the results, when computed, are no longer useful.
+Taming data variety is per se a problem that can be solved, even in presence of volume, in multiple ways for few data sources, but it is still unsolved when the data sources to integrate are hundreds or thousands as well as when the data to integrate is highly dynamic or even flowing.
 
 \textbf{Why is this important?}
 
@@ -20,5 +20,7 @@ into the following measures $\mathbf{C_4}$--$\mathbf{C_6}$:
 
 \textbf{Why is this difficult?}
 
-\begin{alltt}TODO\scriptsize
-\end{alltt}
+A system, which has to tame data variety, has a tougher time in deriving value than a system, which has to handle a single well-structured data source. This is because solutions that analyse data require in input homogeneous well-formed data, but, when data variety is present, a number of different data management solutions must be used at the same time to prepare such a data. Moreover, each of those solution takes its time in performing its part of the processing as well as in coordinating with the other solutions. This time is particularly relevant in the stream processing domain, where answers should be generated within well-specified latency bounds. Even if the time available to answer depends on the application domain (in call centres, routing needs to be decided in sub-seconds, while in oil operations, the detection of dangerous situations must occur within minutes), still traditional pipelines for feature extraction and Extraction--Transformation--Load, may take so long
+% to make the information available for analysis layer 
+that the results, when computed, are no longer useful. For this reason, it is still extremely challenging to tame variety in stream precessing systems.
+
