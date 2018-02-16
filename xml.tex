@@ -1,7 +1,7 @@
 \subsection{XML Streaming}\label{sec:xml} % Sherif
 
 In 2002, Diao et al.~\cite{diao_et_al_2002,diao2003high} presented
-YFilter as a system that implemented continuous queries over XML
+\textsf{YFilter} as a system that implemented continuous queries over XML
 streaming data using a subset of the XPath
 language~\cite{clark_derose_1999}. YFilter applied a multi-query
 optimization that used a single finite state machine to represent and
@@ -17,7 +17,7 @@ document, while the second approach postpones predicate evaluation
 until the corresponding path expression has been entirely matched.
 
 Before YFilter, which processed streams of XML documents, came
-NiagaraCQ, which processed update streams to existing XML
+\textsf{NiagaraCQ}, which processed update streams to existing XML
 documents~\cite{chen_et_al_2000}, borrowing syntax from
 XML-QL~\cite{deutsch1999query}.  NiagaraCQ supported incremental
 evaluation to consider only the changed portion of each updated XML
@@ -27,7 +27,7 @@ data becomes available, and \emph{timer-based} queries, which trigger
 only at specified time intervals.
 
 After YFilter, various other languages processed streams of XML
-documents.  For instance, XSQ~\cite{peng_chawathe_2003}, which was
+documents.  For instance, \textsf{XSQ}~\cite{peng_chawathe_2003}, which was
 also based on XPath, used a hierarchical arrangement of pushdown
 transducers augmented with buffers. Besides filtering, XSQ had output
 functions including aggregations.  Mendell et al.\ extended a big-data

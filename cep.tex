@@ -23,10 +23,10 @@ detect higher-level, \emph{complex}, events that may comprise multiple
 simple events.  CEP can be considered either as an alternative to
 stream processing or as a special case of stream processing. The
 latter consideration has led to the definition of CEP operators in
-streaming languages. For example, the MatchRegex~\cite{hirzel_2012}
+streaming languages. For example, the \textsf{MatchRegex}~\cite{hirzel_2012}
 operator implements CEP in the library of the SPL
 language~\cite{hirzel_schneider_gedik_2017} (Section~\ref{sec:big}). MatchRegex was introduced by Hirzel in~2012,
-influenced by the \textsc{Match-Recognize} proposal for extending ANSI
+influenced by the \textsf{Match-Recognize} proposal for extending ANSI
 SQL~\cite{zemke_et_al_2007}.  Compared to its SQL counterpart,
 MatchRegex is simplified, syntactically concise, and easy to deploy as
 a library operator. MatchRegex is implemented via code generation and
@@ -46,7 +46,7 @@ start of the sequence matched by \lstinline{.+} and the simple event matched by
 
 %% 2006
 One of the earliest languages for complex event queries on real-time
-streams was SASE~\cite{WuDR06}. The language was designed to translate
+streams was \textsf{SASE}~\cite{WuDR06}. The language was designed to translate
 to algebraic operators, but did not yet support aggregation or regular
 expressions with Kleene closure, as used in Figure~\ref{fig:cep}.
 %% 2007
@@ -62,7 +62,7 @@ language that supports orthogonal features via operators such as
 joins.
 %% 2008
 Another take on CEP using regular expressions was
-EventScript~\cite{cohen_kalleberg_2008}, which allowed the patterns to
+\textsf{EventScript}~\cite{cohen_kalleberg_2008}, which allowed the patterns to
 be interspersed with action blocks.
 %% 2010
 Most CEP pattern matching is inherently sequential, but Chandramouli et

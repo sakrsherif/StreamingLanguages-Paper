@@ -20,8 +20,8 @@ motivated several recent big-data streaming languages and
 systems~\cite{akidau_et_al_2013,carbone_et_al_2015,hirzel_schneider_gedik_2017,toshniwal_et_al_2014,zaharia_et_al_2013}.
 Each of them makes it easy to integrate operators written in
 general-purpose languages and to parallelize them on clusters of
-multicore computers. Hirzel et al.\ introduced the SPL
-language~\cite{hirzel_schneider_gedik_2017} as part of the IBM~Streams
+multicore computers. Hirzel et al.\ introduced the \textsf{SPL}
+language~\cite{hirzel_schneider_gedik_2017} as part of the \textsf{IBM~Streams}
 product in~2010. Figure~\ref{fig:spl} shows an example for a similar
 use-case as Figure~\ref{fig:cql}. Line~1 defines a stream
 \lstinline{Calls} by invoking an operator \lstinline{CallsSrc}, and
@@ -41,9 +41,9 @@ One can
 view Borealis as the evolutionary link between relational streaming
 and big-data streaming languages~\cite{abadi_et_al_2005}.
 In the big-data domain, SPL has been followed by
-MillWheel~\cite{akidau_et_al_2013}, Spark
-Streaming~\cite{zaharia_et_al_2013},
-Storm~\cite{toshniwal_et_al_2014}, Flink~\cite{carbone_et_al_2015},
+\textsf{MillWheel}~\cite{akidau_et_al_2013}, \textsf{Spark
+Streaming}~\cite{zaharia_et_al_2013},
+\textsf{Storm}~\cite{toshniwal_et_al_2014}, \textsf{Flink}~\cite{carbone_et_al_2015},
 and others.  Unlike SPL, which is a stand-alone language, these
 systems offer languages that are embedded in a general-purpose host
 language, typically Java. An embedded language is essentially an

@@ -30,11 +30,11 @@ semantic web stack~\cite{DBLP:books/daglib/0036180} to represent
 heterogeneous streams, continuous queries, and continuous
 reasoning. Inspired by CQL~\cite{arasu_widom_2004}, Della Valle et
 al.\ proposed Continuous SPARQL
-(C-SPARQL,~\cite{DBLP:conf/fis/ValleCBBC08}), inspiring multiple
+(\textsf{C-SPARQL},~\cite{DBLP:conf/fis/ValleCBBC08}), inspiring multiple
 extensions~\cite{DBLP:journals/semweb/AnicicRFS12,Calbimonte2010,LePhuoc2012c}.
 In 2013, a W3C community
 group\footnote{\url{http://www.w3.org/community/rsp/}} was established
-to define \mbox{RSP-QL} syntax~\cite{DBLP:conf/esws/DellAglioCVC15}
+to define \textsf{RSP-QL} syntax~\cite{DBLP:conf/esws/DellAglioCVC15}
 and semantics~\cite{DBLP:journals/ijswis/DellAglioVCC14}.
 
 \begin{figure}[!h]
@@ -42,10 +42,10 @@ and semantics~\cite{DBLP:journals/ijswis/DellAglioVCC14}.
 :graph1 :generatedAt "(*$\tau_1$*)"
 :graph1 { :call1 :caller :Alice .
           :call1 :callee :Bob .}
-:graph2 :generatedAt "(*$\tau_2$*)" 
+:graph2 :generatedAt "(*$\tau_2$*)"
 :graph2 { :call2 :caller :Carl .
           :call2 :callee :Alice .
-          :call2 :callee :Bob . }  
+          :call2 :callee :Bob . }
 \end{lstlisting}
 \vspace*{-4mm}
 \caption{\label{fig:rdfstream}RDF stream snippet example.}
@@ -68,11 +68,11 @@ involve the same callee \lstinline{Bob} and the caller of
 \begin{lstlisting}[language=rsp-ql]
 REGISTER STREAM :out
 AS CONSTRUCT RSTREAM { ?x a :Hub }
-FROM NAMED WINDOW :lwin 
+FROM NAMED WINDOW :lwin
        ON :in [ RANGE PT120M STEP PT10M]
-FROM NAMED WINDOW :swin 
+FROM NAMED WINDOW :swin
        ON :in [ RANGE PT10M STEP PT10M]
-WHERE { 
+WHERE {
   WINDOW :lwin{
     SELECT ?x ( COUNT(*) AS ?totalLong)
     WHERE { ?c1 :callee ?x. }
@@ -119,14 +119,14 @@ solutions that have practical usage.
 
 \begin{figure}[!h]
 \begin{lstlisting}[language=rsp-ql]
-SubObjectPropertyOf( 
-   ObjectPropertyChain( :calls :calls ) :gossips 
+SubObjectPropertyOf(
+   ObjectPropertyChain( :calls :calls ) :gossips
 )
 TransitiveObjectProperty( :gossips )
 
 REGISTER STREAM GossipMeter AS
 SELECT (count(?x) AS ?impact)
-FROM NAMED WINDOW :win 
+FROM NAMED WINDOW :win
        ON :in [ RANGE PT60M STEP PT10M]
 WHERE { :Alice :gossips ?x }
 \end{lstlisting}

@@ -17,12 +17,12 @@ From Calls[Range 24 Hours Slide 1 Minute]
 \caption{\label{fig:cqlops}CQL algebra operators.}
 \end{figure}
 
-In 2004, Arasu et al.\ at Stanford introduced CQL (for Continuous
+In 2004, Arasu et al.\ at Stanford introduced \textsf{CQL} (for Continuous
 Query Language)~\cite{arasu_widom_2004}. CQL has been designed as an
 SQL-based declarative language for implementing continuous queries
 against streams of data, such as the LinearRoad
 benchmark~\cite{arasu_et_al_2004}. The design was influenced by the
-TelegraphCQ system, which proposed an SQL-based language with a
+\textsf{TelegraphCQ} system, which proposed an SQL-based language with a
 focus on expressive windowing
 constructs~\cite{chandrasekaran_et_al_2003}.
 Figure~\ref{fig:cql} illustrates a CQL code example that
@@ -46,23 +46,23 @@ algebra, such as select~($\sigma$), project~($\pi$),
 group-by-aggregate~($\gamma$), and join~($\bowtie$).
 Third, \emph{rela\-tion-to-stream} operators, which thaw a relation
 back into a stream. CQL supports three operators of this class:
-IStream, DStream, and RStream (to capture inserts, deletes, or the entire
+\texttt{IStream}, \texttt{DStream}, and \texttt{RStream} (to capture inserts, deletes, or the entire
 relation).
 
 Besides TelegraphCQ, another predecessor of CQL was
-GSQL~\cite{cranor_et_al_2003}.  In addition to the standard SQL
+\textsf{GSQL}~\cite{cranor_et_al_2003}.  In addition to the standard SQL
 operators (e.g., $\sigma$, $\pi$, $\gamma$,~$\bowtie$), GSQL supports
 a \emph{merge} operator that combines streams from multiple sources in
 order as specified by ordered attributes.  GSQL supports joins as long
 as it can determine a window from ordered attributes and join predicates.
 
-CQL has influenced the design of many systems, for example, Microsoft
-StreamInsight~\cite{ali_et_al_2009}.  Jain et al.\ described an
+CQL has influenced the design of many systems, for example, \textsf{Microsoft
+StreamInsight}~\cite{ali_et_al_2009}.  Jain et al.\ described an
 approach to unify two different proposed SQL extensions for
 streams~\cite{jain_et_al_2008}. The first proposal, presented by
 Oracle and based on CQL, used a time-based execution model that
 provided a way to model simultaneity. The second proposal, presented
-by StreamBase, used a tuple-based execution model that provided a way
+by \textsf{StreamBase}, used a tuple-based execution model that provided a way
 to react to primitive events as soon as they are seen by the system.
 Jain et al.\ captured ordering and simultaneity through partial orders
 on batches of tuples using a new \emph{Spread} operator.  Zou et
@@ -70,4 +70,4 @@ al.\ showed how to turn a stream of queries into a stream query by
 streaming their parameters~\cite{zou_et_al_2010}.  And Soul\'{e} et
 al.~\cite{soule_et_al_2016} presented a formal type system and
 small-step operational semantics for CQL via translation to a calculus
-for stream processing named Brooklet~\cite{soule_et_al_2010}.
+for stream processing named \texttt{Brooklet}~\cite{soule_et_al_2010}.
