@@ -21,8 +21,8 @@ language design principles $\mathbf{P_1}$--$\mathbf{P_4}$:
     Figure~\ref{fig:cqlops}).
   \item[$\mathbf{P_2}$] \emph{Partitioning principle.} Key-based partitions
     enable independent computation over disjoint state, thus
-    simplifying data parallelism. For instance, MatchRegex performs
-    complex event processing separately by
+    simplifying data parallelism~\cite{schneider_et_al_2015}.
+    For instance, MatchRegex performs complex event processing separately by
     partition~\cite{hirzel_2012} (see Line~3 of Figure~\ref{fig:cep}).
   \item[$\mathbf{P_3}$] \emph{Stream graph principle.} Streaming
     applications are graphs of operators that communicate almost
@@ -119,7 +119,7 @@ satisfies P$_9$ (familiarity principle) by adopting SQL's syntax and
 CQL violates P$_{12}$ (backward reference principle) by adopting SQL's
 scoping rules. Table~\ref{tab:principles} summarizes principles by
 language. Note that satisfying more principles does not automatically
-imply better meeting the associated requirement. Also, note that while
+imply satisfying the associated requirement better. Also, note that while
 we formulated the principles from the perspective of streaming
 languages, we do not claim to have invented them: many are well-known
 from the design of other programming languages. Now that we have seen

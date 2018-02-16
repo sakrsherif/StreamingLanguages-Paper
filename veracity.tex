@@ -8,14 +8,14 @@ With the evolution of the internet of things and related technologies,
 many end-user applications require stream processing and analytics.
 Streaming languages should ensure veracity of the output stream in
 terms of accuracy, correctness, and completeness of the results.
-Furthermore, they should not sacrifice performance either, processing
+Furthermore, they should not sacrifice performance either, answering
 high-throughput input streams with low-latency output streams.
 Veracity in a streaming environment depends on the semantics of the
 language since the stream is infinite and new results may be added or
 computed aggregates may change. It is important that the output stream
 for a given input stream be well-defined based on the streaming
-language semantics. For example, if the language follows a sliding
-time window approach, any aggregate should be computed correctly at
+language semantics. For example, if the language offers a sliding
+time window feature, any aggregate should be computed correctly at
 any time point based on all data within the time window.
 %
 Stream veracity problems may occur for different reasons. For example,
@@ -36,12 +36,12 @@ high-stakes and irreversible decisions are based on these outputs.  In
 the big-data era, veracity is one of the most important problems even
 for non-streaming data processing, and streaming processing makes
 veracity even more challenging than in the static case. Streams are
-dynamic by nature and usually operate in a distributed environment
+dynamic and usually operate in a distributed environment
 with minimal control over the underlying infrastructure. Such a
 loosely coupled model can lead to situations where any data source can
-join and leave on the fly. Moreover, data streams produced by sensors
+join and leave on the fly. Moreover, stream-producing sensors
 have limitations such as processing power, energy level, memory
-consumption. All these limitations can easily compromise veracity.
+consumption, which can easily compromise veracity.
  %including data incompleteness, lack of quality and/or concept drifts. Additionally, in a dynamic environment where data is evolving over time and can change its properties and statistics, which demand novel veracity handling algorithms compared to static datastores.  
 
 %Ability of the stream management systems to handle veracity will facilitate handling robust application design and ensure correctness of results. With the evolution of internet of things and relevant technologies, a large number of applications are designed for end users which require real-time stream processing and analytics on the fly such as applications designed in the domains of IoT, healthcare and data on the Web. 
@@ -58,7 +58,7 @@ in the absence of veracity problems (for example data loss or delayed
 data). Then we can quantify veracity. Let \emph{error} be a function
 that compares the produced result of an approach with and without
 veracity problems.  An example of an error function is the number of
-false positives and false negatives.  An approach is \emph{robust} to
+false positives and false negatives.  An approach is \emph{robust} for
 veracity of streaming data if the error scales at most linearly with
 respect to the size and the error rate of the input stream, while the
 delay in the latency is bounded and independent of the input size.
@@ -71,8 +71,8 @@ into the following measures $\mathbf{C_1}$--$\mathbf{C_3}$:
     language is robust even if some of its components fail. The
     language can define different behaviors, for example,
     at-least-once semantics in Storm~\cite{toshniwal_et_al_2014}.
-  \item[$\mathbf{C_2}$] \emph{Out-of-order handling.} This problem has
-    two aspects. First, the streaming language should have clear
+  \item[$\mathbf{C_2}$] \emph{Out-of-order handling.} This measure has
+    two facets. First, the streaming language should have clear
     semantics about the expected result. Second, the streaming language should be
     robust to out-of-order data and should ensure that the expected
     output stream is produced with limited latency. Li et al.\ define
