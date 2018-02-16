@@ -1,17 +1,17 @@
 \subsection{XML Streaming}\label{sec:xml} % Sherif
 
 In 2002, Diao et al.~\cite{diao_et_al_2002,diao2003high} presented
-\textsf{YFilter} as a system that implemented continuous queries over XML
+\textsf{YFilter}, which implemented continuous queries over XML
 streaming data using a subset of the XPath
 language~\cite{clark_derose_1999}. YFilter applied a multi-query
 optimization that used a single finite state machine to represent and
 evaluate several XPath expressions. In particular, YFilter exploited
-the commonality among path queries by merging the common prefixes of
+commonalities among path queries by merging the common prefixes of
 the paths so that they were processed at most once. This shared
 processing mechanism provided significant performance improvement by
 avoiding redundant processing for duplicate path expressions.  To
 handle value-based predicates that address contents of elements,
-YFilter applied two alternative approaches. The first approach
+YFilter applied two alternative approa\-ches. The first approach
 evaluates the predicates once the addressed elements are read from a
 document, while the second approach postpones predicate evaluation
 until the corresponding path expression has been entirely matched.
@@ -33,6 +33,6 @@ transducers augmented with buffers. Besides filtering, XSQ had output
 functions including aggregations.  Mendell et al.\ extended a big-data
 streaming language, SPL~\cite{hirzel_schneider_gedik_2017}, with a new
 operator for XML stream processing,
-\emph{XMLParse}~\cite{mendell_et_al_2012}. It allows the user to not
-only filter the XML stream but also to transform it to a data format
+\textsf{XMLParse}~\cite{mendell_et_al_2012}. Its main purpose is
+transform between XML and the native nested-tuple data model of SPL
 amenable for downstream processing.
