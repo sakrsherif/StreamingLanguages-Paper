@@ -90,17 +90,17 @@ WHERE {
 \end{figure}
 
 Figure \ref{fig:rspql} illustrates an RSP-QL query that continuously
-identifies \textit{communication hubs}. The idea is to find callers
+identifies \textit{communication hubs}. The idea is to find callees
 who appear more frequently in the last 10~minutes than usual in the
 last 2~hours. Line~1 registers stream~\lstinline{out} and Line~2 sends
-the query results on that stream. \mbox{Lines 3-6} open a short
-10-minute tumbling window~\lstinline{swin} and a long \mbox{2-hour}
+the query result on that stream. \mbox{Lines 3-6} open a short
+10-mi\-nute tumbling window~\lstinline{swin} and a long \mbox{2-hour}
 sliding window~\lstinline{lwin} on the input
 stream~\lstinline{in}. \mbox{Lines 8-11} and \mbox{12-15} count the
 number of calls per callee in the long and short window,
 respectively. \mbox{Lines 16-17} fetch the standard deviation of the
 number of calls for each callee from a static graph, join it with the
-callees appearing in both windows, and select callees who are two
+callees appearing in both windows, and select callees two
 standard deviations above average.
 
 \subsection{Stream Reasoning}\label{sec:sr} % Emanuele

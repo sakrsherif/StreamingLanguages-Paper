@@ -15,7 +15,7 @@ changes in their inputs trigger an automatic recomputation of their
 outputs. Therefore, in 2014, Vaziri et al.\ designed ActiveSheets, a
 spreadsheet-based stream programming model~\cite{vaziri_et_al_2014}.
 Figure~\ref{fig:activesheets} gives an example that implements a
-similar computation as Figures \mbox{\ref{fig:cql} and \ref{fig:spl}}.
+similar computation as Figure~\ref{fig:cql}.
 Cells \lstinline{A3:B8} contain a sliding window of recent call
 records, which ActiveSheets updates from live input data. Cells
 \lstinline{D6:F6} contain the output data, \mbox{(re-)}com\-pu\-ted
@@ -25,7 +25,7 @@ window are as long as a longest call. The formula
 \mbox{\lstinline{F6=INDEX(B3:B8,F2)}} uses the relative index \lstinline{F2}
 of the longest \lstinline{len} to retrieve the corresponding
 caller.  ActiveSheets was influenced by
-synchronous data\-flow~\cite{lustre_1987}.
+synchronous dataflow, discussed in Section~\ref{sec:sdf}.
 
 After the initial ActiveSheets paper, there has been additional work
 on using spreadsheets to develop stream processing applications.
