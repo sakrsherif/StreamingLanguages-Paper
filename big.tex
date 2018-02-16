@@ -1,14 +1,14 @@
 \subsection{Big-Data Streaming}\label{sec:big} % Martin
 
 \begin{figure}[!h]
-\begin{lstlisting}[xleftmargin=1.5mm,morekeywords={stream,float64,rstring,type,int32,window,output}]
+\begin{lstlisting}[xleftmargin=2mm,morekeywords={stream,float64,rstring,type,int32,window,output,tuple}]
 stream<float64 len, rstring caller> Calls = CallsSrc() {}
-type StatsT = tuple<float64 len, int32 num, rstring who>;
-stream<StatsT> StatsS = Aggregate(Calls) {
-   window Calls: sliding, time(24.0*60.0*60.0), time(60.0);
-   output StatsS: len = Max(Calls.len),
-                  num = MaxCount(Calls.len),
-                  who = ArgMax(Calls.len, Calls.caller);
+type Stat = tuple<float64 len, int32 num, rstring who>;
+stream<Stat> Stats = Aggregate(Calls) {
+   window Calls:sliding, time(24.0*60.0*60.0), time(60.0);
+   output Stats: len = Max(Calls.len),
+                 num = MaxCount(Calls.len),
+                 who = ArgMax(Calls.len, Calls.caller);
 }
 \end{lstlisting}
 \vspace*{-4mm}
@@ -25,7 +25,7 @@ language~\cite{hirzel_schneider_gedik_2017} as part of the IBM~Streams
 product in~2010. Figure~\ref{fig:spl} shows an example for a similar
 use-case as Figure~\ref{fig:cql}. Line~1 defines a stream
 \lstinline{Calls} by invoking an operator \lstinline{CallsSrc}, and
-\mbox{Lines 3-8} define a stream \lstinline{StatsS} by invoking an
+\mbox{Lines 3-8} define a stream \lstinline{Stats} by invoking an
 operator \lstinline{Aggregate}. An SPL program explicitly specifies a
 directed graph of stream edges and operator nodes. Streams carry
 tuples; in the examples, tuple attributes contain primitive values,
@@ -48,7 +48,7 @@ and others.  Unlike SPL, which is a stand-alone language, these
 systems offer languages that are embedded in a general-purpose host
 language, typically Java. An embedded language is essentially an
 advanced library or framework that makes heavy use of host-language
-features such as lambdas, generics, and local variable type
+abstractions such as lambdas, generics, and local variable type
 inference. Embedded languages benefit from simple interoperability
 with their host language. Also, they can leverage tools and skills
 from the host language~\cite{hudak_1998}. On the downside, since they

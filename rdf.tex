@@ -1,38 +1,68 @@
 \subsection{RDF Streaming}\label{sec:rdf} % Emanuele
 
-%\begin{alltt}TODO\scriptsize, ~0.75 pages, ~8 citations, \textcolor{red}{Emanuele, Akrivi}
-%- e.g., C-SPARQL \cite{barbieri_et_al_2009}
-%- stream reasoning (either separate snippet, or included here)
-%\end{alltt}
+In 2009, Della Valle et al.\ called the semantic web and AI community
+to investigate how to represent, manage, and reason on heterogeneous
+data streams and complex events in the presence of expressive domain
+models (captured by ontologies)~\cite{DBLP:journals/expert/ValleCHF09}.
+That community was still focusing on static knowledge bases, and
+solutions to incorporate changes were too complex to apply to big data
+streams.  Della Valle et al.\ proposed to name this new research area
+\emph{stream reasoning}~\cite{DellAglioDataScience2017}, and to name
+the sub-area of stream reasoning focused on the semantic web \emph{RDF
+  Stream Processing} (RSP)~\cite{DBLP:conf/debs/ValleDM16}. This
+section presents RSP, while Section~\ref{sec:sr} elaborates on stream
+reasoning.
 
-In 2009, Della~Valle~et~al.~\cite{DBLP:journals/expert/ValleCHF09} called the Semantic Web and AI communities to investigate languages, tools and methodologies for representing, managing and reasoning on heterogenous data streams and complex events in presence of expressive domain models (captured by the means of ontologies). Those communities were still focusing on rather static data: knowledge bases were assumed to be static and solutions to incorporate changes were far too complex to be applicable to gigantic data streams. 
-Della Valle et al.~\cite{DellAglioDataScience2017} propose to name Stream Reasoning this new AI research topic and RDF Stream Processing (RSP) \cite{DBLP:conf/debs/ValleDM16} the sub-area of Stream Reasoning that focuses on the Semantic Web. This section present RSP, while Section \ref{sec:sr} elaborated on Stream Reasoning.
+The information model of RSP is a graph evolving over time. The same
+RDF stream can accommodate diverse data elements. This makes it easier
+to handle data variety than in streaming languages with static
+schemas, such as in relational streaming.  Graphs are particularly
+useful when analyzing social media, where each micro-post is a small
+semi-structured tree, but a collection of micro-posts forms a dynamic
+conversation graph that overlays the social
+graph~\cite{DBLP:conf/semweb/BalduiniVDTPC13}. Graphs are also useful for
+interpreting streams of text or
+videos~\cite{DBLP:journals/semweb/GangemiPRNDM17} by emitting a stream
+describing the sentences or scenes.
 
-%The research on Stream Reasoning investigated two parallel, but interleaved, research questions: one on modelling and one on optimisation. 
-
-\sloppy RSP research in the begging revolved around the extension of the Semantic Web stack \cite{DBLP:books/daglib/0036180} in order to represent heterogenous data streams, continuous queries, and continuous reasoning tasks. Inspired by CQL~\cite{arasu_widom_2004}, Della Valle et al.~\cite{DBLP:conf/fis/ValleCBBC08} proposed the notions of RDF Stream and Continuous SPARQL (C-SPARQL). Those notions were extended in SPARQL$_{stream}$~\cite{Calbimonte2010}, CQELS~\cite{LePhuoc2012c}, and EP-SPARQL~\cite{DBLP:journals/semweb/AnicicRFS12} introducing variants in syntax and semantics. Building on all those efforts an RSP community group\footnote{\url{http://www.w3.org/community/rsp/}} was established at W3C in 2013  to define RSP-QL syntax~\cite{DBLP:conf/esws/DellAglioCVC15} and semantics~\cite{DBLP:journals/ijswis/DellAglioVCC14}.
-
-In RSP-QL, an \textit{RDF Stream} is as an unbound sequence of \emph{time-varing graphs} $\langle t,\tau\rangle$ where $t$ is an RDF graph and $\tau \in \mathbb{Z}^{*}$ is a non-decreasing timestamp; while a RQL-QL query is a continuous query on multiple RDF streams as well as static information stored in RDF graphs. 
-
-Figure~\ref{fig:rdfstream} illustrates a RDF stream snippet for a similar use-case as Figure~\ref{fig:cql} in TriG syntax\footnote{\url{https://www.w3.org/TR/trig/}}. It shows two RDF graphs emitted respectively at $\tau_1$ and $\tau_2$. Each RDF graph contains a call with a caller and multiple callees. Notably, even if each call is a tree, merging multiple call results in a call graph: the two calls involve the same callee \textsf{Bob} and the caller of \textsf{call1} is a callee in  \textsf{call2}.
+\sloppy RSP research initially revolved around extending the
+semantic web stack~\cite{DBLP:books/daglib/0036180} to represent
+heterogeneous streams, continuous queries, and continuous
+reasoning. Inspired by CQL~\cite{arasu_widom_2004}, Della Valle et
+al.\ proposed Continuous SPARQL
+(C-SPARQL,~\cite{DBLP:conf/fis/ValleCBBC08}), inspiring multiple
+extensions~\cite{DBLP:journals/semweb/AnicicRFS12,Calbimonte2010,LePhuoc2012c}.
+In 2013, a W3C community
+group\footnote{\url{http://www.w3.org/community/rsp/}} was established
+to define \mbox{RSP-QL} syntax~\cite{DBLP:conf/esws/DellAglioCVC15}
+and semantics~\cite{DBLP:journals/ijswis/DellAglioVCC14}.
 
 \begin{figure}[!h]
 \begin{lstlisting}[escapeinside={(*}{*)}]
 :graph1 :generatedAt "(*$\tau_1$*)"
-:graph1 { 
-  :call1 :caller :Alice .
-  :call1 :callee :Bob .}
+:graph1 { :call1 :caller :Alice .
+          :call1 :callee :Bob .}
 :graph2 :generatedAt "(*$\tau_2$*)" 
-:graph2 { 
-  :call2 :caller :Carl .
-  :call2 :callee :Alice .
-  :call2 :callee :Bob . }  
+:graph2 { :call2 :caller :Carl .
+          :call2 :callee :Alice .
+          :call2 :callee :Bob . }  
 \end{lstlisting}
 \vspace*{-4mm}
-\caption{\label{fig:rdfstream}an RDF stream snippet.}
+\caption{\label{fig:rdfstream}RDF stream snippet example.}
 \end{figure}
 
-Figure \ref{fig:rspql} illustrates an RSP-QL query that continuously identifies callees that are currently \textit{communication hubs}, i.e., they are involved in more calls than usual on this stream. Numerically, we can identify them by looking for those who in the last 30 minutes appear more frequently then in the last 2 hours. To do so, Line 1 registers a query. Lines 3-6 open on the RDF stream \textsf{in} a short window \textsf{swin} of 30 minutes that tumbles and a long window \textsf{lwin} of 120 minutes that slides every 30 minutes. Lines 8-11 and Lines 12-15 count the number of calls per callee in the long window and in short window, respectively. Line 16-17 fetch the standard deviation of the number of calls for each callee from a static graph, joins it with the callees appearing in both windows, and checks for each callee if the Z-Score\footnote{\url{https://en.wikipedia.org/wiki/Standard_score}} is larger than 2. Last but not least, Line 2 declares out to emit results as a new RDF stream.
+In RSP-QL, an \textit{RDF stream} is an unbounded sequence of
+time-varying graphs $\langle t,\tau\rangle$, where $t$ is an RDF graph
+and $\tau$ is a non-decreasing timestamp.  A RSP-QL query is a
+continuous query on multiple RDF streams as well as static information
+stored in RDF graphs.  Figure~\ref{fig:rdfstream} illustrates a RDF
+stream snippet in TriG
+syntax\footnote{\url{https://www.w3.org/TR/trig/}}, with two RDF
+graphs emitted at $\tau_1$ and~$\tau_2$. Each RDF graph represents a
+phone call with a caller and multiple callees. Even though each
+individual call is a tree, merging calls yields a graph: the two calls
+involve the same callee \lstinline{Bob} and the caller of
+\lstinline{call1} is a callee of \lstinline{call2}.
 
 \begin{figure}[!h]
 \begin{lstlisting}[language=rsp-ql]
@@ -59,16 +89,33 @@ WHERE {
 \caption{\label{fig:rspql}RSP-QL example.}
 \end{figure}
 
-The novelty of RDF streams w.r.t. relational data streams is not in their definition, but in what they enables. When the information flow is a graph evolving over time, RDF stream data model is more adequate than relational data stream, because the same RDF stream can accommodate a variety of data elements, whereas a relational data stream allows only tuples corresponding to a defined relation to be streamed. This is particularly useful when analysing social media, where each micro-post is a small semi-structured tree, but a collection of micro-posts form an highly dynamic conversation graph that lays ontop of the social graph~\cite{DBLP:conf/semweb/BalduiniVDTPC13}. But this happens in many systems that continuously interpret streams of text/videos~\cite{DBLP:journals/semweb/GangemiPRNDM17} and emit a data stream in which they formally describe the sentences/scenes. 
+Figure \ref{fig:rspql} illustrates an RSP-QL query that continuously
+identifies \textit{communication hubs}. The idea is to find callers
+who appear more frequently in the last 10~minutes than usual in the
+last 2~hours. Line~1 registers stream~\lstinline{out} and Line~2 sends
+the query results on that stream. \mbox{Lines 3-6} open a short
+10-minute tumbling window~\lstinline{swin} and a long \mbox{2-hour}
+sliding window~\lstinline{lwin} on the input
+stream~\lstinline{in}. \mbox{Lines 8-11} and \mbox{12-15} count the
+number of calls per callee in the long and short window,
+respectively. \mbox{Lines 16-17} fetch the standard deviation of the
+number of calls for each callee from a static graph, join it with the
+callees appearing in both windows, and select callees who are two
+standard deviations above average.
 
 \subsection{Stream Reasoning}\label{sec:sr} % Emanuele
 
-Automated reasoning, or simply reasoning, refer to an area of computer science and mathematical logic that investigates how computers can perform symbolic reasoning. Constrain solvers, theorem provers, rule engines, and deductive classifier are just few of the reasoning systems developed in this area. Reasoning plays a key role in modern  information integration and access solutions where an ontology offers a conceptual view ontop of a set of pre-existing data sources that exist and evolve autonomously. In this setting, the reasoner is able to find answers that are not syntactically present in the data sources, but are certainly derivable from the data and the knowledge captured in the ontology. Technically, this query answering approach is call Ontology Based Data Integration~\cite{DBLP:conf/pods/Lenzerini02} and Ontology Based Data Access~\cite{DBLP:journals/jods/PoggiLCGLR08} offers a set of scalable solutions that have practical usage. 
-
-As RDF is the logical data model more often used in reasoning for data integration, RDF streams (discussed in Section~\ref{sec:rdf}) play a key role in bridging the gap between data stream processing and Ontology Based Data Integration. A first step in this direction was presented by Della Valle et al.~\cite{DBLP:conf/fis/ValleCBBC08} that showed how continuous Description Logic reasoning can be reduce to periodic repetition of Description Logic reasoning over over a windowed ontology stream. 
-%Let's denote with ontology stream S$^T$(i) a sequence of RDF graphs containing only individuals and property assertions (namely, a sequence of ABoxes) that refers to a static ontology $T$ (namely, a static TBox). A windowed ontology stream S$^T$(o,c] is the unions to all the ABoxes S$^T$(i) where $o<i\leq c$. Reasoning over a windowed ontology stream is as reasoning in static DL.
-
-Figure~\ref{fig:sr} illustrates a RSP-QL query for a similar use-case as Figures~\ref{fig:cql} and~\ref{fig:rspql}. The RDF stream contains triples such as $\langle$\textsf{:Alice :calls :Bob}$,\tau_i\rangle$ and $\langle$\textsf{:Bob :calls :Carl}$,\tau_{i+1}\rangle$. The TBox states that the property \textsf{:gossips} is the transitive closure of the property \textsf{:calls}. The query continuously counts the number of people \textsf{:Alice} gossips directly (by calling them) or indirectly (through a chain of \textsf{:calls}). When the windowed ontology stream contains the two triples stream at $\tau_{i}$ and $\tau_{i+1}$, the answer to the RSP-QL query is 2 because \textsf{:Alice} \textsf{:gossips} \textsf{:Bob} directly calling him, but the system can also deduce that she \textsf{:gossips} \textsf{:Carl} indirectly via \textsf{:Bob}.
+Reasoning automates mathematical logic via systems such as constraint
+solvers, theorem provers, rule engines, and deductive classifiers.
+Reasoning plays a key role in modern information integration and
+access solutions where an ontology offers a conceptual view over
+pre-existing autonomous data sources. In this setting, the reasoner
+can find answers that are not syntactically present in the data
+sources, but are derivable from the data and the ontology.  This
+query-answering approach is called ontology-based data
+integration~\cite{DBLP:conf/pods/Lenzerini02}, and ontology-based data
+access~\cite{DBLP:journals/jods/PoggiLCGLR08} offers a set of scalable
+solutions that have practical usage.
 
 \begin{figure}[!h]
 \begin{lstlisting}[language=rsp-ql]
@@ -84,10 +131,49 @@ FROM NAMED WINDOW :win
 WHERE { :Alice :gossips ?x }
 \end{lstlisting}
 \vspace*{-4mm}
-\caption{\label{fig:sr}Example of continuous reasoning task encoded as two ontological axioms and an RSP-QL query.}
+\caption{\label{fig:sr}Stream reasoing example with two ontological axioms and an RSP-QL query.}
 \end{figure}
 
-Even if this can appear simple, it is a problem to perform this type of reasoning while remaining reactive. Barbieri~et~al.~\cite{DBLP:conf/esws/BarbieriBCVG10} made the first step in this direction optimising the DRed algorithm when deletion becomes predictable. Few years later Komazec~et~al.~\cite{DBLP:conf/debs/KomazecCF12} realised its first implementation extending the RETE algorithm. In parallel, Y. Ren and J. Pan proposed an alternative approach via Truth Maintenance Systems~\cite{Ren2011}. The state-of-the-art in this setting is the work of Motik~et~al.~\cite{DBLP:conf/aaai/MotikNPH15a}.  More recently, Calbimonte~et~al.~\cite{DBLP:conf/esws/CalbimonteMC16} exploited Ontology Based Data Access principles by rewriting continuous ontological queries on an underlying data stream processing system.
+As RDF is the dominant data model in reasoning for data integration,
+RDF streaming languages (Section~\ref{sec:rdf}) bridge the gap between
+stream processing and ontology-based data integration.  Della Valle et
+al.\ took a first step in this direction, showing how continuous
+description-logic reasoning can be reduced to periodic repetition of
+reasoning over a windowed ontology
+stream~\cite{DBLP:conf/fis/ValleCBBC08}.  Figure~\ref{fig:sr} shows an
+RSP-QL query that uses reasoning to continuously count how many people
+\lstinline{:Alice} gossips with. Consider an RDF stream with the
+triples \mbox{$\langle$\lstinline{:Alice :calls :Bob}$,\tau_i\rangle$}
+and \mbox{$\langle$\lstinline{:Bob :calls :Carl}$,\tau_{i+1}\rangle$}.
+\mbox{Lines 1-4} define \lstinline{:gossips} as the transitive closure
+of \lstinline{:calls}. When the window contains these two triples, the
+RSP-QL query returns~2, because \lstinline{:Alice :gossips :Bob}
+directly calling him, but the system can also deduce that she
+\lstinline{:gossips :Carl} indirectly via \lstinline{:Bob}.
 
-In parallel, Heintz~\cite{HeintzPhD2009,DeLengHeintz2016AAAI} developed logic-based spatio-temporal stream reasoning for autonomous systems focusing on run-time verification to guarantee the safety of autonomous systems. Anicic~et~al.~\cite{DBLP:journals/semweb/AnicicRFS12} bridged Stream Reasoning with Complex Event Processing grounding both in Logic Programming. Beck et al. used Answer Set Programming to model expressive Stream Reasoning tasks~\cite{DBLP:conf/aaai/BeckDEF15} and built systems able to perform those tasks, e.g.,  Ticker~\cite{DBLP:journals/tplp/BeckEB17} and Laser~\cite{DBLP:conf/semweb/BazoobandiBU17}. 
-Inductive Stream Reasoning, i.e. applying Machine Learning techniques to RDF streams or to Ontology streams, is also an active field \cite{DBLP:conf/ijcai/ChenLPC17,DBLP:conf/ijcai/LecueP13,DBLP:journals/expert/BarbieriBCVHTRW10}.
+While conceptually simple, this kind of reasoning is hard to do
+efficiently. Barbieri~et~al.~\cite{DBLP:conf/esws/BarbieriBCVG10} made
+the first step in this direction optimizing the DRed algorithm when
+deletion becomes predictable.
+Komazec~et~al.~\cite{DBLP:conf/debs/KomazecCF12} realized its first
+implementation extending the RETE algorithm. In parallel, Ren and Pan
+proposed an alternative approach via truth maintenance
+systems~\cite{Ren2011}. The state-of-the-art in this setting is the
+work of Motik~et~al.~\cite{DBLP:conf/aaai/MotikNPH15a}.  More
+recently, Calbimonte~et~al.\ exploited ontology-based data access
+principles by rewriting continuous ontological queries to a stream
+processing system~\cite{DBLP:conf/esws/CalbimonteMC16}.
+
+In parallel, Heintz developed logic-based spatio-temporal stream
+reasoning focusing on run-time verification to guarantee the safety of
+autonomous systems~\cite{DeLengHeintz2016AAAI}.  Anicic
+et al.\ bridged stream reasoning with complex event processing
+grounding both in logic
+programming~\cite{DBLP:journals/semweb/AnicicRFS12}. Beck et al.\ used
+answer set programming to model expressive stream reasoning
+tasks~\cite{DBLP:conf/aaai/BeckDEF15} in
+Ticker~\cite{DBLP:journals/tplp/BeckEB17} and
+Laser~\cite{DBLP:conf/semweb/BazoobandiBU17}.  Inductive stream
+reasoning, i.e., applying machine-learning techniques to RDF streams
+or to ontology streams, is also an active
+field~\cite{DBLP:journals/expert/BarbieriBCVHTRW10,DBLP:conf/ijcai/ChenLPC17,DBLP:conf/ijcai/LecueP13}.

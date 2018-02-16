@@ -1,32 +1,96 @@
 \subsection{Data Variety}
 
-Data variety refers to the presence of different data formats, data types, data semantics and associated data management solutions within the scope of an information system. The term emerged with the advent of Big Data, but the problem of taming variety is well known in Computer Science that also refers to it when discussing: machine understanding of unstructured data such as text, images and video as well as (syntactic, structural and semantic) interoperability and data integration for structured and semistructured data. 
-
-Taming data variety is per se a problem that can be solved, even in presence of volume, in multiple ways for few data sources, but it is still unsolved when the data sources to integrate are hundreds or more as well as when the data to integrate is highly dynamic or even flowing (as in the scope of this paper).
+Data variety refers to the presence of different data formats, data
+types, data semantics and associated data management solutions in an
+information system. The term emerged with the advent of Big Data, but
+the problem of taming variety is well known for machine understanding
+of unstructured data such as text, images and video as well as
+(syntactic, structural, and semantic) interoperability and data
+integration for structured and semistructured data.  There are
+multiple known solutions to data variety for a moderate number of
+high-volume data sources.  But data variety is still unsolved when
+there are hundreds of data sources to integrate or when the data to
+integrate is highly dynamic or streaming (as in this paper).
 
 \textbf{Why is this important?}
+%
+Increasingly, applications must process heterogeneous data streams in
+real-time together with large background knowledge bases. Consider the
+following examples from~\cite{DellAglioDataScience2017}.
 
-Increasingly, applications require real-time processing of heterogeneous data streams together with large background knowledge bases. Consider, for instance, the following two examples taken from~\cite{DellAglioDataScience2017}. 
+In the first example, we want to use sensor readings of the last
+10~minutes to find electricity-producing turbines that are in a state
+similar (e.g., Pearson correlated by at least 0.75) to any turbine
+that subsequently had a critical failure. Here, data variety arises
+from having tens of turbines of 3-4 different types equipped with
+different sensors deployed other many years, where more sensors will
+deployed in the future. Moreover, in many cases, once an anomaly is
+detected, the user also needs to retrieve multimedia maintenance
+instructions and annotations to complete the diagnosis process.
 
-In the first example, we want to use the sensor readings of the last 10 minutes to find electricity-producing turbines that are in a state similar (i.e., Pearson correlated by at least 0.75) to any turbine that subsequently had a critical failure. To understand the data variety, consider that a electricity-producing plan may have tens of turbine of 3-4 different types that are equipped with different sensors deployed other many years and more sensors will deployed in the future. Moreover, in many cases, once an anomaly is detected, the user also needs to retrieve multimedia maintenance instructions and annotations to complete the diagnosis process. 
+In the second example, we want to use the latest open traffic
+information and social media as well as the weather forecast to
+determine if the users of a mobile mobility app are likely to run into
+a traffic jam during their commute tonight and how long it will take
+them to get home. Here, data variety arises from using third-party
+data sources that are free to evolve in syntax, structure, and
+semantics.
 
-In the first example, we want to use the latest open traffic information and social media as well as the weather forecast to determine if the users of a mobile mobility app are likely to run into a traffic jam during their commute tonight and how long it will take them to go home? To understand the data variety, image that the data the app owner bases this analysis on comes from third parties that are free to evolve syntax, structure and semantics.
-
-There are many more examples that highlight the opportunity to create value by taming variety and velocity simultaneously. In social media analytics, it would be extremely valuable to identifying the current top influencers that are driving the discussion about the top emerging topics across all the social networks. In the tourism industry, it would be valuable to tell tourist where they can spend their evening given the presence of people and what their doing (predicted analysing the spatio-temporal correlation between privacy-preserving aggregates of Mobile Telecom Data and of geo-located Social Media posts). In well-being analytics, I would be worth advising people when to go exercising, given their past, possibly sedentary, behaviour and allergies (accessed in a privacy-preserving manner) as well as current weather conditions and pollution/allergen levels.
+There are many more examples that highlight the opportunity to create
+value by taming variety and velocity simultaneously. In social media
+analytics, it would be valuable to identify the current top
+influencers that are driving the discussion about the top emerging
+topics across all the social networks. In the tourism industry, it
+would be valuable to tell tourist where they can spend their evening
+given the presence of people and what the are doing (predicted
+analyzing the spatio-temporal correlation between privacy-preserving
+aggregates of mobile telecom data and of geo-located social media
+posts). In well-being analytics, I would be worth advising people when
+to go exercise, given their past, possibly sedentary, behavior and
+allergies (accessed in a privacy-preserving manner) as well as current
+weather conditions and pollution/allergen levels.
 
 \textbf{How can we measure the challenge?}
+%
 The streaming language data variety challenge can be broken down
 into the following measures $\mathbf{C_4}$--$\mathbf{C_6}$:
 
-\begin{itemize}
-  \item[$\mathbf{C_4}$] \emph{Expressive data model.}  The data model used to logically represent information is expressive and allows encoding multiple data types, data structures and data semantics.	This is the path investigated by RSP-QL~\cite{DellAglioDataScience2017,DBLP:conf/debs/ValleDM16}.
-  \item[$\mathbf{C_5}$] \emph{Multiple representations.} The language is variety proof, in the sense that it ingests data in multiple representation and while offering a unified set of logical operators it includes physical operators able to process the various representations and delay as much as possible the usage of a common representation. See for instance, the most recent evolution of the Streaming Linked Data framework~\cite{DBLP:conf/esws/BalduiniV017a}. 
-  \item[$\mathbf{C_6}$] \emph{New sources with new formats.} The language as well as it implementation should allow to add new sources where data are represented in a new form that was not foreseen when the language was released. The idea is to extend the approach of R2RML\footnote{\url{https://www.w3.org/TR/r2rml}} -- a language for expressing customized mappings from relational databases to RDF datasets -- to any data source of any format.
+\begin{itemize}[leftmargin=6mm]
+  \item[$\mathbf{C_4}$] \emph{Expressive data model.}  The data model
+    used to logically represent information is expressive and allows
+    encoding multiple data types, data structures, and data
+    semantics. This is the path investigated by
+    RSP-QL~\cite{DellAglioDataScience2017,DBLP:conf/debs/ValleDM16}.
+  \item[$\mathbf{C_5}$] \emph{Multiple representations.} The language
+    can ingest data in multiple representations, offering the
+    programmer a unified set of logical operators while implementing
+    physical operators that work directly on the representations for
+    performance. An example is the most recent evolution of the
+    Streaming Linked Data framework~\cite{DBLP:conf/esws/BalduiniV017a}.
+  \item[$\mathbf{C_6}$] \emph{New sources with new formats.} The
+    language allows adding new sources where data are represented in a
+    format unforeseen when the language was
+    released. This might be accomplished by extending
+    R2RML\footnote{\url{https://www.w3.org/TR/r2rml}} -- a language
+    for expressing customized mappings from relational databases to
+    RDF datasets.
 \end{itemize}
 
 \textbf{Why is this difficult?}
-
-A system, which has to tame data variety, has a tougher time in deriving value than a system, which has to handle a single well-structured data source. This is because solutions that analyse data require in input homogeneous well-formed data, but, when data variety is present, a number of different data management solutions must be used at the same time to prepare such a data. Moreover, each of those solution takes its time in performing its part of the processing as well as in coordinating with the other solutions. This time is particularly relevant in the stream processing domain, where answers should be generated within well-specified latency bounds. Even if the time available to answer depends on the application domain (in call centres, routing needs to be decided in sub-seconds, while in oil operations, the detection of dangerous situations must occur within minutes), still traditional pipelines for feature extraction and Extraction--Transformation--Load, may take so long
-% to make the information available for analysis layer 
-that the results, when computed, are no longer useful. For this reason, it is still extremely challenging to tame variety in stream precessing systems.
-
+%
+Deriving value is harder for a system that has to tame data variety
+than for a system that only has to handle a single well-structured
+data source. This is because solutions that analyze data require
+homogeneous well-formed input data, but, when data variety is present,
+a number of different data management solutions must be used together
+to prepare such data. Moreover, each of those solution takes time to
+perform its part of the processing as well as to coordinate with the
+other solutions. This time is particularly relevant in stream
+processing, where answers should be generated with low latency. Even
+if the time available to answer depends on the application domain (in
+call centers, routing needs to be decided in sub-seconds, while in oil
+operations, the detection of dangerous situations must occur within
+minutes), traditional batch pipelines for feature extraction and
+extract-transform-load (ETL) may take so long that the results, when
+computed, are no longer useful. For this reason, it is still
+challenging to tame variety in stream processing systems.

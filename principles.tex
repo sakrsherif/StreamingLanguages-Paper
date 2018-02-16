@@ -12,7 +12,7 @@ productivity.
 
 The \textbf{performance} requirement is addressed by streaming
 language design principles $\mathbf{P_1}$--$\mathbf{P_4}$:
-\begin{itemize}
+\begin{itemize}[leftmargin=6mm]
   \item[$\mathbf{P_1}$] \emph{Windowing principle.} Windows turn streaming
     data into static data suitable for optimized static computation.
     For instance, in CQL, windows produce relations suitable for
@@ -39,7 +39,7 @@ language design principles $\mathbf{P_1}$--$\mathbf{P_4}$:
 
 The \textbf{generality} requirement is addressed by streaming language
 design principles $\mathbf{P_5}$--$\mathbf{P_8}$:
-\begin{itemize}
+\begin{itemize}[leftmargin=6mm]
   \item[$\mathbf{P_5}$] \emph{Orthogonality principle.} Basic language
     features are irredundant and work the same independently of how
     they are composed. For instance, in CQL, relational-algebra
@@ -69,7 +69,7 @@ design principles $\mathbf{P_5}$--$\mathbf{P_8}$:
 
 The \textbf{productivity} requirement is addressed by streaming
 language design principles $\mathbf{P_9}$--$\mathbf{P_{12}}$:
-\begin{itemize}
+\begin{itemize}[leftmargin=6mm]
   \item[$\mathbf{P_9}$] \emph{Familiarity principle.} The syntax of
     non-streaming features in streaming languages is the same as in
     non-streaming languages. This makes the streaming language easier
@@ -84,8 +84,8 @@ language design principles $\mathbf{P_9}$--$\mathbf{P_{12}}$:
   \item[$\mathbf{P_{11}}$] \emph{Regularity principle.} Data literals,
     patterns that match them, and/or declarations all use similar
     syntax. For instance, RSP-QL uses pattern syntax resembling
-    concrete RDF triples (compare Line~4 of Figure~\ref{fig:rdfstream}
-    with Line~10 of Figure~\ref{fig:rspql}).
+    concrete RDF triples (Line~3 of Figure~\ref{fig:rdfstream} vs.\
+    Line~10 of Figure~\ref{fig:rspql}).
   \item[$\mathbf{P_{12}}$] \emph{Backward reference principle.} The code
     direction is consistent with both scope and control dominance.
     This reduces confusion when reading code. For example, Lustre has
@@ -94,7 +94,7 @@ language design principles $\mathbf{P_9}$--$\mathbf{P_{12}}$:
 \end{itemize}
 
 \begin{table}
-  \centerline{\small\begin{tabular}{@{}lccc@{}}
+  \centerline{\small\begin{tabular}{@{}l@{ }c@{ }cc@{}}
     \toprule
     \emph{Language} & \emph{Performance} & \emph{Generality} & \emph{Productivity}\\
     \midrule
@@ -103,10 +103,9 @@ language design principles $\mathbf{P_9}$--$\mathbf{P_{12}}$:
     SPL          & P$_1$ P$_2$ P$_3$       & P$_5$ P$_6$       P$_8$ & P$_9$          P$_{11}$ P$_{12}$\\
     MatchRegex   &       P$_2$             & P$_5$ P$_6$       P$_8$ & P$_9$ P$_{10}$          P$_{12}$\\
     YFilter      & P$_4$ & P$_5$ P$_6$ & P$_9$ P$_10$\\
-    RSP-QL       &       P$_1$ P$_3$    & P$_5$ P$_6$  P$_8$* & P$_9$ P$_{10}$* P$_{11}$         \\
+    RSP-QL       &       P$_1$ P$_3$    & P$_5$ P$_6$  P$_8$ & P$_9$ P$_{10}$ P$_{11}$         \\
     ActiveSheets & P$_1$ P$_2$       P$_4$ & P$_5$ P$_6$ P$_7$ P$_8$ & P$_9$ P$_{10}$                  \\
     \bottomrule
-    \multicolumn{4}{l}{\scriptsize * only when used in combination with Stream Reasoning} 
   \end{tabular}
   }
   \caption{\label{tab:principles}Which of the languages that served as

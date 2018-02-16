@@ -1,4 +1,4 @@
-\subsection{Veracity}
+\subsection{Veracity}\label{sec:veracity}
 
 %Challenge: Handling veracity in a simple and well-defined way
 
@@ -66,19 +66,17 @@ delay in the latency is bounded and independent of the input size.
 The streaming language veracity challenge can be broken down
 into the following measures $\mathbf{C_1}$--$\mathbf{C_3}$:
 
-\begin{itemize}
+\begin{itemize}[leftmargin=6mm]
   \item[$\mathbf{C_1}$] \emph{Fault-tolerance.} A program in the
     language is robust even if some of its components fail. The
     language can define different behaviors, for example,
     at-least-once semantics in Storm~\cite{toshniwal_et_al_2014}.
   \item[$\mathbf{C_2}$] \emph{Out-of-order handling.} This problem has
     two aspects. First, the streaming language should have clear
-    semantics about the expected result, e.g., whether it defines
-    windows based on the times that data is created or based on the
-    time it is received. Second, the streaming language should be
+    semantics about the expected result. Second, the streaming language should be
     robust to out-of-order data and should ensure that the expected
     output stream is produced with limited latency. Li et al.\ define
-    semantics for out-of-order streaming based on low
+    out-of-order stream semantics based on low
     watermarks~\cite{Li:2008:OPN:1453856.1453890}.
   \item[$\mathbf{C_3}$] \emph{Inaccurate value handling.} A program in
     the language is robust even if some of its input data is wrong.

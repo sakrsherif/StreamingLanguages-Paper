@@ -1,8 +1,7 @@
 \section{What's Next?}\label{sec:whatsnext}
 
-\begin{alltt}TODO\scriptsize ~3 pages total
-- introductory paragraph
-\end{alltt}
+Despite much recent progress in streaming languages, there are still
+open research challenges, three of which this section highlights.
 
 \input{veracity}
 \input{variety}
@@ -11,7 +10,7 @@
 \subsection{Challenges Summary}
 
 \begin{table}
-  \centerline{\begin{tabular}{@{}lccc@{}}
+  \centerline{\begin{tabular}{@{}l@{ }ccc@{}}
     \toprule
     \emph{Languages} & \emph{Veracity} & \emph{Variety} & \emph{Adoption}\\
     \midrule
@@ -20,20 +19,18 @@
     Big-data     & C$_1$ C$_2$       & C$_4$ C$_5$ C$_6$ & C$_7$            \\
     CEP          &       C$_2$       & C$_4$             &       C$_8$      \\
     XML          &                   & C$_4$       C$_6$ &                  \\
-    RSP-QL      & C$_3$* & C$_4$* C$_5$ C$_6$ & C$_8$ C$_9$\\
+    Stream Reasoning & C$_3$ & C$_4$ C$_5$ C$_6$ & C$_8$ C$_9$\\
     End-user     &                   & C$_4$             &                  \\
     \bottomrule
-    \multicolumn{4}{l}{\scriptsize * only when used in combination with Stream Reasoning} 
   \end{tabular}}
   \caption{\label{tab:challenges}Which of the language families from
     Section~\ref{sec:languages} address which of the measures of
     streaming language challenges in Section~\ref{sec:whatsnext}.}
 \end{table}
 
-\begin{alltt}TODO\scriptsize \textcolor{red}{Martin}
-- explain Table~\ref{tab:challenges}
-- of course, Table~\ref{tab:challenges} is more sparse
-  than Table~\ref{tab:principles} on coverage of principles
-- ultimately, we would want to have language designs that
-  are both principled and close the gap on challenges
-\end{alltt}
+Table~\ref{tab:challenges} summarizes the challenges.  Compared to the
+coverage of principles in Table~\ref{tab:principles}, the coverage of
+challenges is more sparse and spread out over research prototypes.
+That is why we tabulated it for language families instead of
+individual languages. Ultimately, we want streaming languages that are
+both principled and close the gap on challenges.

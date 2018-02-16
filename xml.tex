@@ -1,59 +1,38 @@
 \subsection{XML Streaming}\label{sec:xml} % Sherif
 
+In 2002, Diao et al.~\cite{diao_et_al_2002,diao2003high} presented
+YFilter as a system that implemented continuous queries over XML
+streaming data using a subset of the XPath
+language~\cite{clark_derose_1999}. YFilter applied a multi-query
+optimization that used a single finite state machine to represent and
+evaluate several XPath expressions. In particular, YFilter exploited
+the commonality among path queries by merging the common prefixes of
+the paths so that they were processed at most once. This shared
+processing mechanism provided significant performance improvement by
+avoiding redundant processing for duplicate path expressions.  To
+handle value-based predicates that address contents of elements,
+YFilter applied two alternative approaches. The first approach
+evaluates the predicates once the addressed elements are read from a
+document, while the second approach postpones predicate evaluation
+until the corresponding path expression has been entirely matched.
 
-In 2002, Diao et al.~\cite{diao_et_al_2002,diao2003high} presented YFilter as a system that implements
-continuous queries over XML streaming data using the XPath language~\cite{clark_derose_1999}. YFilter applies
-a multi-query optimization mechanism that uses a single
-finite state machine to represent and evaluate several XPath
-expressions. In particular, YFilter exploits the commonality among path queries by merging the common prefixes
-of the paths so that they are processed at most once. This  shared processing mechanism provides significant performance
-improvement by avoiding redundant processing for duplicate path expressions. In order to handle value-based predicates that address contents of elements, YFilter applies two alternative approaches. The first approach approach evaluates the  predicates once the addressed elements are read from a document, while the other approach postpones predicate evaluation until the corresponding path expression has been entirely matched.
-XSQ~\cite{peng_chawathe_2003} is another system that uses XPath for querying streaming XML data. It is based on a hierarchical arrangement of pushdown transducers
-augmented with buffers.
+Before YFilter, which processed streams of XML documents, came
+NiagaraCQ, which processed update streams to existing XML
+documents~\cite{chen_et_al_2000}, borrowing syntax from
+XML-QL~\cite{deutsch1999query}.  NiagaraCQ supported incremental
+evaluation to consider only the changed portion of each updated XML
+file. It supported two kinds of continuous queries:
+\emph{change-based} queries, which trigger as soon as new relevant
+data becomes available, and \emph{timer-based} queries, which trigger
+only at specified time intervals.
 
-\iffalse
-\begin{figure}[!h]
-\begin{lstlisting}
-CREATE ~\textit{cq\_name}~
-         ~\textit{xml\_ql\_query}~
-     DO ~\textit{action}~
-  {START ~\textit{start\_time}~}
-  {EVERY ~\textit{time\_interval}~}
-  {EXPIRE ~\textit{expiration\_time}~}
-\end{lstlisting}
-\vspace*{-4mm}
-\caption{\label{fig:Niagra}NiagaraCQ code example.}
-\end{figure}
-\fi
-
-NiagaraCQ~\cite{chen_et_al_2000} is a 
-continuous query engine for XML data that supports incremental evaluation
-and considers only the changed portion of each updated XML file. In particular, it
-supports two types of continuous queries that differ in the criteria
-triggering their execution: \emph{change-based} queries, which trigger
-as soon as new relevant data becomes available, and \emph{timer-based}
-queries, which trigger only at specified time intervals.  The syntax of NiagaraCQ is
-based on the XML-QL language~\cite{deutsch1999query}.  \iffalse It provides a command
-language for creating continuous queries that follows the form
-illustrated in Figure~\ref{fig:Niagra}. Using this command language,
-users can implement continuous queries that combines an ordinary
-XML-QL query with additional time information.  The
-\textsf{\small\textit{xml\_ql\_query}} becomes effective at the
-defined \textsf{\small\textit{start\_time}}.  The
-\textsf{\small\textit{time\_interval}} indicates how often the query
-will be executed. A query is timer-based if its
-\textsf{\small\textit{time\_interval}} is non-zero; otherwise, it is
-change-based.  The continuous query will be deactivated after its
-\textsf{\small\textit{expiration\_time}}. The
-\textsf{\small\textit{action}} triggers once the results of the XML-QL
-query expression is returned.  A key optimization mechanism used in
-the NiagaraCQ system is grouping the execution of similar queries to
-minimize redundant work.\fi
-
-
-Mendell et al.~\cite{mendell_et_al_2012} presented an approach for extending a general-purpose streaming language, SPL~\cite{hirzel_schneider_gedik_2017}, 
-with a declarative syntax for XML processing.
-In particular,  they introduced the  \emph{XMLParse} operator which allows the user 
-to not only filter the XML document but also specify a transformation of the returning XML data 
- to amenable format that can be used within the general-purpose streaming system.
-
+After YFilter, various other languages processed streams of XML
+documents.  For instance, XSQ~\cite{peng_chawathe_2003}, which was
+also based on XPath, used a hierarchical arrangement of pushdown
+transducers augmented with buffers. Besides filtering, XSQ had output
+functions including aggregations.  Mendell et al.\ extended a big-data
+streaming language, SPL~\cite{hirzel_schneider_gedik_2017}, with a new
+operator for XML stream processing,
+\emph{XMLParse}~\cite{mendell_et_al_2012}. It allows the user to not
+only filter the XML stream but also to transform it to a data format
+amenable for downstream processing.
