@@ -1,0 +1,281 @@
+View Results for Paper #20180005.0
+The editor-in-chief has decided to accept this paper with major changes.
+
+---------------------
+Editor-In-Chief Notes
+---------------------
+
+Dear authors,
+
+Thank you for your submission to the ACM SIGMOD Record.
+
+We have received two expert reviews of your manuscript. Based on the
+reviews received, the associate editor in charge of the manuscript has
+recommended a major revision. Please read both reviews and the
+meta-review carefully and address the issues raised in those reviews.
+
+Please resubmit after revision and provide the following documents:
+
+1) your revised research manuscript;
+
+2) a cover letter that explains all the changes that have been made
+   based on the previous comments.
+
+I look forward to receiving your revised manuscript!
+
+
+----------------------
+Associate Editor Notes
+----------------------
+
+Thank you for submitting this paper to SIGMOD Record Survey column.
+The reviewers agree that the surveyed subject is quite important, and
+this survey is a good first attempt on this subject. However, they
+recommend some major revision items to improve the survey and increase
+its impact.
+
+Here is the summary of the most critical revision items. Please refer
+to the reviews for more detailed comments and other minor issues.
+
+(1) Elaborate further on the specific categories you use in the paper
+    as requirements, principles, challenges, etc. to justify them
+    better.
+    For example, where do the three requirements, twelve language
+    design principles, or the three challenges with the nine measures
+    come from?
+    Can there be more? If yes, could you please add the additional
+    categories? If no, why?
+    Refer to comments from both reviews to expand your categories.
+
+(2) Include a summary/take-aways subsection referring to Tables 1 and 2.
+    Right now these tables are introduced without much discussion.
+
+(3) Since the title of the paper has emphasis on big data, and
+    considering the wide-adoption and impact, it would be good to
+    expand Section 2.3.
+
+(4) Broaden the related work with the recommendations from both of the
+    reviewers.  For example, it would be good to discuss which
+    language can be used as a starting point or a good example for
+    different principles and challenges.
+
+Please include a summary sheet listing the changes you have done over
+the paper and how the reviewers' comments are addressed once/if you
+submit the revised version.
+
+Looking forward to receiving the revised version of the paper!
+
+
+--------------------
+First Reviewer Notes
+--------------------
+
+As a follow-up to earlier surveys performed by others in 1997 and
+2004, this paper surveys a range of stream processing languages, with
+an emphasis on the modern big data era. Further, it extracts recurring
+concepts and principles from these findings, and looks forward at open
+challenges in the area.
+
+While the paper makes a good first attempt, some improvements will
+help it achieve broader coverage and provide better emphasis on
+commonly used languages, principles, and challenges. Detailed comments
+are below:
+
+1. The paper describes CQL is good detail, and places other follow-up
+   work in the context of CQL as well. In this section, it may be
+   useful to mention the tempo-relational query model variation from
+   the early 90s [79], as a modification of CQL semantics where
+   application time (and manipulations thereof) are a first-class
+   citizen in the data and query model. An example system that extends
+   this model across real-time and offline logs is Microsoft
+   StreamInsight, as described in [80].
+
+   [79] Christian S. Jensen and Richard T. Snodgrass, "Temporal
+   Specialization and Generalization," IEEE Transactions on Knowledge
+   and Data Engineering 6(6), December 1994, pp. 954974.
+
+   [80] Badrish Chandramouli, Jonathan Goldstein, and Songyun Duan.
+   Temporal Analytics on Big Data for Web Advertising. In ICDE, 2012.
+
+2. A mention or description of Naiad [81] is missing in the paper - it
+   uses a model called differential dataflow and a language based on
+   extended LINQ [82]. It would be good to reference this work,
+   perhaps in the context of Big Data streaming languages.
+
+   [81] D. G. Murray et al. Naiad: A Timely Dataflow System. In SOSP
+        2013.
+
+   [82] F. McSherry, D. G. Murray, R. Isaacs, and M. Isard.
+        Differential dataflow. In CIDR, 2013.
+
+
+3. I think Sec. 2.3 is the most important part of the paper and needs
+   to be described in greater detail, perhaps even split into two
+   subsections. The example of IBM SPL (maybe SPADE needs a mention as
+   well?) is okay to start with as an early example. However, the
+   large majority of streaming pipelines today use one of five
+   languages:
+
+   (1) Spark Streaming and SparkSQL: Databricks [83]
+
+   (2) Apache Flink: data artisans [84]
+
+   (3) Heron/Storm: streaml.io [85]
+
+   (4) Trill-LINQ: Microsoft [86]
+
+   (5) Apache Beam: Google Cloud Dataflow [87, 88]
+
+   (6) Samza: LinkedIn (samza.apache.org)
+
+   Thus, it might make sense for the paper to use at least one, if not
+   two, of these languages to show how the running example query would
+   be authored, along with more details on the language style and
+   semantics.
+
+   [83] https://spark.apache.org/streaming/
+
+   [84] Paris Carbone, Stephan Ewen, Seif Haridi, Asterios
+        Katsifodimos, Volker Markl, Kostas Tzoumas. Apache Flink™:
+        Stream and Batch Processing in a Single Engine. In IEEE Data
+        Engg. Bulletin, Dec. 2015.
+
+   [85] Maosong Fu, Sailesh Mittal, Vikas Kedigehalli, Karthik
+        Ramasamy, Michael Barry, Andrew Jorgensen, Christopher
+        Kellogg, Neng Lu, Bill Graham, Jingwei Wu.
+        Streaming@Twitter. In IEEE Data Engg. Bulletin, Dec. 2015.
+
+   [86] Badrish Chandramouli, Jonathan Goldstein, Mike Barnett, James
+        F. Terwilliger. Trill: Engineering a Library for Diverse
+        Analytics. In IEEE Data Engg. Bulletin, Dec. 2015.
+
+   [87] https://beam.apache.org/
+
+   [88] http://www.vldb.org/pvldb/vol8/p1792-Akidau.pdf
+
+4. Following up on above comment, the authors are encouraged to take a
+   close look at the recent IEEE Data Engg. Bulletin to get more ideas
+   for languages and references to include in the survey:
+
+   http://sites.computer.org/debull/A15dec/issue1.htm
+
+5. CEP is well covered but could benefit from citing other language models:
+
+   1. Augmented Finite Automaton (AFA) model [25] used in Trill
+
+   2. Flink CEP model [89]
+
+   3. Esper [90]
+
+   [89] https://flink.apache.org/news/2016/04/06/cep-monitoring.html
+
+   [90] http://www.espertech.com/esper/
+
+6. Secs. 2.5 to 2.8 feel slightly out-of-place given their lack of
+   deep adoption (for better or worse) in the big data ecosystem of
+   today. If space is a constraint given the other suggestions in the
+   reviews, these sections would be candidates for abbreviation.
+
+7. The principles section is nicely written and covers a lot of
+   ground. A few suggestions on topics that seem to be missed out:
+
+   (a) Lambda vs. kappa architectures and unification of real-time and
+       offline query languages
+
+   (b) State management: Offloading cold state to resilient key-value
+       stores (e.g., BigTable in Google Cloud Dataflow)
+
+   (c) Resiliency: Active-active and checkpoint-replay models,
+       delivery semantics (exactly once, at least once, at most once)
+
+   (d) Application time vs. processing time
+
+   (e) Micro-batching, early output generation time, and the
+       latency-throughput-completeness tradeoff
+
+It will take some thinking to figure out how to place these topics in
+the context of the existing discussion, but doing so will broaden the
+principles significantly to take common practical concerns in the
+modern big data streaming analytics space into account. It may make
+sense to fold some of these topics into the Challenges section as well.
+
+
+---------------------
+Second Reviewer Notes
+---------------------
+
+This paper presents a survey of stream processing languages, based on
+discussions from a Dagstuhl seminar attended by the co-authors (17441,
+Big Stream Processing Systems, 2017).
+
+First, major efforts are summarized with an example query for each,
+classified into 8 categories: relational streaming, synchronous
+dataflows, big data streaming, complex event processing, XML
+streaming, RDF streaming, stream reasoning, and streaming for
+end-users. Then hypothesizing that a stream processing language is
+required to meet three basic requirements - performance, generality,
+and productivity - a number of language design principles that must
+meet each of these requirements are derived. Selected languages from
+the 8 categories are further examined based on this framework.
+Finally, a discussion about open research challenges (veracity,
+variety, adoption) is provided.
+
+This is an important and challenging topic. As also stated by the
+authors, much work has been done in this area and standards are
+severely lacking. A survey that summarizes the state of the art and
+contributes a foundational framework that would help improve
+community's understanding and future progress could be very useful.
+Thus, I like the basic intention behind this survey and the general
+methodology that they follow: summarize key approaches, then present a
+framework based on principles derived, compare existing approaches
+based on this framework, and show where more work is needed. However,
+I am not 100% convinced why the proposed classification, requirements,
+principles, etc. are the right ones. The paper lacks discussion that
+justifies how these choices were made. For example:
+
+- Where do the three requirements come from? Could there be a fourth
+  on that might be missing?
+
+- It seems that w-questions are used to guide the categorization of
+  Section 2. Not sure if each subsection is structured in this light
+  though, seems that the w-questions are somehow lost.
+
+- Similar issues with the 12 principles. If many of these are indeed
+  "well-known" from the PL community, please provide references and a
+  discussion.
+
+It seems to me that language issues can be analyzed from multiple
+perspectives including syntax, semantics, programming model, etc.
+I am not sure if the survey sufficiently analyzes all relevant aspects.
+
+Overall, I have found the survey a little superficial and subjective.
+
+Detailed comments:
+
+Section 2.1 is missing important references:
+
+- the SECRET model from Dindar et al, which was a comprehensive
+  follow-up to Jain et al [50]: Modeling the Execution Semantics of
+  Stream Processing Engines with SECRET, VLDB Journal 22(4), 2013.
+
+- StreamSQL from StreamBase, which, to my knowledge, was also based on
+  [50] (see the TIBCO StreamSQL documentation).
+
+Section 2.3: What about different programming models? Most mentioned
+systems follow DAG-based dataflow models with user-defined logic, like
+Storm's spouts and bolts. Some support iterations, some do not. What
+about Spark Streaming which supports built-in streaming operators
+along with a SQL layer added on top? Similarly KSQL for Kafka? Also,
+the last paragraph starts with a sentence that references Borealis,
+but missing its details. Aurora/Borealis took a boxes and arrows
+approach different from STREAM, Telegraph, etc. How does that fit
+here?
+
+Table 1 and 2: What are the key take aways from these tables? There is
+no discussion. I was left wondering "So?".
+
+Section 3, last paragraph, "many are well-known from the design of
+other programming languages": Any specific citations?
+
+Minor typos:
+time-sliding window -> time-based sliding window
