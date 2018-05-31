@@ -9,12 +9,12 @@ evaluate several XPath expressions. In particular, YFilter exploited
 commonalities among path queries by merging the common prefixes of
 the paths so that they were processed at most once. This shared
 processing mechanism provided significant performance improvement by
-avoiding redundant processing for duplicate path expressions.  To
+avoiding redundant processing for duplicate path expressions.  \iffalse To
 handle value-based predicates that address contents of elements,
 YFilter applied two alternative approa\-ches. The first approach
 evaluates the predicates once the addressed elements are read from a
 document, while the second approach postpones predicate evaluation
-until the corresponding path expression has been entirely matched.
+until the corresponding path expression has been entirely matched.\fi
 
 Before YFilter, which processed streams of XML documents, came
 \textsf{NiagaraCQ}, which processed update streams to existing XML
@@ -24,15 +24,10 @@ evaluation to consider only the changed portion of each updated XML
 file. It supported two kinds of continuous queries:
 \emph{change-based} queries, which trigger as soon as new relevant
 data becomes available, and \emph{timer-based} queries, which trigger
-only at specified time intervals.
-
-After YFilter, various other languages processed streams of XML
-documents.  For instance, \textsf{XSQ}~\cite{peng_chawathe_2003}, which was
-also based on XPath, used a hierarchical arrangement of pushdown
-transducers augmented with buffers. Besides filtering, XSQ had output
-functions including aggregations.  Mendell et al.\ extended a big-data
+only at specified time intervals. Some other languages that have been introduced for supporting stream processing of XML
+documents include \textsf{XSQ}~\cite{peng_chawathe_2003} and the work of Mendell et al. that extended a big-data
 streaming language, SPL~\cite{hirzel_schneider_gedik_2017}, with a new
 operator for XML stream processing,
-\textsf{XMLParse}~\cite{mendell_et_al_2012}. Its main purpose is
+\textsf{XMLParse}~\cite{mendell_et_al_2012}. Its main purpose is to
 transform between XML and the native nested-tuple data model of SPL
 amenable for downstream processing.
