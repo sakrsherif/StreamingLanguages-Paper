@@ -41,8 +41,9 @@ synchronization between operators~\cite{soule_et_al_2016}.
 Like SPL, the core concept of other languages for big-data streaming
 is also that of a directed graph of streams and operators. This graph
 is an evolution of the query plan of earlier stream-relational
-systems. In fact, one can view \textsf{Aurora}~\cite{abadi_et_al_2003}
-and \textsf{Borealis}~\cite{abadi_et_al_2005} as the evolutionary link
+systems. In fact, one can view \textsf{Aurora}~\cite{abadi_et_al_2003},
+\textsf{Borealis}~\cite{abadi_et_al_2005}, and
+\textsf{Spade}~\cite{gedik_et_al_2008} as the evolutionary links
 between relational and big-data streaming languages. They still focus
 on stream-relational operators while already encouraging developers to
 explicitly code graphs.
@@ -53,7 +54,7 @@ language, typically Java. \textsf{MillWheel} focused on key-based
 partitioned parallelism and semi-automatic handling of out-of-order
 records~\cite{akidau_et_al_2013}. \textsf{Naiad} focused on supporting
 both streaming and iterative batch analytics~\cite{murray_et_al_2013},
-using sophisticatd timestamps and a programming model based on
+using elaborate timestamps and a programming model based on
 LINQ~\cite{meijer_beckman_bierman_2006}.  \textsf{Spark Streaming}
 emulated streaming by repeated computations on batches over immutable
 in-memory data~\cite{zaharia_et_al_2013}. \textsf{Storm} focused on
@@ -78,5 +79,5 @@ language~\cite{meijer_beckman_bierman_2006}.  Embedded languages
 benefit from simple interoperability with their host language, as well
 as leveraging host-language tools and skills~\cite{hudak_1998}. On the
 downside, since they are not self-contained, it is hard to isolate
-clear core semantics without pulling in the host language. This
+clear core semantics from the host language. This
 inhibits debugging, optimization, and standardization.
