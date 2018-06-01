@@ -17,12 +17,13 @@ stream<Stat> Stats = Aggregate(Calls) {
 
 The need to handle diverse data and processing requirements at scale
 motivated several recent big-data streaming languages and
-systems~\cite{akidau_et_al_2013,akidau_et_al_2015,carbone_et_al_2015,chandramouli_goldstein_maier_2010,hirzel_schneider_gedik_2017,murray_et_al_2013,toshniwal_et_al_2014,zaharia_et_al_2013}.
+systems~\cite{akidau_et_al_2013,akidau_et_al_2015,carbone_et_al_2015,chandramouli_et_al_2014,hirzel_schneider_gedik_2017,kulkarni_et_al_2015,murray_et_al_2013,toshniwal_et_al_2014,zaharia_et_al_2013}.
 Each of them makes it easy to integrate operators written in
 general-purpose languages and to parallelize them on clusters of
 multicore computers. Hirzel et al.\ introduced the \textsf{SPL}
-language~\cite{hirzel_schneider_gedik_2017} as part of the \textsf{IBM~Streams}
-product in~2010. Figure~\ref{fig:spl} shows an example for a similar
+language as part of the \textsf{IBM~Streams} product in
+2010~\cite{hirzel_et_al_2009,hirzel_schneider_gedik_2017}.
+Figure~\ref{fig:spl} shows an example for a similar
 use-case as Figure~\ref{fig:cql}. Line~1 defines a stream
 \lstinline{Calls} by invoking an operator \lstinline{CallsSrc}, and
 \mbox{Lines 3-8} define a stream \lstinline{Stats} by invoking an
@@ -37,25 +38,45 @@ example, with windows or output assignments. To facilitate
 distribution, SPL's semantics are defined to require minimal
 synchronization between operators~\cite{soule_et_al_2016}.
 
-One can view \textsf{Aurora}~\cite{abadi_et_al_2003} and
-\textsf{Borealis}~\cite{abadi_et_al_2005} as the evolutionary link
-between relational streaming and big-data streaming languages.
-In the big-data domain, SPL has been followed by
-\textsf{MillWheel}~\cite{akidau_et_al_2013},
-\textsf{Spark Streaming}~\cite{zaharia_et_al_2013},
-\textsf{Naiad}~\cite{murray_et_al_2013},
-\textsf{Storm}~\cite{toshniwal_et_al_2014},
-\textsf{Flink}~\cite{carbone_et_al_2015},
-\textsf{Heron}~\cite{kulkarni_et_al_2015},
-\textsf{Beam}~\cite{akidau_et_al_2015},
-and others.  Unlike SPL, which is a stand-alone language, these
+Like SPL, the core concept of other languages for big-data streaming
+is also that of a directed graph of streams and operators. This graph
+is an evolution of the query plan of earlier stream-relational
+systems. In fact, one can view \textsf{Aurora}~\cite{abadi_et_al_2003}
+and \textsf{Borealis}~\cite{abadi_et_al_2005} as the evolutionary link
+between relational and big-data streaming languages. They still focus
+on stream-relational operators while already encouraging developers to
+explicitly code graphs.
+
+Unlike SPL, which is a stand-alone language, later big-data streaming
 systems offer languages that are embedded in a general-purpose host
-language, typically Java. An embedded language is essentially an
-advanced library or framework that makes heavy use of host-language
-abstractions such as lambdas, generics, and local variable type
-inference. Embedded languages benefit from simple interoperability
-with their host language. Also, they can leverage tools and skills
-from the host language~\cite{hudak_1998}. On the downside, since they
-are not self-contained, it is hard to isolate clear core semantics
-without pulling in the host language. This inhibits debugging,
-optimization, and standardization.
+language, typically Java. \textsf{MillWheel} focused on key-based
+partitioned parallelism and semi-automatic handling of out-of-order
+records~\cite{akidau_et_al_2013}. \textsf{Naiad} focused on supporting
+both streaming and iterative batch analytics~\cite{murray_et_al_2013},
+using sophisticatd timestamps and a programming model based on
+LINQ~\cite{meijer_beckman_bierman_2006}.  \textsf{Spark Streaming}
+emulated streaming by repeated computations on batches over immutable
+in-memory data~\cite{zaharia_et_al_2013}. \textsf{Storm} focused on
+at-least-once semantics via buffering and
+acknowledgements~\cite{toshniwal_et_al_2014}.  \textsf{Trill} focused
+on using batching to improve throughput and offered an extensible
+aggregation framework~\cite{chandramouli_et_al_2014}.  \textsf{Heron}
+displaced Storm by adding several improvements, such as a backpressure
+mechanism~\cite{kulkarni_et_al_2015}. \textsf{Beam} picks up where
+MillWheel left off, giving programmers ways to reconcile event time
+and processing time~\cite{akidau_et_al_2015}. And \textsf{Flink}
+focuses on performing both real-time streaming and batch
+analytics~\cite{carbone_et_al_2015}.
+
+All of the above-listed big-data streaming systems offer embedded
+languages for specifying more-or-less explicit stream graphs. An
+embedded language is an advanced library or framework that makes heavy
+use of host-language abstractions such as lambdas, generics, and local
+variable type inference. For instance, LINQ integrates SQL-inspired
+query syntax in a general-purpose
+language~\cite{meijer_beckman_bierman_2006}.  Embedded languages
+benefit from simple interoperability with their host language, as well
+as leveraging host-language tools and skills~\cite{hudak_1998}. On the
+downside, since they are not self-contained, it is hard to isolate
+clear core semantics without pulling in the host language. This
+inhibits debugging, optimization, and standardization.
