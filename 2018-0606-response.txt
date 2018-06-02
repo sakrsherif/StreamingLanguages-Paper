@@ -108,7 +108,7 @@ Review 1 item 5. CEP is well covered but could benefit from citing other languag
 
    [90] http://www.espertech.com/esper/
 
-==> TODO (Angela)
+==> We have added a short paragraph on the support of CEP within these recent streaming platforms. 
 
 -----------------------------------------------------------
 Section 2.5 XML Streaming
