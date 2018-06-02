@@ -4,6 +4,8 @@ The previous section described concrete stream processing languages
 belonging to several families. This section takes a cross-cutting view
 and explores concepts that many of these languages have in common by
 identifying the language design principles behind the concepts.
+The views and opinions expressed herein are those of the authors and
+are meant to stimulate discussion rather than be the final word.
 Explicitly articulating principles demystifies the art of language
 design and makes it more of a science. We categorize language design
 principles according to the three requirements from
@@ -122,7 +124,9 @@ language. Note that satisfying more principles does not automatically
 imply satisfying the associated requirement better. Also, note that while
 we formulated the principles from the perspective of streaming
 languages, we do not claim to have invented them: many are well-known
-from the design of other programming languages. Now that we have seen
+from the design of other programming languages. For instance, the
+orthogonality principle was a stated aim in the Algol~68 language
+specification~\cite{vanwijngaarden_et_al_1975}. Now that we have seen
 concepts that are \emph{present} in most streaming languages, the next
 section will explore what is commonly \emph{missing or
   underdeveloped}.

@@ -145,17 +145,27 @@ Review 1 item 7. The principles section is nicely written and covers a lot of gr
 
    (a) Lambda vs. kappa architectures and unification of real-time and offline query languages
 
+==> TODO (Martin) discuss with principles P1 and P7
+
    (b) State management: Offloading cold state to resilient key-value stores (e.g., BigTable in Google Cloud Dataflow)
+
+==> TODO (Martin) discuss with principle P1
 
    (c) Resiliency: Active-active and checkpoint-replay models, delivery semantics (exactly once, at least once, at most once)
 
+==> TODO (Martin) discuss with challenge C1 in Section 4.1
+
    (d) Application time vs. processing time
+
+==> TODO (Martin) discuss with challenge C2 in Section 4.1
 
    (e) Micro-batching, early output generation time, and the latency-throughput-completeness tradeoff
 
+==> TODO (Martin) discuss with challenge C2 in Section 4.1
+
 It will take some thinking to figure out how to place these topics in the context of the existing discussion, but doing so will broaden the principles significantly to take common practical concerns in the modern big data streaming analytics space into account. It may make sense to fold some of these topics into the Challenges section as well.
 
-==> TODO (Martin)
+==> Agreed, we've added some to the principles and some to the challenges. Thank you for your comments!
 
 Review 2. I am not 100% convinced why the proposed classification, requirements, principles, etc. are the right ones. The paper lacks discussion that justifies how these choices were made. For example:
 
@@ -165,11 +175,11 @@ Review 2. I am not 100% convinced why the proposed classification, requirements,
 
 It seems to me that language issues can be analyzed from multiple perspectives including syntax, semantics, programming model, etc.  I am not sure if the survey sufficiently analyzes all relevant aspects.
 
-==> TODO (Martin)
+==> We added the following statement to the introductory paragraph of the principles section: "The views and opinions expressed herein are those of the authors and are meant to stimulate discussion rather than be the final word." Of course our discussion is likely incomplete, both because of the space limitations and because it reflects our personal experiences. In fact, Review 1 suggested additional topics, and we have revised the paper to incorporate them. We have also added a reference to orthogonality as an example of a well-known programming languages design principle.
 
 Meta-review point 1. Elaborate further on the specific categories you use in the paper as requirements, principles, challenges, etc. to justify them better.  For example, where do the three requirements, twelve language design principles, or the three challenges with the nine measures come from?  Can there be more? If yes, could you please add the additional categories? If no, why?  Refer to comments from both reviews to expand your categories.
 
-==> TODO (Martin)
+==> Addressed, see comments above.
 
 Review 2. Table 1 and 2: What are the key take aways from these tables? There is no discussion. I was left wondering "So?".
 
