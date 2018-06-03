@@ -4,26 +4,25 @@ In 2009, Della Valle et al.\ called the semantic web and AI community
 to investigate how to represent, manage, and reason on heterogeneous
 data streams and complex events in the presence of expressive domain
 models (captured by ontologies)~\cite{DBLP:journals/expert/ValleCHF09}.
-That community was still focusing on static knowledge bases, and
+Those communities were still focusing on static knowledge bases, and
 solutions to incorporate changes were too complex to apply to big data
 streams.  Della Valle et al.\ proposed to name this new research area
-\emph{stream reasoning}~\cite{DellAglioDataScience2017}, and to name
-the sub-area of stream reasoning focused on the semantic web \emph{RDF
+\emph{stream reasoning}~\cite{DellAglioDataScience2017}, and 
+the sub-area focused on the semantic web \emph{RDF
   Stream Processing} (RSP)~\cite{DBLP:conf/debs/ValleDM16}. This
 section presents RSP, while Section~\ref{sec:sr} elaborates on stream
 reasoning.
 
-The information model of RSP is a graph evolving over time. The same
-RDF stream can accommodate diverse data elements. This makes it easier
-to handle data variety than in streaming languages with static
-schemas, such as in relational streaming.  Graphs are particularly
-useful when analyzing social media, where each micro-post is a small
-semi-structured tree, but a collection of micro-posts forms a dynamic
-conversation graph that overlays the social
-graph~\cite{DBLP:conf/semweb/BalduiniVDTPC13}. Graphs are also useful for
-interpreting streams of text or
-videos~\cite{DBLP:journals/semweb/GangemiPRNDM17} by emitting a stream
-describing the sentences or scenes.
+%The information model of RSP (i.e.,RDF stream) can accommodate diverse data elements. This makes it easier
+%to handle data variety than in streaming languages with static
+%schemas, such as in relational streaming.  Graphs are particularly
+%useful when analyzing social media, where each micro-post is a small
+%semi-structured tree, but a collection of micro-posts forms a dynamic
+%conversation graph that overlays the social
+%graph~\cite{DBLP:conf/semweb/BalduiniVDTPC13}. Graphs are also useful for
+%interpreting streams of text or
+%videos~\cite{DBLP:journals/semweb/GangemiPRNDM17} by emitting a stream
+%describing the sentences or scenes.
 
 \sloppy RSP research initially revolved around extending the
 semantic web stack~\cite{DBLP:books/daglib/0036180} to represent
@@ -37,32 +36,33 @@ group\footnote{\url{http://www.w3.org/community/rsp/}} was established
 to define \textsf{RSP-QL} syntax~\cite{DBLP:conf/esws/DellAglioCVC15}
 and semantics~\cite{DBLP:journals/ijswis/DellAglioVCC14}.
 
-\begin{figure}[!h]
-\begin{lstlisting}[escapeinside={(*}{*)}]
-:graph1 :generatedAt "(*$\tau_1$*)"
-:graph1 { :call1 :caller :Alice .
-          :call1 :callee :Bob .}
-:graph2 :generatedAt "(*$\tau_2$*)"
-:graph2 { :call2 :caller :Carl .
-          :call2 :callee :Alice .
-          :call2 :callee :Bob . }
-\end{lstlisting}
-\vspace*{-4mm}
-\caption{\label{fig:rdfstream}RDF stream snippet example.}
-\end{figure}
+%\begin{figure}[!h]
+%\begin{lstlisting}[escapeinside={(*}{*)}]
+%:graph1 :generatedAt "(*$\tau_1$*)"
+%:graph1 { :call1 :caller :Alice .
+%          :call1 :callee :Bob .}
+%:graph2 :generatedAt "(*$\tau_2$*)"
+%:graph2 { :call2 :caller :Carl .
+%          :call2 :callee :Alice .
+%          :call2 :callee :Bob . }
+%\end{lstlisting}
+%\vspace*{-4mm}
+%\caption{\label{fig:rdfstream}RDF stream snippet example.}
+%\end{figure}
 
 In RSP-QL, an \textit{RDF stream} is an unbounded sequence of
 time-varying graphs $\langle t,\tau\rangle$, where $t$ is an RDF graph
 and $\tau$ is a non-decreasing timestamp.  A RSP-QL query is a
 continuous query on multiple RDF streams as well as static information
-stored in RDF graphs.  Figure~\ref{fig:rdfstream} illustrates a RDF
-stream snippet in TriG
-syntax\footnote{\url{https://www.w3.org/TR/trig/}}, with two RDF
-graphs emitted at $\tau_1$ and~$\tau_2$. Each RDF graph represents a
-phone call with a caller and multiple callees. Even though each
-individual call is a tree, merging calls yields a graph: the two calls
-involve the same callee \lstinline{Bob} and the caller of
-\lstinline{call1} is a callee of \lstinline{call2}.
+stored in RDF graphs.  
+%Figure~\ref{fig:rdfstream} illustrates a RDF
+%stream snippet in TriG
+%syntax\footnote{\url{https://www.w3.org/TR/trig/}}, with two RDF
+%graphs emitted at $\tau_1$ and~$\tau_2$. Each RDF graph represents a
+%phone call with a caller and multiple callees. Even though each
+%individual call is a tree, merging calls yields a graph: the two calls
+%involve the same callee \lstinline{Bob} and the caller of
+%\lstinline{call1} is a callee of \lstinline{call2}.
 
 \begin{figure}[!h]
 \begin{lstlisting}[language=rsp-ql]
