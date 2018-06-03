@@ -230,11 +230,14 @@ Section 4.4 Challenges Summary
 
 Review 2. Table 1 and 2: What are the key take aways from these tables? There is no discussion. I was left wondering "So?".
 
-==> TODO (Angela)
+==> We thank the reviewer for this comment. We have now improved the
+readability of the two tables by highlighting the most frequent principles
+(per requirement) across all languages and (CHALLENGES TODO (Angela)). 
 
 Meta-review point 2. Include a summary/take-aways subsection referring to Tables 1 and 2.  Right now these tables are introduced without much discussion.
 
-==> TODO (Angela)
+==> We have added at the end of Section 3 (AND TODO (Angela)) an explanation of the findings of
+the two Tables 1 and 2. 
 
 Meta-review point 4. Broaden the related work with the recommendations from both of the reviewers.  For example, it would be good to discuss which language can be used as a starting point or a good example for different principles and challenges.
 

@@ -4,10 +4,12 @@ The previous section described concrete stream processing languages
 belonging to several families. This section takes a cross-cutting view
 and explores concepts that many of these languages have in common by
 identifying the language design principles behind the concepts.
-The views and opinions expressed herein are those of the authors and
-are meant to stimulate discussion rather than be the final word.
-Explicitly articulating principles demystifies the art of language
-design and makes it more of a science. We categorize language design
+%(From Angela) For the sake of conciseness, I have removed the two statements below.
+%The views and opinions expressed herein are those of the authors and
+%are meant to stimulate discussion rather than be the final word.
+%Explicitly articulating principles demystifies the art of language
+%design and makes it more of a science. 
+We categorize language design
 principles according to the three requirements from
 Section~\ref{sec:introduction}, namely performance, generality, and
 productivity.
@@ -100,19 +102,26 @@ language design principles $\mathbf{P_9}$--$\mathbf{P_{12}}$:
     \toprule
     \emph{Language} & \emph{Performance} & \emph{Generality} & \emph{Productivity}\\
     \midrule
-    CQL          & P$_1$ P$_2$ P$_3$       & P$_5$             P$_8$ & P$_9$\\
-    Lustre       &                   P$_4$ & P$_5$ P$_6$ P$_7$ P$_8$ & P$_9$ P$_{10}$ P$_{11}$ P$_{12}$\\
-    SPL          & P$_1$ P$_2$ P$_3$       & P$_5$ P$_6$       P$_8$ & P$_9$          P$_{11}$ P$_{12}$\\
-    MatchRegex   &       P$_2$             & P$_5$ P$_6$       P$_8$ & P$_9$ P$_{10}$          P$_{12}$\\
-    YFilter      & P$_4$ & P$_5$ P$_6$ & P$_9$ P$_10$\\
-    RSP-QL       &       P$_1$ P$_3$    & P$_5$ P$_6$  P$_8$ & P$_9$ P$_{10}$ P$_{11}$         \\
-    ActiveSheets & P$_1$ P$_2$       P$_4$ & P$_5$ P$_6$ P$_7$ P$_8$ & P$_9$ P$_{10}$                  \\
+    CQL          & $\mathbf{P_1 P_2}$ P$_3$       & $\mathbf{P_5}$             P$_8$
+& $\mathbf{P_9}$\\
+    Lustre       &                   P$_4$ & $\mathbf{P_5}$ P$_6$ P$_7$ P$_8$
+& $\mathbf{P_9}$ P$_{10}$ P$_{11}$ P$_{12}$\\
+    SPL          & $\mathbf{P_1 P_2}$ P$_3$       & $\mathbf{P_5}$ P$_6$       P$_8$
+& $\mathbf{P_9}$          P$_{11}$ P$_{12}$\\
+    MatchRegex   &       $\mathbf{P_2}$             & $\mathbf{P_5}$ P$_6$       P$_8$
+& $\mathbf{P_9}$ P$_{10}$          P$_{12}$\\
+    YFilter      & P$_4$ & $\mathbf{P_5}$ P$_6$ & $\mathbf{P_9}$ P$_{10}$\\
+    RSP-QL       &       $\mathbf{P_1}$ P$_3$    & $\mathbf{P_5}$ P$_6$  P$_8$ &
+$\mathbf{P_9}$ P$_{10}$ P$_{11}$         \\
+    ActiveSheets & $\mathbf{P_1 P_2}$       P$_4$ & $\mathbf{P_5}$ P$_6$ P$_7$ P$_8$
+& $\mathbf{P_9}$ P$_{10}$                  \\
     \bottomrule
   \end{tabular}
   }
   \caption{\label{tab:principles}Which of the languages that served as
     examples in Section~\ref{sec:languages} satisfy which of the
-    language design principles in Section~\ref{sec:principles}.}
+    language design principles in Section~\ref{sec:principles}
+    (in bold the most occurring principles per requirement).}
 \end{table}
 
 Good language design is driven by principles, but it is also an
@@ -120,8 +129,21 @@ exercise in prioritizing among these principles. For instance, CQL
 satisfies P$_9$ (familiarity principle) by adopting SQL's syntax and
 CQL violates P$_{12}$ (backward reference principle) by adopting SQL's
 scoping rules. Table~\ref{tab:principles} summarizes principles by
-language. Note that satisfying more principles does not automatically
-imply satisfying the associated requirement better. Also, note that while
+language. We can observe that among 
+all principles only two of them (P$_5$ and P$_9$, respectively) 
+are uniformly covered by all languages, while P$_1$ and P$_2$
+are the most occurring principles of the performance 
+requirement. By opposite, some 
+of the languages exhibit less principles overall or less 
+principles per requirement, respectively. 
+Whereas Table~\ref{tab:principles} is informative in terms of 
+boolean coverage of principles per language, it does not 
+provide a comparative metric~\footnote{Such a metric would not be trivial
+to define.} for quantifying the coverage of each principle.
+As a consequence, we observe that satisfying more principles does not automatically
+imply satisfying the associated requirement better.
+
+Also, note that while
 we formulated the principles from the perspective of streaming
 languages, we do not claim to have invented them: many are well-known
 from the design of other programming languages. For instance, the
