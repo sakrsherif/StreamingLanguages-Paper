@@ -2,7 +2,7 @@
 
 In 2009, Della Valle et al.\ called the semantic web and AI community
 to investigate how to represent, manage, and reason on heterogeneous
-data streams and complex events in the presence of expressive domain
+data streams in the presence of expressive domain
 models (captured by ontologies)~\cite{DBLP:journals/expert/ValleCHF09}.
 Those communities were still focusing on static knowledge bases, and
 solutions to incorporate changes were too complex to apply to big data
@@ -24,7 +24,7 @@ reasoning.
 %videos~\cite{DBLP:journals/semweb/GangemiPRNDM17} by emitting a stream
 %describing the sentences or scenes.
 
-\sloppy RSP research initially revolved around extending the
+\sloppy RSP research extended the
 semantic web stack~\cite{DBLP:books/daglib/0036180} to represent
 heterogeneous streams, continuous queries, and continuous
 reasoning. Inspired by CQL~\cite{arasu_widom_2004}, Della Valle et
@@ -53,8 +53,7 @@ and semantics~\cite{DBLP:journals/ijswis/DellAglioVCC14}.
 In RSP-QL, an \textit{RDF stream} is an unbounded sequence of
 time-varying graphs $\langle t,\tau\rangle$, where $t$ is an RDF graph
 and $\tau$ is a non-decreasing timestamp.  A RSP-QL query is a
-continuous query on multiple RDF streams as well as static information
-stored in RDF graphs.  
+continuous query on multiple RDF streams and graphs.  
 %Figure~\ref{fig:rdfstream} illustrates a RDF
 %stream snippet in TriG
 %syntax\footnote{\url{https://www.w3.org/TR/trig/}}, with two RDF
@@ -91,10 +90,9 @@ WHERE {
 
 Figure \ref{fig:rspql} illustrates an RSP-QL query that continuously
 identifies \textit{communication hubs}. The idea is to find callees
-who appear more frequently in the last 10~minutes than usual in the
-last 2~hours. Line~1 registers stream~\lstinline{out} and Line~2 sends
+who appear more frequently than usual. Line~1 registers stream~\lstinline{out} and Line~2 sends
 the query result on that stream. \mbox{Lines 3-6} open a short
-10-mi\-nute tumbling window~\lstinline{swin} and a long \mbox{2-hour}
+10-minute tumbling window~\lstinline{swin} and a long \mbox{2-hour}
 sliding window~\lstinline{lwin} on the input
 stream~\lstinline{in}. \mbox{Lines 8-11} and \mbox{12-15} count the
 number of calls per callee in the long and short window,
@@ -105,17 +103,14 @@ standard deviations above average.
 
 \subsection{Stream Reasoning}\label{sec:sr} % Emanuele
 
-Reasoning automates mathematical logic via systems such as constraint
-solvers, theorem provers, rule engines, and deductive classifiers.
-Reasoning plays a key role in modern information integration and
-access solutions where an ontology offers a conceptual view over
-pre-existing autonomous data sources. In this setting, the reasoner
+%Reasoning automates mathematical logic via systems such as constraint
+%solvers, theorem provers, rule engines, and deductive classifiers.
+Automated reasoning plays a key role in modern information integration where an ontology offers a conceptual view over
+pre-existing autonomous data sources~\cite{DBLP:conf/pods/Lenzerini02}. In this setting, the reasoner
 can find answers that are not syntactically present in the data
-sources, but are derivable from the data and the ontology.  This
+sources, but are deduced from the data and the ontology.  This
 query-answering approach is called ontology-based data
-integration~\cite{DBLP:conf/pods/Lenzerini02}, and ontology-based data
-access~\cite{DBLP:journals/jods/PoggiLCGLR08} offers a set of scalable
-solutions that have practical usage.
+access~\cite{DBLP:journals/jods/PoggiLCGLR08}.
 
 \begin{figure}[!h]
 \begin{lstlisting}[language=rsp-ql]
@@ -137,8 +132,8 @@ WHERE { :Alice :gossips ?x }
 As RDF is the dominant data model in reasoning for data integration,
 RDF streaming languages (Section~\ref{sec:rdf}) bridge the gap between
 stream processing and ontology-based data integration.  Della Valle et
-al.\ took a first step in this direction, showing how continuous
-description-logic reasoning can be reduced to periodic repetition of
+al.\ open up this direction, showing how continuous
+reasoning can be reduced to periodic repetition of
 reasoning over a windowed ontology
 stream~\cite{DBLP:conf/fis/ValleCBBC08}.  Figure~\ref{fig:sr} shows an
 RSP-QL query that uses reasoning to continuously count how many people
@@ -152,21 +147,15 @@ directly calling him, but the system can also deduce that she
 \lstinline{:gossips :Carl} indirectly via \lstinline{:Bob}.
 
 While conceptually simple, this kind of reasoning is hard to do
-efficiently. Barbieri~et~al.~\cite{DBLP:conf/esws/BarbieriBCVG10} made
-the first step in this direction optimizing the DRed algorithm when
-deletion becomes predictable.
-Komazec~et~al.~\cite{DBLP:conf/debs/KomazecCF12} realized its first
-implementation extending the RETE algorithm. In parallel, Ren and Pan
-proposed an alternative approach via truth maintenance
-systems~\cite{Ren2011}. The state-of-the-art in this setting is the
-work of Motik~et~al.~\cite{DBLP:conf/aaai/MotikNPH15a}.  More
-recently, Calbimonte~et~al.\ exploited ontology-based data access
-principles by rewriting continuous ontological queries to a stream
-processing system~\cite{DBLP:conf/esws/CalbimonteMC16}.
+efficiently. Barbieri~et~al.~\cite{DBLP:conf/esws/BarbieriBCVG10} and Komazec~et~al.~\cite{DBLP:conf/debs/KomazecCF12} pioneered it optimizing the DRed algorithm observing that in stream processing
+deletion becomes predictable. The current state-of-the-art is the
+work of Motik~et~al.~\cite{DBLP:conf/aaai/MotikNPH15a}. 
 
-In parallel, Heintz developed logic-based spatio-temporal stream
-reasoning focusing on run-time verification to guarantee the safety of
-autonomous systems~\cite{DeLengHeintz2016AAAI}.  Anicic
+In parallel, Ren and Pan
+proposed an alternative approach via truth maintenance
+systems~\cite{Ren2011}. Calbimonte~et~al.\ exploited ontology-based data access~\cite{DBLP:conf/esws/CalbimonteMC16}.
+Heintz~et~al. developed logic-based spatio-temporal stream
+reasoning~\cite{DeLengHeintz2016AAAI}.  Anicic
 et al.\ bridged stream reasoning with complex event processing
 grounding both in logic
 programming~\cite{DBLP:journals/semweb/AnicicRFS12}. Beck et al.\ used

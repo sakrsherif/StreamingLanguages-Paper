@@ -124,12 +124,16 @@ Review 1 item 6. Secs. 2.5 to 2.8 feel slightly out-of-place given their lack of
 
 ==> TODO (Emanuele): Please condense this section.
 
+The section was condensed removing the RDF listing and a discussion about when RDF is an appropriate data model. All the relevant content was preserved.
+
 -----------------------------------------------------------
 Section 2.7 Stream Reasoning
 
 Review 1 item 6. Secs. 2.5 to 2.8 feel slightly out-of-place given their lack of deep adoption (for better or worse) in the big data ecosystem of today. If space is a constraint given the other suggestions in the reviews, these sections would be candidates for abbreviation.
 
 ==> TODO (Emanuele): Please condense this section.
+
+The section was condensed by rewording without loss of content
 
 -----------------------------------------------------------
 Section 2.8 Streaming for End-Users
@@ -213,6 +217,8 @@ Section 4.1 Veracity
 Section 4.2 Data Variety
 
 ==> No issues raised in the reviews.
+
+A paragraph containing more examples was removed and some part of the section was reworded to save some space.
 
 -----------------------------------------------------------
 Section 4.3 Adoption
