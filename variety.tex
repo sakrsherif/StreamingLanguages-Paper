@@ -16,7 +16,7 @@ integrate is highly dynamic or streaming (as in this paper).
 %
 Increasingly, applications must process heterogeneous data streams in
 real-time together with large background knowledge bases. Consider the
-following examples from~\cite{DellAglioDataScience2017}.
+following two examples from~\cite{DellAglioDataScience2017} (where interested readers can find others).
 
 In the first example, we want to use sensor readings of the last
 10~minutes to find electricity-producing turbines that are in a state
@@ -36,19 +36,19 @@ them to get home. Here, data variety arises from using third-party
 data sources that are free to evolve in syntax, structure, and
 semantics.
 
-There are many more examples that highlight the opportunity to create
-value by taming variety and velocity simultaneously. In social media
-analytics, it would be valuable to identify the current top
-influencers that are driving the discussion about the top emerging
-topics across all the social networks. In the tourism industry, it
-would be valuable to tell tourist where they can spend their evening
-given the presence of people and what the are doing (predicted
-analyzing the spatio-temporal correlation between privacy-preserving
-aggregates of mobile telecom data and of geo-located social media
-posts). In well-being analytics, it would be worth advising people when
-to go exercise, given their past, possibly sedentary, behavior and
-allergies (accessed in a privacy-preserving manner) as well as current
-weather conditions and pollution/allergen levels.
+%There are many more examples that highlight the opportunity to create
+%value by taming variety and velocity simultaneously. In social media
+%analytics, it would be valuable to identify the current top
+%influencers that are driving the discussion about the top emerging
+%topics across all the social networks. In the tourism industry, it
+%would be valuable to tell tourist where they can spend their evening
+%given the presence of people and what the are doing (predicted
+%analyzing the spatio-temporal correlation between privacy-preserving
+%aggregates of mobile telecom data and of geo-located social media
+%posts). In well-being analytics, it would be worth advising people when
+%to go exercise, given their past, possibly sedentary, behavior and
+%allergies (accessed in a privacy-preserving manner) as well as current
+%weather conditions and pollution/allergen levels.
 
 \textbf{How can we measure the challenge?}
 %
@@ -71,9 +71,10 @@ into the following measures $\mathbf{C_4}$--$\mathbf{C_6}$:
     language allows adding new sources where data are represented in a
     format unforeseen when the language was
     released. This might be accomplished by extending
-    R2RML\footnote{\url{https://www.w3.org/TR/r2rml}} -- a language
-    for expressing customized mappings from relational databases to
-    RDF datasets.
+    R2RML\footnote{\url{https://www.w3.org/TR/r2rml}}.
+%     -- a language
+%    for expressing customized mappings from relational databases to
+%    RDF datasets.
 \end{itemize}
 
 \textbf{Why is this difficult?}
@@ -81,11 +82,9 @@ into the following measures $\mathbf{C_4}$--$\mathbf{C_6}$:
 Deriving value is harder for a system that has to tame data variety
 than for a system that only has to handle a single well-structured
 data source. This is because solutions that analyze data require
-homogeneous well-formed input data, but, when there is data variety,
-a number of different data management solutions must be used together
-to prepare such data. Moreover, each of those solution takes time to
-perform its part of the processing as well as to coordinate with the
-other solutions. This time is particularly relevant in stream
+homogeneous well-formed input data, so, when there is data variety,
+preparing such data requires a number of different data management solutions that take time to
+perform their part of the processing as well as to coordinate among each others. This time is particularly relevant in stream
 processing, where answers should be generated with low latency. Even
 if the time available to answer depends on the application domain (in
 call centers, routing needs to be decided in sub-seconds, while in oil
