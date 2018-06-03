@@ -14,23 +14,33 @@ open research challenges, three of which this section highlights.
     \toprule
     \emph{Languages} & \emph{Veracity} & \emph{Variety} & \emph{Adoption}\\
     \midrule
-    Relational   &       C$_2$       &                   &       C$_8$ C$_9$\\
-    Synchronous  &                   & C$_4$             & C$_7$       C$_9$\\
-    Big-data     & C$_1$ C$_2$       & C$_4$ C$_5$ C$_6$ & C$_7$            \\
-    CEP          &       C$_2$       & C$_4$             &       C$_8$      \\
-    XML          &                   & C$_4$       C$_6$ &                  \\
-    Stream Reasoning & C$_3$ & C$_4$ C$_5$ C$_6$ & C$_8$ C$_9$\\
-    End-user     &                   & C$_4$             &                  \\
+    Relational   &       $\mathbf{C_2}$       &                   &
+$\mathbf{C_8 C_9}$\\
+    Synchronous  &                   & $\mathbf{C_4}$             & C$_7$
+$\mathbf{C_9}$\\
+    Big Data     & C$_1$ $\mathbf{C_2}$       & $\mathbf{C_4}$ C$_5$ C$_6$ & C$_7$            \\
+    CEP          &       $\mathbf{C_2}$       & $\mathbf{C_4}$
+&       $\mathbf{C_8}$      \\
+    XML          &                   & $\mathbf{C_4}$       C$_6$ &                  \\
+    Stream Reasoning & C$_3$ & $\mathbf{C_4}$ C$_5$ C$_6$ & $\mathbf{C_8
+C_9}$\\
+    End-user     &                   & $\mathbf{C_4}$             &                  \\
     \bottomrule
   \end{tabular}}
   \caption{\label{tab:challenges}Which of the language families from
     Section~\ref{sec:languages} address which of the measures of
-    streaming language challenges in Section~\ref{sec:whatsnext}.}
+    streaming language challenges in Section~\ref{sec:whatsnext}
+    (in bold the most occurring ones).}
 \end{table}
 
 Table~\ref{tab:challenges} summarizes the challenges.  Compared to the
 coverage of principles in Table~\ref{tab:principles}, the coverage of
 challenges is more sparse and spread out over research prototypes.
 That is why we tabulated it for language families instead of
-individual languages. Ultimately, we want streaming languages that are
-both principled and close the gap on challenges.
+individual languages. 
+We have highlighted in bold the challenges that are most covered across all
+the languages families. We can observe that variety is currently more
+covered than veracity and adoption, thus leaving space to future work in
+this area. 
+Ultimately, we aim at streaming languages that are
+both principled and close the gap on all challenges.

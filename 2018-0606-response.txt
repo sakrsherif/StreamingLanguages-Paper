@@ -231,17 +231,24 @@ Section 4.4 Challenges Summary
 Review 2. Table 1 and 2: What are the key take aways from these tables? There is no discussion. I was left wondering "So?".
 
 ==> We thank the reviewer for this comment. We have now improved the
-readability of the two tables by highlighting the most frequent principles
-(per requirement) across all languages and (CHALLENGES TODO (Angela)). 
+readability of the two tables by highlighting (in bold) the most frequent principles
+(per requirement) across all languages and the most occurring challenges
+over the language families. Thus, we let the reader understand what are 
+the gaps, that require more efforts from our community. We also added a
+discussion at the end of Section 3 (second last paragraph) and in Section
+4.4. 
 
 Meta-review point 2. Include a summary/take-aways subsection referring to Tables 1 and 2.  Right now these tables are introduced without much discussion.
 
-==> We have added at the end of Section 3 (AND TODO (Angela)) an explanation of the findings of
-the two Tables 1 and 2. 
+==> We have added at the end of Section 3 and in Section 4.4 an explanation of the findings of
+the two Tables 1 and 2. We improved the readability of the two Tables.  
 
 Meta-review point 4. Broaden the related work with the recommendations from both of the reviewers.  For example, it would be good to discuss which language can be used as a starting point or a good example for different principles and challenges.
 
-==> TODO (Angela)
+==> With the above trick on the two tables, the reader can now see what is
+the language (language family, respectively) to choose in case he is
+looking for more (or less, respectively) coverage of the
+principles/challenges. 
 
 -----------------------------------------------------------
 Section 5. Conclusions
