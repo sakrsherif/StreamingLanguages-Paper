@@ -8,7 +8,7 @@ Introductory paragraph to Section 2. Stream Processing Languages
 
 Review 2. It seems that w-questions are used to guide the categorization of Section 2. Not sure if each subsection is structured in this light though, seems that the w-questions are somehow lost.
 
-==> TODO (Guillaume) While the w-questions did guide our writing, we were not pedantic about them. So we just elided them from the introductory paragraph to Section 2.
+==> While the w-questions did guide our writing, we were not pedantic about them. So we just elided them from the introductory paragraph to Section 2.
 
 -----------------------------------------------------------
 Section 2.1 Relational Streaming
@@ -122,18 +122,14 @@ Section 2.6 RDF Streaming
 
 Review 1 item 6. Secs. 2.5 to 2.8 feel slightly out-of-place given their lack of deep adoption (for better or worse) in the big data ecosystem of today. If space is a constraint given the other suggestions in the reviews, these sections would be candidates for abbreviation.
 
-==> TODO (Emanuele): Please condense this section.
-
-The section was condensed removing the RDF listing and a discussion about when RDF is an appropriate data model. All the relevant content was preserved.
+==> The section was condensed removing the RDF listing and a discussion about when RDF is an appropriate data model. All the relevant content was preserved.
 
 -----------------------------------------------------------
 Section 2.7 Stream Reasoning
 
 Review 1 item 6. Secs. 2.5 to 2.8 feel slightly out-of-place given their lack of deep adoption (for better or worse) in the big data ecosystem of today. If space is a constraint given the other suggestions in the reviews, these sections would be candidates for abbreviation.
 
-==> TODO (Emanuele): Please condense this section.
-
-The section was condensed by rewording without loss of content
+==> The section was condensed by rewording without loss of content.
 
 -----------------------------------------------------------
 Section 2.8 Streaming for End-Users
@@ -206,20 +202,18 @@ Introductory paragraph to Section 4.0. What's Next?
 
 Meta-review point 1. Elaborate further on the specific categories you use in the paper as [...] challenges, etc. to justify them better.  For example, where do the [...] three challenges with the nine measures come from?  Can there be more? If yes, could you please add the additional categories? If no, why?  Refer to comments from both reviews to expand your categories.
 
-==> TODO (Akrivi) An explanation has been added, why we focus on these challenges.
+==> An explanation has been added for why we focus on these challenges.
 
 
 -----------------------------------------------------------
 Section 4.1 Veracity
 
-==> TODO (Akrivi): No issues raised in the reviews, but we might want to condense a little more.
+==> No issues raised in the reviews.
 
 -----------------------------------------------------------
 Section 4.2 Data Variety
 
-==> No issues raised in the reviews.
-
-A paragraph containing more examples was removed and some part of the section was reworded to save some space.
+==> No issues raised in the reviews. A paragraph containing more examples was removed and some part of the section was reworded to save some space.
 
 -----------------------------------------------------------
 Section 4.3 Adoption
@@ -231,25 +225,15 @@ Section 4.4 Challenges Summary
 
 Review 2. Table 1 and 2: What are the key take aways from these tables? There is no discussion. I was left wondering "So?".
 
-==> We thank the reviewer for this comment. We have now improved the
-readability of the two tables by highlighting (in bold) the most frequent principles
-(per requirement) across all languages and the most occurring challenges
-over the language families. Thus, we let the reader understand what are 
-the gaps, that require more efforts from our community. We also added a
-discussion at the end of Section 3 (second last paragraph) and in Section
-4.4. 
+==> We thank the reviewer for this comment. We have now improved the readability of the two tables by highlighting (in bold) the most frequent principles (per requirement) across all languages and the most occurring challenges over the language families. Thus, we let the reader understand what are the gaps, that require more efforts from our community. We also added a discussion at the end of Section 3 (second last paragraph) and in Section 4.4.
 
 Meta-review point 2. Include a summary/take-aways subsection referring to Tables 1 and 2.  Right now these tables are introduced without much discussion.
 
-==> We have added at the end of Section 3 and in Section 4.4 an explanation of the findings of
-the two Tables 1 and 2. We improved the readability of the two Tables.  
+==> We have added at the end of Section 3 and in Section 4.4 an explanation of the findings of the two Tables 1 and 2. We improved the readability of the two Tables.
 
 Meta-review point 4. Broaden the related work with the recommendations from both of the reviewers.  For example, it would be good to discuss which language can be used as a starting point or a good example for different principles and challenges.
 
-==> With the above trick on the two tables, the reader can now see what is
-the language (language family, respectively) to choose in case he is
-looking for more (or less, respectively) coverage of the
-principles/challenges. 
+==> With the above trick on the two tables, the reader can now see what is the language (language family, respectively) to choose in case he is looking for more (or less, respectively) coverage of the principles/challenges.
 
 -----------------------------------------------------------
 Section 5. Conclusions
