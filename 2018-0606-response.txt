@@ -145,11 +145,11 @@ Review 1 item 7. The principles section is nicely written and covers a lot of gr
 
    (a) Lambda vs. kappa architectures and unification of real-time and offline query languages
 
-==> TODO (Martin) discuss with principles P1 and P7
+==> Added a pointer and comment to principle P7.
 
    (b) State management: Offloading cold state to resilient key-value stores (e.g., BigTable in Google Cloud Dataflow)
 
-==> TODO (Martin) discuss with principle P1
+==> Added a pointer and comment to principle P2.
 
    (c) Resiliency: Active-active and checkpoint-replay models, delivery semantics (exactly once, at least once, at most once)
 

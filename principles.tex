@@ -28,6 +28,8 @@ language design principles $\mathbf{P_1}$--$\mathbf{P_4}$:
     simplifying data parallelism~\cite{schneider_et_al_2015}.
     For instance, MatchRegex performs complex event processing separately by
     partition~\cite{hirzel_2012} (see Line~3 of Figure~\ref{fig:cep}).
+    Principles $P_1$ and $P_2$ dove-tail with state management at the
+    implementation layer, e.g., in key-value stores~\cite{gedik_et_al_2014}.
   \item[$\mathbf{P_3}$] \emph{Stream graph principle.} Streaming
     applications are graphs of operators that communicate almost
     exclusively via streams, making them easy to place on different
@@ -47,9 +49,8 @@ design principles $\mathbf{P_5}$--$\mathbf{P_8}$:
   \item[$\mathbf{P_5}$] \emph{Orthogonality principle.} Basic language
     features are irredundant and work the same independently of how
     they are composed. For instance, in CQL, relational-algebra
-    operators behave the same no matter which windows they are
-    composed with~\cite{arasu_babu_widom_2006} (see
-    Section~\ref{sec:sql}).
+    operators are orthogonal to windows~\cite{arasu_babu_widom_2006}
+    (see Section~\ref{sec:sql}).
   \item[$\mathbf{P_6}$] \emph{No-built-ins principle.} The core language
     remains slim and regular by enabling extensions in the library. For
     instance, in SPL, relational operators are not built into the
@@ -61,7 +62,9 @@ design principles $\mathbf{P_5}$--$\mathbf{P_8}$:
     support reactive computation. For instance, ActiveSheets uses
     conventional spreadsheet formulas, updating their output when
     input cells change~\cite{vaziri_et_al_2014} (see
-    Figure~\ref{fig:activesheets}).
+    Figure~\ref{fig:activesheets}).  The Lambda or Kappa
+    architectures~\cite{kreps_2014} take this to the extreme by
+    combining batch and streaming outside of the language.
   \item[$\mathbf{P_8}$] \emph{General-feature principle.} Similar
     special-case features are replaced by a single more-general
     feature. For instance, operator parameters in
