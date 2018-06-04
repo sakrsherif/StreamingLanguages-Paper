@@ -8,7 +8,7 @@ optimization that used a single finite state machine to represent and
 evaluate several XPath expressions. In particular, YFilter exploited
 commonalities among path queries by merging the common prefixes of
 the paths so that they were processed at most once. This shared
-processing mechanism provided significant performance improvement by
+processing improved performance significantly by
 avoiding redundant processing for duplicate path expressions.  \iffalse To
 handle value-based predicates that address contents of elements,
 YFilter applied two alternative approa\-ches. The first approach
@@ -24,10 +24,8 @@ evaluation to consider only the changed portion of each updated XML
 file. It supported two kinds of continuous queries:
 \emph{change-based} queries, which trigger as soon as new relevant
 data becomes available, and \emph{timer-based} queries, which trigger
-only at specified time intervals. Some other languages that have been introduced for supporting stream processing of XML
-documents include \textsf{XSQ}~\cite{peng_chawathe_2003} and the work of Mendell et al. that extended a big-data
-streaming language, SPL~\cite{hirzel_schneider_gedik_2017}, with a new
-operator for XML stream processing,
-\textsf{XMLParse}~\cite{mendell_et_al_2012}. Its main purpose is to
-transform between XML and the native nested-tuple data model of SPL
-amenable for downstream processing.
+only at specified time intervals. \textsf{XSQ} is an XPath-based
+language for not just filtering but transforming streams of XML
+documents~\cite{peng_chawathe_2003}. And \textsf{XMLParse} is an
+operator for XML stream transformation in a big-data streaming
+language~\cite{mendell_et_al_2012}.

@@ -4,12 +4,9 @@ The previous section described concrete stream processing languages
 belonging to several families. This section takes a cross-cutting view
 and explores concepts that many of these languages have in common by
 identifying the language design principles behind the concepts.
-%(From Angela) For the sake of conciseness, I have removed the two statements below.
-%The views and opinions expressed herein are those of the authors and
-%are meant to stimulate discussion rather than be the final word.
-%Explicitly articulating principles demystifies the art of language
-%design and makes it more of a science. 
-We categorize language design
+The views and opinions expressed herein are those of the authors and
+are not meant as the final word.  Explicitly articulating principles
+demystifies the art of language design. We categorize language design
 principles according to the three requirements from
 Section~\ref{sec:introduction}, namely performance, generality, and
 productivity.
@@ -33,9 +30,9 @@ language design principles $\mathbf{P_1}$--$\mathbf{P_4}$:
   \item[$\mathbf{P_3}$] \emph{Stream graph principle.} Streaming
     applications are graphs of operators that communicate almost
     exclusively via streams, making them easy to place on different
-    cores or machines. For instance, SPL programs are explicit stream
-    graphs~\cite{hirzel_schneider_gedik_2017} (see
-    Figure~\ref{fig:spl}).
+    cores or machines. This principle is central to the big-data
+    languages in Section~\ref{sec:big} such as
+    SPL~\cite{hirzel_schneider_gedik_2017} (see Figure~\ref{fig:spl}).
   \item[$\mathbf{P_4}$] \emph{Restriction principle.} The schedules and
     communication rates in a streaming application are restricted for
     both performance and safety. For instance, Lustre can be compiled

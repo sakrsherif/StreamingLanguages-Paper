@@ -50,7 +50,7 @@ streams was \textsf{SASE}~\cite{WuDR06}. The language was designed to translate
 to algebraic operators, but did not yet support aggregation or regular
 expressions with Kleene closure, as used in Figure~\ref{fig:cep}.
 %% 2007
-The Cayuga Event Language offered aggregation and Kleene closure, but
+The \textsf{Cayuga} Event Language offered aggregation and Kleene closure, but
 did so in a hand-crafted syntax instead of familiar regular expression
 syntax~\cite{demers_et_al_2007}.
 %% 2007
@@ -65,19 +65,23 @@ Another take on CEP using regular expressions was
 \textsf{EventScript}~\cite{cohen_kalleberg_2008}, which allowed the patterns to
 be interspersed with action blocks.
 %% 2010
-Most CEP pattern matching is inherently sequential, but Chandramouli et
-al.\ explored how to generalize it for out-of-order data
-streams~\cite{chandramouli_goldstein_maier_2010}. Their work
-anticipates the veracity challenge, further discussed in
-Section~\ref{sec:veracity} of this survey.
+While most CEP pattern matching is inherently sequential, Chandramouli
+et al.\ generalized it for out-of-order data
+streams~\cite{chandramouli_goldstein_maier_2010}, a topic further
+discussed in Section~\ref{sec:veracity}.
+
+%% Most CEP pattern matching is inherently sequential, but Chandramouli et
+%% al.\ explored how to generalize it for out-of-order data
+%% streams~\cite{chandramouli_goldstein_maier_2010}. Their work
+%% anticipates the veracity challenge, further discussed in
+%% Section~\ref{sec:veracity} of this survey.
 
 %new part on support of CEP in Microsoft Trill, Apache Flink and Esper
 % we can remove the previous statement in case of lack of space
 
-Recently, CEP is also supported by several
-high-performance commercial streaming engines, such as Microsoft
-Trill~\cite{chandramouli_et_al_2014}, Esper~\cite{Esper18} and Apache
-Flink~\cite{carbone_et_al_2015}, the latter
+Recently, CEP is also supported by several big-data streaming engines,
+such as Trill~\cite{chandramouli_et_al_2014}, Esper~\cite{Esper18},
+and Flink~\cite{carbone_et_al_2015}, the latter
 exhibiting a CEP library since its early 1.0 version. 
 Indeed, the high throughput
 and low latency nature of these engines make them suitable for CEP's real

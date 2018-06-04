@@ -35,7 +35,6 @@ In 2013, a W3C community
 group\footnote{\url{http://www.w3.org/community/rsp/}} was established
 to define \textsf{RSP-QL} syntax~\cite{DBLP:conf/esws/DellAglioCVC15}
 and semantics~\cite{DBLP:journals/ijswis/DellAglioVCC14}.
-
 %\begin{figure}[!h]
 %\begin{lstlisting}[escapeinside={(*}{*)}]
 %:graph1 :generatedAt "(*$\tau_1$*)"
@@ -49,7 +48,6 @@ and semantics~\cite{DBLP:journals/ijswis/DellAglioVCC14}.
 %\vspace*{-4mm}
 %\caption{\label{fig:rdfstream}RDF stream snippet example.}
 %\end{figure}
-
 In RSP-QL, an \textit{RDF stream} is an unbounded sequence of
 time-varying graphs $\langle t,\tau\rangle$, where $t$ is an RDF graph
 and $\tau$ is a non-decreasing timestamp.  A RSP-QL query is a
@@ -112,7 +110,7 @@ sources, but are deduced from the data and the ontology.  This
 query-answering approach is called ontology-based data
 access~\cite{DBLP:journals/jods/PoggiLCGLR08}.
 
-\begin{figure}[!h]
+\begin{figure}[!t]
 \begin{lstlisting}[language=rsp-ql]
 SubObjectPropertyOf(
    ObjectPropertyChain( :calls :calls ) :gossips
@@ -125,14 +123,15 @@ FROM NAMED WINDOW :win
        ON :in [ RANGE PT60M STEP PT10M]
 WHERE { :Alice :gossips ?x }
 \end{lstlisting}
+\vspace*{-5mm}
+\caption{\label{fig:sr}Stream reasoning example with two ontological axioms and a RSP-QL query.}
 \vspace*{-4mm}
-\caption{\label{fig:sr}Stream reasoing example with two ontological axioms and an RSP-QL query.}
 \end{figure}
 
 As RDF is the dominant data model in reasoning for data integration,
 RDF streaming languages (Section~\ref{sec:rdf}) bridge the gap between
 stream processing and ontology-based data integration.  Della Valle et
-al.\ open up this direction, showing how continuous
+al.\ opened up this direction, showing how continuous
 reasoning can be reduced to periodic repetition of
 reasoning over a windowed ontology
 stream~\cite{DBLP:conf/fis/ValleCBBC08}.  Figure~\ref{fig:sr} shows an
@@ -154,7 +153,7 @@ work of Motik~et~al.~\cite{DBLP:conf/aaai/MotikNPH15a}.
 In parallel, Ren and Pan
 proposed an alternative approach via truth maintenance
 systems~\cite{Ren2011}. Calbimonte~et~al.\ exploited ontology-based data access~\cite{DBLP:conf/esws/CalbimonteMC16}.
-Heintz~et~al. developed logic-based spatio-temporal stream
+Heintz~et~al.\ developed logic-based spatio-temporal stream
 reasoning~\cite{DeLengHeintz2016AAAI}.  Anicic
 et al.\ bridged stream reasoning with complex event processing
 grounding both in logic
@@ -163,6 +162,6 @@ answer set programming to model expressive stream reasoning
 tasks~\cite{DBLP:conf/aaai/BeckDEF15} in
 Ticker~\cite{DBLP:journals/tplp/BeckEB17} and
 Laser~\cite{DBLP:conf/semweb/BazoobandiBU17}.  Inductive stream
-reasoning, i.e., applying machine-learning techniques to RDF streams
+reasoning, i.e., applying machine-learning to RDF streams
 or to ontology streams, is also an active
 field~\cite{DBLP:journals/expert/BarbieriBCVHTRW10,DBLP:conf/ijcai/ChenLPC17,DBLP:conf/ijcai/LecueP13}.
