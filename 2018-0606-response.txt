@@ -145,27 +145,27 @@ Review 1 item 7. The principles section is nicely written and covers a lot of gr
 
    (a) Lambda vs. kappa architectures and unification of real-time and offline query languages
 
-==> Added a pointer and comment to principle P7.
+==> Added a kappa-architecture pointer and comment to principle P7.
 
    (b) State management: Offloading cold state to resilient key-value stores (e.g., BigTable in Google Cloud Dataflow)
 
-==> Added a pointer and comment to principle P2.
+==> Added a key-value store pointer and comment to principle P2.
 
    (c) Resiliency: Active-active and checkpoint-replay models, delivery semantics (exactly once, at least once, at most once)
 
-==> TODO (Martin) discuss with challenge C1 in Section 4.1
+==> Added a Spark Streaming pointer and comment to challenge measure C1.
 
    (d) Application time vs. processing time
 
-==> TODO (Martin) discuss with challenge C2 in Section 4.1
+==> Added a Beam pointer and comment to challenge measure C2.
 
    (e) Micro-batching, early output generation time, and the latency-throughput-completeness tradeoff
 
-==> TODO (Martin) discuss with challenge C2 in Section 4.1
+==> Added a Spark Streaming pointer and comment to challenge measure C2.
 
 It will take some thinking to figure out how to place these topics in the context of the existing discussion, but doing so will broaden the principles significantly to take common practical concerns in the modern big data streaming analytics space into account. It may make sense to fold some of these topics into the Challenges section as well.
 
-==> Agreed, we've added some to the principles and some to the challenges. Thank you for your comments!
+==> Agreed, we've added some of your topic suggestions to the principles and some to the challenges. Thank you for your comments!
 
 Review 2. I am not 100% convinced why the proposed classification, requirements, principles, etc. are the right ones. The paper lacks discussion that justifies how these choices were made. For example:
 
@@ -183,19 +183,17 @@ Meta-review point 1. Elaborate further on the specific categories you use in the
 
 Review 2. Table 1 and 2: What are the key take aways from these tables? There is no discussion. I was left wondering "So?".
 
-==> TODO (Martin)
+==> We thank the reviewer for this comment. We have now improved the readability of the two tables by highlighting (in bold) the most frequent principles (per requirement) across all languages and the most occurring challenges over the language families. Thus, we let the reader understand what are the gaps that require more efforts from our community. We also added a discussion at the end of Section 3 (second-to-last paragraph) and in Section 4.4.
 
 Meta-review point 2. Include a summary/take-aways subsection referring to Tables 1 and 2.  Right now these tables are introduced without much discussion.
 
-==> TODO (Martin)
+Meta-review point 4. Broaden the related work with the recommendations from both of the reviewers.  For example, it would be good to discuss which language can be used as a starting point or a good example for different principles and challenges.
+
+==> With the above trick on the two tables, the reader can now see what is the language (language family, respectively) to choose in case he is looking for more (or less, respectively) coverage of the principles/challenges.
 
 Review 3. Section 3, last paragraph, "many are well-known from the design of other programming languages": Any specific citations?
 
-==> TODO (Martin)
-
-Meta-review point 4. Broaden the related work with the recommendations from both of the reviewers.  For example, it would be good to discuss which language can be used as a starting point or a good example for different principles and challenges.
-
-==> TODO (Martin)
+==> To give a concrete example, we have added a specific citation to the Algol 68 language specification, which was famously guided by the orthogonality principle.
 
 -----------------------------------------------------------
 Introductory paragraph to Section 4.0. What's Next?
@@ -203,7 +201,6 @@ Introductory paragraph to Section 4.0. What's Next?
 Meta-review point 1. Elaborate further on the specific categories you use in the paper as [...] challenges, etc. to justify them better.  For example, where do the [...] three challenges with the nine measures come from?  Can there be more? If yes, could you please add the additional categories? If no, why?  Refer to comments from both reviews to expand your categories.
 
 ==> An explanation has been added for why we focus on these challenges.
-
 
 -----------------------------------------------------------
 Section 4.1 Veracity
@@ -218,22 +215,18 @@ Section 4.2 Data Variety
 -----------------------------------------------------------
 Section 4.3 Adoption
 
-==> TODO (Martin): No issues raised in the reviews, but we might want to condense a little more.
+==> No issues raised in the reviews.
 
 -----------------------------------------------------------
 Section 4.4 Challenges Summary
 
 Review 2. Table 1 and 2: What are the key take aways from these tables? There is no discussion. I was left wondering "So?".
 
-==> We thank the reviewer for this comment. We have now improved the readability of the two tables by highlighting (in bold) the most frequent principles (per requirement) across all languages and the most occurring challenges over the language families. Thus, we let the reader understand what are the gaps, that require more efforts from our community. We also added a discussion at the end of Section 3 (second last paragraph) and in Section 4.4.
-
 Meta-review point 2. Include a summary/take-aways subsection referring to Tables 1 and 2.  Right now these tables are introduced without much discussion.
-
-==> We have added at the end of Section 3 and in Section 4.4 an explanation of the findings of the two Tables 1 and 2. We improved the readability of the two Tables.
 
 Meta-review point 4. Broaden the related work with the recommendations from both of the reviewers.  For example, it would be good to discuss which language can be used as a starting point or a good example for different principles and challenges.
 
-==> With the above trick on the two tables, the reader can now see what is the language (language family, respectively) to choose in case he is looking for more (or less, respectively) coverage of the principles/challenges.
+==> These comments pertain to both Section 3 and Section 4.4. We have addressed them in both places, see the corresponding respose in Section 3.
 
 -----------------------------------------------------------
 Section 5. Conclusions

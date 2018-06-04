@@ -70,14 +70,17 @@ into the following measures $\mathbf{C_1}$--$\mathbf{C_3}$:
   \item[$\mathbf{C_1}$] \emph{Fault-tolerance.} A program in the
     language is robust even if some of its components fail. The
     language can define different behaviors, for example,
-    at-least-once semantics in Storm~\cite{toshniwal_et_al_2014}.
+    at-least-once semantics in Storm~\cite{toshniwal_et_al_2014}
+    or check-pointing in Spark Streaming~\cite{zaharia_et_al_2013}.
   \item[$\mathbf{C_2}$] \emph{Out-of-order handling.} This measure has
     two facets. First, the streaming language should have clear
     semantics about the expected result. Second, the streaming language should be
     robust to out-of-order data and should ensure that the expected
     output stream is produced with limited latency. Li et al.\ define
     out-of-order stream semantics based on low
-    watermarks~\cite{Li:2008:OPN:1453856.1453890}.
+    watermarks~\cite{Li:2008:OPN:1453856.1453890}; Spark Streaming
+    relies on idempotence to handle stragglers; and Beam separates
+    event time from processing time~\cite{akidau_et_al_2015}.
   \item[$\mathbf{C_3}$] \emph{Inaccurate value handling.} A program in
     the language is robust even if some of its input data is wrong.
     The language can help by supporting statistical quality
