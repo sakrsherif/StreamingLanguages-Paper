@@ -1,4 +1,4 @@
------------------------------------------------------------
+﻿-----------------------------------------------------------
 Section 1. Introduction
 
 ==> No issues raised in the reviews.
@@ -206,7 +206,8 @@ Introductory paragraph to Section 4.0. What's Next?
 
 Meta-review point 1. Elaborate further on the specific categories you use in the paper as [...] challenges, etc. to justify them better.  For example, where do the [...] three challenges with the nine measures come from?  Can there be more? If yes, could you please add the additional categories? If no, why?  Refer to comments from both reviews to expand your categories.
 
-==> TODO (Akrivi)
+==> TODO (Akrivi) An explanation has been added, why we focus on these challenges.
+
 
 -----------------------------------------------------------
 Section 4.1 Veracity
