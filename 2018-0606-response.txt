@@ -1,4 +1,11 @@
-﻿-----------------------------------------------------------
+﻿Dear Editors and Reviewers for SIGMOD Record,
+
+Thank you for deciding to accept our survey paper on "Stream Processing Languages in the Big Data Era" with major changes! We made a big push to turn it around quickly so that it could still be considered for the June issue. Below is an explanation of all the changes that have been made based on the previous comments.
+
+Sincerely,
+Martin (on behalf of the authors)
+
+-----------------------------------------------------------
 Section 1. Introduction
 
 ==> No issues raised in the reviews.
@@ -164,7 +171,7 @@ Meta-review point 1. Elaborate further on the specific categories you use in the
 
 Review 2. Table 1 and 2: What are the key take aways from these tables? There is no discussion. I was left wondering "So?".
 
-==> We thank the reviewer for this comment. We have now improved the readability of the two tables by improving vertical alignment and highlighting in bold the most frequent principles (per requirement) across all languages and the most occurring challenges over the language families. Thus, we let the reader understand what are the gaps that require more efforts from our community. We also added a discussions at the end of Section 3 (second-to-last paragraph) and Section 4.4.
+==> We thank the reviewer for this comment. We have now improved the readability of the two tables by improving vertical alignment and highlighting in bold the most frequent principles (per requirement) across all languages and the most occurring challenges over the language families. Thus, we let the reader understand what are the gaps that require more efforts from our community. We also added a discussions in Section 3.1 (a new subsection) and Section 4.4.
 
 Meta-review point 2. Include a summary/take-aways subsection referring to Tables 1 and 2.  Right now these tables are introduced without much discussion.
 
@@ -207,8 +214,7 @@ Meta-review point 2. Include a summary/take-aways subsection referring to Tables
 
 Meta-review point 4. Broaden the related work with the recommendations from both of the reviewers.  For example, it would be good to discuss which language can be used as a starting point or a good example for different principles and challenges.
 
-==> These comments pertain to both Section 3 and Section 4.4. We have
-addressed them in both places, see the corresponding response above.
+==> These comments pertain to both Section 3 and Section 4.4. We have addressed them in both places, see the corresponding response above.
 
 -----------------------------------------------------------
 Section 5. Conclusions

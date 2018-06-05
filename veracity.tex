@@ -100,7 +100,7 @@ into the following measures $\mathbf{C_1}$--$\mathbf{C_3}$:
 %%For what concerns the streaming processing algorithms, they bring approximate results that may introduce further veracity problems. How can we ensure that these algorithms do not worsen the veracity degree of the underlying data and lead to minimize the introduced errors and uncertainties? 
 %%
 %%%% \subsubsection{Metrics}
-%%%One major issue is if an stream processing approach is robust to veracity. In order to estimate the robustness of an approach to data lost or data that are out of date we define as ground truth the result of the stream processing in the absence of data loss or data that are delayed. Then we can quantify the error produced by the veracity. Let $error$ be a function that compare the produced result of an approach with and without veracity. An approach is robust to veracity of streaming data if $error$ sccale linearly with respect to size of the data and the number of errors. The types of errors of concern in a streaming setting include timeliness of delivery of stream elements, fraction of elements that arrive out-of-order, element loss rate, and element integrity verification failure rate. An example of an $error$ function is the number of false positives and false negatives compared to the ground truth.
+%%%One major issue is if an stream processing approach is robust to veracity. In order to estimate the robustness of an approach to data lost or data that are out of date we define as ground truth the result of the stream processing in the absence of data loss or data that are delayed. Then we can quantify the error produced by the veracity. Let $error$ be a function that compare the produced result of an approach with and without veracity. An approach is robust to veracity of streaming data if $error$ scale linearly with respect to size of the data and the number of errors. The types of errors of concern in a streaming setting include timeliness of delivery of stream elements, fraction of elements that arrive out-of-order, element loss rate, and element integrity verification failure rate. An example of an $error$ function is the number of false positives and false negatives compared to the ground truth.
 
 \textbf{Why is this difficult?}
 %
@@ -109,10 +109,11 @@ As a result, data can be lost, incorrect, arrive out of order, or be
 approximate. This is exacerbated by the fact that the streaming
 setting affords limited opportunity to compensate for these issues.
 Furthermore, the performance requirements of streaming systems
-encourage the use of approximate computing~\cite{babcock_et_al_2002}.
-Approximate computing and machine learning increase the uncertainty of
-the data. An important aspect of streaming data is ordering, typically
-characterized by time.  Determining the correctness of the response to
+encourage the use of approximate computing~\cite{babcock_et_al_2002},
+thus increasing the uncertainty of the data. Also, machine-learning
+often yields uncertain results due to imperfect generalization.
+An important aspect of streaming data is ordering, typically
+characterized by time.  The correctness of the response to
 queries depends on the source of ordering, such as the creation,
 processing, or delivery time.  Stream processing often requires that
 each piece of data must be processed within a window, which can be
