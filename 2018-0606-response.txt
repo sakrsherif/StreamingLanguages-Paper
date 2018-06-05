@@ -207,7 +207,8 @@ Meta-review point 2. Include a summary/take-aways subsection referring to Tables
 
 Meta-review point 4. Broaden the related work with the recommendations from both of the reviewers.  For example, it would be good to discuss which language can be used as a starting point or a good example for different principles and challenges.
 
-==> These comments pertain to both Section 3 and Section 4.4. We have addressed them in both places, see the corresponding respose above.
+==> These comments pertain to both Section 3 and Section 4.4. We have
+addressed them in both places, see the corresponding response above.
 
 -----------------------------------------------------------
 Section 5. Conclusions
