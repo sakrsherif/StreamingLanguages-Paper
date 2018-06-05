@@ -40,7 +40,7 @@ dynamic and usually operate in a distributed environment
 with minimal control over the underlying infrastructure. Such a
 loosely coupled model can lead to situations where any data source can
 join and leave on the fly. Moreover, stream-producing sensors
-have limitations such as processing power, energy level, memory
+have limitations such as processing power, energy level, or memory
 consumption, which can easily compromise veracity.
  %including data incompleteness, lack of quality and/or concept drifts. Additionally, in a dynamic environment where data is evolving over time and can change its properties and statistics, which demand novel veracity handling algorithms compared to static datastores.  
 
@@ -79,7 +79,7 @@ into the following measures $\mathbf{C_1}$--$\mathbf{C_3}$:
     output stream is produced with limited latency. Li et al.\ define
     out-of-order stream semantics based on low
     watermarks~\cite{Li:2008:OPN:1453856.1453890}; Spark Streaming
-    relies on idempotence to handle stragglers; and Beam separates
+    relies on idempotence to handle stragglers~\cite{zaharia_et_al_2013}; and Beam separates
     event time from processing time~\cite{akidau_et_al_2015}.
   \item[$\mathbf{C_3}$] \emph{Inaccurate value handling.} A program in
     the language is robust even if some of its input data is wrong.
