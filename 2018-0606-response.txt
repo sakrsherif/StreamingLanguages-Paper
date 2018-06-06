@@ -1,6 +1,6 @@
 ﻿Dear Editors and Reviewers for SIGMOD Record,
 
-Thank you for deciding to accept our survey paper on "Stream Processing Languages in the Big Data Era" with major changes! We made a big push to turn it around quickly so that it could still be considered for the June issue. Below is an explanation of all the changes that have been made based on the previous comments.
+Thank you for deciding to accept our survey paper on "Stream Processing Languages in the Big Data Era" with major changes! We made a big push to turn it around quickly so that it could still be considered for the June issue. Below is an explanation of all the changes that have been made based on your comments.
 
 Sincerely,
 Martin (on behalf of the authors)
@@ -15,7 +15,7 @@ Introductory paragraph to Section 2. Stream Processing Languages
 
 Review 2. It seems that w-questions are used to guide the categorization of Section 2. Not sure if each subsection is structured in this light though, seems that the w-questions are somehow lost.
 
-==> While the w-questions did guide our writing, we were not pedantic about them. So we just elided them from the introductory paragraph to Section 2.
+==> While the w-questions did guide our writing, we were not pedantic about them. So we changed the introductory paragraph to Section 2 to elide them.
 
 -----------------------------------------------------------
 Section 2.1 Relational Streaming
