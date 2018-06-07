@@ -1,3 +1,10 @@
+﻿Dear Editors and Reviewers for SIGMOD Record,
+
+Thank you for deciding to accept our survey paper on "Stream Processing Languages in the Big Data Era" with major changes! We made a big push to turn it around quickly so that it could still be considered for the June issue. Below is an explanation of all the changes that have been made based on your comments.
+
+Sincerely,
+Martin (on behalf of the authors)
+
 -----------------------------------------------------------
 Section 1. Introduction
 
@@ -8,7 +15,7 @@ Introductory paragraph to Section 2. Stream Processing Languages
 
 Review 2. It seems that w-questions are used to guide the categorization of Section 2. Not sure if each subsection is structured in this light though, seems that the w-questions are somehow lost.
 
-==> TODO (Guillaume) While the w-questions did guide our writing, we were not pedantic about them. So we just elided them from the introductory paragraph to Section 2.
+==> While the w-questions did guide our writing, we were not pedantic about them. So we changed the introductory paragraph to Section 2 to elide them.
 
 -----------------------------------------------------------
 Section 2.1 Relational Streaming
@@ -19,7 +26,7 @@ Review 1 item 1. In this section, it may be useful to mention the tempo-relation
 
   [80] Badrish Chandramouli, Jonathan Goldstein, and Songyun Duan.  Temporal Analytics on Big Data for Web Advertising. In ICDE, 2012.
 
-==> The discussion of the temporal relations model has been added with the 2 related references.
+==> The discussion of the temporal relations model has been added with the two related references.
 
 Review 2. Section 2.1 is missing important references:
 
@@ -77,7 +84,7 @@ Review 1 item 3. I think Sec. 2.3 is the most important part of the paper and ne
 
    [88] http://www.vldb.org/pvldb/vol8/p1792-Akidau.pdf
 
-==> Section 2.3 has been extended to cite and discuss MillWheel, Spark Streaming, Storm, Trill, Heron, Beam, and Flink. In some cases we picked earlier and more prominent papers to cite than the ones referenced by Review 1.
+==> Section 2.3 has been extended to cite and discuss MillWheel, Spark Streaming, Storm, Trill, Heron, Beam, and Flink. In some cases we picked earlier and more prominent papers to cite than the ones referenced by Review 1. While we managed to harvest some space elsewhere in the paper for this expansion of Section 2.3, it was not enough to add another example.
 
 Review 1 item 4. Following up on above comment, the authors are encouraged to take a close look at the recent IEEE Data Engg. Bulletin to get more ideas for languages and references to include in the survey:
 
@@ -112,35 +119,12 @@ Review 1 item 5. CEP is well covered but could benefit from citing other languag
 
 -----------------------------------------------------------
 Section 2.5 XML Streaming
-
-Review 1 item 6. Secs. 2.5 to 2.8 feel slightly out-of-place given their lack of deep adoption (for better or worse) in the big data ecosystem of today. If space is a constraint given the other suggestions in the reviews, these sections would be candidates for abbreviation.
-
-==> Section 2.5 has been compacted.
-
------------------------------------------------------------
 Section 2.6 RDF Streaming
-
-Review 1 item 6. Secs. 2.5 to 2.8 feel slightly out-of-place given their lack of deep adoption (for better or worse) in the big data ecosystem of today. If space is a constraint given the other suggestions in the reviews, these sections would be candidates for abbreviation.
-
-==> TODO (Emanuele): Please condense this section.
-
-The section was condensed removing the RDF listing and a discussion about when RDF is an appropriate data model. All the relevant content was preserved.
-
------------------------------------------------------------
 Section 2.7 Stream Reasoning
 
 Review 1 item 6. Secs. 2.5 to 2.8 feel slightly out-of-place given their lack of deep adoption (for better or worse) in the big data ecosystem of today. If space is a constraint given the other suggestions in the reviews, these sections would be candidates for abbreviation.
 
-==> TODO (Emanuele): Please condense this section.
-
-The section was condensed by rewording without loss of content
-
------------------------------------------------------------
-Section 2.8 Streaming for End-Users
-
-Review 1 item 6. Secs. 2.5 to 2.8 feel slightly out-of-place given their lack of deep adoption (for better or worse) in the big data ecosystem of today. If space is a constraint given the other suggestions in the reviews, these sections would be candidates for abbreviation.
-
-==> Section 2.8 has been compacted.
+==> Sections 2.5 to 2.8 have been compacted.
 
 -----------------------------------------------------------
 Section 3. Principles
@@ -149,27 +133,27 @@ Review 1 item 7. The principles section is nicely written and covers a lot of gr
 
    (a) Lambda vs. kappa architectures and unification of real-time and offline query languages
 
-==> TODO (Martin) discuss with principles P1 and P7
+==> Added a kappa-architecture pointer and comment to principle P7.
 
    (b) State management: Offloading cold state to resilient key-value stores (e.g., BigTable in Google Cloud Dataflow)
 
-==> TODO (Martin) discuss with principle P1
+==> Added a key-value store pointer and comment to principle P2.
 
    (c) Resiliency: Active-active and checkpoint-replay models, delivery semantics (exactly once, at least once, at most once)
 
-==> TODO (Martin) discuss with challenge C1 in Section 4.1
+==> Added a Spark Streaming pointer and comment to challenge measure C1.
 
    (d) Application time vs. processing time
 
-==> TODO (Martin) discuss with challenge C2 in Section 4.1
+==> Added a Beam pointer and comment to challenge measure C2.
 
    (e) Micro-batching, early output generation time, and the latency-throughput-completeness tradeoff
 
-==> TODO (Martin) discuss with challenge C2 in Section 4.1
+==> Added a Spark Streaming pointer and comment to challenge measure C2.
 
 It will take some thinking to figure out how to place these topics in the context of the existing discussion, but doing so will broaden the principles significantly to take common practical concerns in the modern big data streaming analytics space into account. It may make sense to fold some of these topics into the Challenges section as well.
 
-==> Agreed, we've added some to the principles and some to the challenges. Thank you for your comments!
+==> Agreed, we've added your topic suggestions, some to the principles and some to the challenges. Due to space contraints, we had to keep the the additions concise.
 
 Review 2. I am not 100% convinced why the proposed classification, requirements, principles, etc. are the right ones. The paper lacks discussion that justifies how these choices were made. For example:
 
@@ -179,7 +163,7 @@ Review 2. I am not 100% convinced why the proposed classification, requirements,
 
 It seems to me that language issues can be analyzed from multiple perspectives including syntax, semantics, programming model, etc.  I am not sure if the survey sufficiently analyzes all relevant aspects.
 
-==> We added the following statement to the introductory paragraph of the principles section: "The views and opinions expressed herein are those of the authors and are meant to stimulate discussion rather than be the final word." Of course our discussion is likely incomplete, both because of the space limitations and because it reflects our personal experiences. In fact, Review 1 suggested additional topics, and we have revised the paper to incorporate them. We have also added a reference to orthogonality as an example of a well-known programming languages design principle.
+==> We added the following statement to the introductory paragraph of the principles section: "The views and opinions expressed herein are those of the authors and are not meant as the final word." Of course our discussion is likely incomplete, both because of the space limitations and because it reflects our personal experiences. In fact, Review 1 suggested additional topics, and we have revised the paper to incorporate them. We have also added a reference to orthogonality as an example of a well-known programming languages design principle.
 
 Meta-review point 1. Elaborate further on the specific categories you use in the paper as requirements, principles, challenges, etc. to justify them better.  For example, where do the three requirements, twelve language design principles, or the three challenges with the nine measures come from?  Can there be more? If yes, could you please add the additional categories? If no, why?  Refer to comments from both reviews to expand your categories.
 
@@ -187,68 +171,50 @@ Meta-review point 1. Elaborate further on the specific categories you use in the
 
 Review 2. Table 1 and 2: What are the key take aways from these tables? There is no discussion. I was left wondering "So?".
 
-==> TODO (Martin)
+==> We thank the reviewer for this comment. We have now improved the readability of the two tables by improving vertical alignment and highlighting in bold the most frequent principles (per requirement) across all languages and the most occurring challenges over the language families. Thus, we let the reader understand what are the gaps that require more efforts from our community. We also added a discussions in Section 3.1 (a new subsection) and Section 4.4.
 
 Meta-review point 2. Include a summary/take-aways subsection referring to Tables 1 and 2.  Right now these tables are introduced without much discussion.
 
-==> TODO (Martin)
+Meta-review point 4. Broaden the related work with the recommendations from both of the reviewers.  For example, it would be good to discuss which language can be used as a starting point or a good example for different principles and challenges.
+
+==> With the above improvements to the two tables, the reader can now see what is the language (language family, respectively) to choose in case they are looking for more (or less, respectively) coverage of the principles/challenges.
 
 Review 3. Section 3, last paragraph, "many are well-known from the design of other programming languages": Any specific citations?
 
-==> TODO (Martin)
-
-Meta-review point 4. Broaden the related work with the recommendations from both of the reviewers.  For example, it would be good to discuss which language can be used as a starting point or a good example for different principles and challenges.
-
-==> TODO (Martin)
+==> To give a concrete example, we have added a specific citation to the Algol 68 language specification, which was famously guided by the orthogonality principle.
 
 -----------------------------------------------------------
 Introductory paragraph to Section 4.0. What's Next?
 
 Meta-review point 1. Elaborate further on the specific categories you use in the paper as [...] challenges, etc. to justify them better.  For example, where do the [...] three challenges with the nine measures come from?  Can there be more? If yes, could you please add the additional categories? If no, why?  Refer to comments from both reviews to expand your categories.
 
-==> TODO (Akrivi)
+==> An explanation has been added for why we focus on these challenges.
 
 -----------------------------------------------------------
 Section 4.1 Veracity
 
-==> TODO (Akrivi): No issues raised in the reviews, but we might want to condense a little more.
+==> No issues raised in the reviews.
 
 -----------------------------------------------------------
 Section 4.2 Data Variety
 
-==> No issues raised in the reviews.
-
-A paragraph containing more examples was removed and some part of the section was reworded to save some space.
+==> No issues raised in the reviews. A paragraph containing more examples was removed and some part of the section was reworded to save some space.
 
 -----------------------------------------------------------
 Section 4.3 Adoption
 
-==> TODO (Martin): No issues raised in the reviews, but we might want to condense a little more.
+==> No issues raised in the reviews.
 
 -----------------------------------------------------------
 Section 4.4 Challenges Summary
 
 Review 2. Table 1 and 2: What are the key take aways from these tables? There is no discussion. I was left wondering "So?".
 
-==> We thank the reviewer for this comment. We have now improved the
-readability of the two tables by highlighting (in bold) the most frequent principles
-(per requirement) across all languages and the most occurring challenges
-over the language families. Thus, we let the reader understand what are 
-the gaps, that require more efforts from our community. We also added a
-discussion at the end of Section 3 (second last paragraph) and in Section
-4.4. 
-
 Meta-review point 2. Include a summary/take-aways subsection referring to Tables 1 and 2.  Right now these tables are introduced without much discussion.
-
-==> We have added at the end of Section 3 and in Section 4.4 an explanation of the findings of
-the two Tables 1 and 2. We improved the readability of the two Tables.  
 
 Meta-review point 4. Broaden the related work with the recommendations from both of the reviewers.  For example, it would be good to discuss which language can be used as a starting point or a good example for different principles and challenges.
 
-==> With the above trick on the two tables, the reader can now see what is
-the language (language family, respectively) to choose in case he is
-looking for more (or less, respectively) coverage of the
-principles/challenges. 
+==> These comments pertain to both Section 3 and Section 4.4. We have addressed them in both places, see the corresponding response above.
 
 -----------------------------------------------------------
 Section 5. Conclusions

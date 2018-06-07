@@ -1,7 +1,17 @@
 \section{What's Next?}\label{sec:whatsnext}
 
-Despite much recent progress in streaming languages, there are still
-open research challenges, three of which this section highlights.
+In the Big Data area, the need to process and analyze high volume of
+data is a fundamental problem for modern applications. Industry
+analysts point out that there are challenges not just in volume, but
+also in variety, velocity, and veracity~\cite{jagadish2014bigdata}.
+Streaming languages naturally handle volume and velocity of the data,
+since they are design to process data real-time in a streaming way.
+Thus, in the following, we focus on veracity and variety, since there
+are more open research challenges in this directions despite much
+recent progress in streaming languages. In addition, we elaborate on
+the challenge of adoption, which is an important problem of
+programming languages in general and of streaming languages in
+particular.
 
 \input{veracity}
 \input{variety}
@@ -9,38 +19,32 @@ open research challenges, three of which this section highlights.
 
 \subsection{Challenges Summary}
 
-\begin{table}
-  \centerline{\begin{tabular}{@{}l@{ }ccc@{}}
+\begin{table}[!h]
+  \centerline{\small\begin{tabular}{@{}lc@{ }c@{ }cc@{ }c@{ }cc@{ }c@{ }c@{}}
     \toprule
-    \emph{Languages} & \emph{Veracity} & \emph{Variety} & \emph{Adoption}\\
+    \normalsize\emph{Languages} & \multicolumn{3}{c}{\normalsize\emph{Veracity}} & \multicolumn{3}{c}{\normalsize\emph{Variety}} & \multicolumn{3}{c}{\normalsize\emph{Adoption}}\\
     \midrule
-    Relational   &       $\mathbf{C_2}$       &                   &
-$\mathbf{C_8 C_9}$\\
-    Synchronous  &                   & $\mathbf{C_4}$             & C$_7$
-$\mathbf{C_9}$\\
-    Big Data     & C$_1$ $\mathbf{C_2}$       & $\mathbf{C_4}$ C$_5$ C$_6$ & C$_7$            \\
-    CEP          &       $\mathbf{C_2}$       & $\mathbf{C_4}$
-&       $\mathbf{C_8}$      \\
-    XML          &                   & $\mathbf{C_4}$       C$_6$ &                  \\
-    Stream Reasoning & C$_3$ & $\mathbf{C_4}$ C$_5$ C$_6$ & $\mathbf{C_8
-C_9}$\\
-    End-user     &                   & $\mathbf{C_4}$             &                  \\
+    Relational       &       & $\mathbf{C_2}$ &       &                &       &       &       & $\mathbf{C_8}$ & $\mathbf{C_9}$\\
+    Synchronous      &       &                &       & $\mathbf{C_4}$ &       &       & C$_7$ &                & $\mathbf{C_9}$\\
+    Big Data         & C$_1$ & $\mathbf{C_2}$ &       & $\mathbf{C_4}$ & C$_5$ & C$_6$ & C$_7$ &                &               \\
+    CEP              &       & $\mathbf{C_2}$ &       & $\mathbf{C_4}$ &       &       &       & $\mathbf{C_8}$ &               \\
+    XML              &       &                &       & $\mathbf{C_4}$ &       & C$_6$ &       &                &               \\
+    Stream Reasoning &       &                & C$_3$ & $\mathbf{C_4}$ & C$_5$ & C$_6$ &       & $\mathbf{C_8}$ & $\mathbf{C_9}$\\
+    End-user         &       &                &       & $\mathbf{C_4}$         &       &       &                &               \\
     \bottomrule
   \end{tabular}}
   \caption{\label{tab:challenges}Which of the language families from
     Section~\ref{sec:languages} address which of the measures of
-    streaming language challenges in Section~\ref{sec:whatsnext}
-    (in bold the most occurring ones).}
+    streaming language challenges in Section~\ref{sec:whatsnext}.}
 \end{table}
 
 Table~\ref{tab:challenges} summarizes the challenges.  Compared to the
 coverage of principles in Table~\ref{tab:principles}, the coverage of
 challenges is more sparse and spread out over research prototypes.
 That is why we tabulated it for language families instead of
-individual languages. 
-We have highlighted in bold the challenges that are most covered across all
-the languages families. We can observe that variety is currently more
-covered than veracity and adoption, thus leaving space to future work in
-this area. 
+individual languages.  There is much space for future work. The
+measures highlighted in bold are most covered across all the languages
+families.  The ability to handle a wide variety of data formats
+appears to be a universal concern.
 Ultimately, we aim at streaming languages that are
 both principled and close the gap on all challenges.

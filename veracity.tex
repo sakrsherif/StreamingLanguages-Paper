@@ -40,7 +40,7 @@ dynamic and usually operate in a distributed environment
 with minimal control over the underlying infrastructure. Such a
 loosely coupled model can lead to situations where any data source can
 join and leave on the fly. Moreover, stream-producing sensors
-have limitations such as processing power, energy level, memory
+have limitations such as processing power, energy level, or memory
 consumption, which can easily compromise veracity.
  %including data incompleteness, lack of quality and/or concept drifts. Additionally, in a dynamic environment where data is evolving over time and can change its properties and statistics, which demand novel veracity handling algorithms compared to static datastores.  
 
@@ -70,14 +70,17 @@ into the following measures $\mathbf{C_1}$--$\mathbf{C_3}$:
   \item[$\mathbf{C_1}$] \emph{Fault-tolerance.} A program in the
     language is robust even if some of its components fail. The
     language can define different behaviors, for example,
-    at-least-once semantics in Storm~\cite{toshniwal_et_al_2014}.
+    at-least-once semantics in Storm~\cite{toshniwal_et_al_2014}
+    or check-pointing in Spark Streaming~\cite{zaharia_et_al_2013}.
   \item[$\mathbf{C_2}$] \emph{Out-of-order handling.} This measure has
     two facets. First, the streaming language should have clear
     semantics about the expected result. Second, the streaming language should be
     robust to out-of-order data and should ensure that the expected
     output stream is produced with limited latency. Li et al.\ define
     out-of-order stream semantics based on low
-    watermarks~\cite{Li:2008:OPN:1453856.1453890}.
+    watermarks~\cite{Li:2008:OPN:1453856.1453890}; Spark Streaming
+    relies on idempotence to handle stragglers~\cite{zaharia_et_al_2013}; and Beam separates
+    event time from processing time~\cite{akidau_et_al_2015}.
   \item[$\mathbf{C_3}$] \emph{Inaccurate value handling.} A program in
     the language is robust even if some of its input data is wrong.
     The language can help by supporting statistical quality
@@ -97,7 +100,7 @@ into the following measures $\mathbf{C_1}$--$\mathbf{C_3}$:
 %%For what concerns the streaming processing algorithms, they bring approximate results that may introduce further veracity problems. How can we ensure that these algorithms do not worsen the veracity degree of the underlying data and lead to minimize the introduced errors and uncertainties? 
 %%
 %%%% \subsubsection{Metrics}
-%%%One major issue is if an stream processing approach is robust to veracity. In order to estimate the robustness of an approach to data lost or data that are out of date we define as ground truth the result of the stream processing in the absence of data loss or data that are delayed. Then we can quantify the error produced by the veracity. Let $error$ be a function that compare the produced result of an approach with and without veracity. An approach is robust to veracity of streaming data if $error$ sccale linearly with respect to size of the data and the number of errors. The types of errors of concern in a streaming setting include timeliness of delivery of stream elements, fraction of elements that arrive out-of-order, element loss rate, and element integrity verification failure rate. An example of an $error$ function is the number of false positives and false negatives compared to the ground truth.
+%%%One major issue is if an stream processing approach is robust to veracity. In order to estimate the robustness of an approach to data lost or data that are out of date we define as ground truth the result of the stream processing in the absence of data loss or data that are delayed. Then we can quantify the error produced by the veracity. Let $error$ be a function that compare the produced result of an approach with and without veracity. An approach is robust to veracity of streaming data if $error$ scale linearly with respect to size of the data and the number of errors. The types of errors of concern in a streaming setting include timeliness of delivery of stream elements, fraction of elements that arrive out-of-order, element loss rate, and element integrity verification failure rate. An example of an $error$ function is the number of false positives and false negatives compared to the ground truth.
 
 \textbf{Why is this difficult?}
 %
@@ -106,10 +109,11 @@ As a result, data can be lost, incorrect, arrive out of order, or be
 approximate. This is exacerbated by the fact that the streaming
 setting affords limited opportunity to compensate for these issues.
 Furthermore, the performance requirements of streaming systems
-encourage the use of approximate computing~\cite{babcock_et_al_2002}.
-Approximate computing and machine learning increase the uncertainty of
-the data. An important aspect of streaming data is ordering, typically
-characterized by time.  Determining the correctness of the response to
+encourage the use of approximate computing~\cite{babcock_et_al_2002},
+thus increasing the uncertainty of the data. Also, machine-learning
+often yields uncertain results due to imperfect generalization.
+An important aspect of streaming data is ordering, typically
+characterized by time.  The correctness of the response to
 queries depends on the source of ordering, such as the creation,
 processing, or delivery time.  Stream processing often requires that
 each piece of data must be processed within a window, which can be

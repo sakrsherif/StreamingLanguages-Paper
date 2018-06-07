@@ -4,12 +4,9 @@ The previous section described concrete stream processing languages
 belonging to several families. This section takes a cross-cutting view
 and explores concepts that many of these languages have in common by
 identifying the language design principles behind the concepts.
-%(From Angela) For the sake of conciseness, I have removed the two statements below.
-%The views and opinions expressed herein are those of the authors and
-%are meant to stimulate discussion rather than be the final word.
-%Explicitly articulating principles demystifies the art of language
-%design and makes it more of a science. 
-We categorize language design
+The views and opinions expressed herein are those of the authors and
+are not meant as the final word.  Explicitly articulating principles
+demystifies the art of language design. We categorize language design
 principles according to the three requirements from
 Section~\ref{sec:introduction}, namely performance, generality, and
 productivity.
@@ -25,15 +22,17 @@ language design principles $\mathbf{P_1}$--$\mathbf{P_4}$:
     Figure~\ref{fig:cqlops}).
   \item[$\mathbf{P_2}$] \emph{Partitioning principle.} Key-based partitions
     enable independent computation over disjoint state, thus
-    simplifying data parallelism~\cite{schneider_et_al_2015}.
+    simplifying data parallelism. %~\cite{schneider_et_al_2015}.
     For instance, MatchRegex performs complex event processing separately by
     partition~\cite{hirzel_2012} (see Line~3 of Figure~\ref{fig:cep}).
+    Principles $P_1$ and $P_2$ also simplify advanced state management, e.g.,
+    in key-value stores for operator migration~\cite{gedik_et_al_2014}.
   \item[$\mathbf{P_3}$] \emph{Stream graph principle.} Streaming
     applications are graphs of operators that communicate almost
     exclusively via streams, making them easy to place on different
-    cores or machines. For instance, SPL programs are explicit stream
-    graphs~\cite{hirzel_schneider_gedik_2017} (see
-    Figure~\ref{fig:spl}).
+    cores or machines. This principle is central to the big-data
+    languages in Section~\ref{sec:big} such as
+    SPL~\cite{hirzel_schneider_gedik_2017} (see Figure~\ref{fig:spl}).
   \item[$\mathbf{P_4}$] \emph{Restriction principle.} The schedules and
     communication rates in a streaming application are restricted for
     both performance and safety. For instance, Lustre can be compiled
@@ -47,9 +46,8 @@ design principles $\mathbf{P_5}$--$\mathbf{P_8}$:
   \item[$\mathbf{P_5}$] \emph{Orthogonality principle.} Basic language
     features are irredundant and work the same independently of how
     they are composed. For instance, in CQL, relational-algebra
-    operators behave the same no matter which windows they are
-    composed with~\cite{arasu_babu_widom_2006} (see
-    Section~\ref{sec:sql}).
+    operators are orthogonal to windows~\cite{arasu_babu_widom_2006}
+    (see Section~\ref{sec:sql}).
   \item[$\mathbf{P_6}$] \emph{No-built-ins principle.} The core language
     remains slim and regular by enabling extensions in the library. For
     instance, in SPL, relational operators are not built into the
@@ -61,7 +59,9 @@ design principles $\mathbf{P_5}$--$\mathbf{P_8}$:
     support reactive computation. For instance, ActiveSheets uses
     conventional spreadsheet formulas, updating their output when
     input cells change~\cite{vaziri_et_al_2014} (see
-    Figure~\ref{fig:activesheets}).
+    Figure~\ref{fig:activesheets}).  The Lambda or Kappa
+    architectures~\cite{kreps_2014} take this to the extreme by
+    combining batch and streaming outside of the language.
   \item[$\mathbf{P_8}$] \emph{General-feature principle.} Similar
     special-case features are replaced by a single more-general
     feature. For instance, operator parameters in
@@ -88,66 +88,52 @@ language design principles $\mathbf{P_9}$--$\mathbf{P_{12}}$:
   \item[$\mathbf{P_{11}}$] \emph{Regularity principle.} Data literals,
     patterns that match them, and/or declarations all use similar
     syntax. For instance, RSP-QL uses pattern syntax resembling
-    concrete RDF triples (Line~3 of Figure~\ref{fig:rdfstream} vs.\
-    Line~10 of Figure~\ref{fig:rspql}).
-  \item[$\mathbf{P_{12}}$] \emph{Backward reference principle.} The code
-    direction is consistent with both scope and control dominance.
-    This reduces confusion when reading code. For example, Lustre has
-    declarations for parameters, return values, and local variables
-    before their use (see Figure~\ref{fig:lustre}).
+    concrete RDF triples (see Line~10 of Figure~\ref{fig:rspql}).
+  \item[$\mathbf{P_{12}}$] \emph{Backward reference principle.} Code
+    direction is consistent with both scope and control dominance, for
+    readability. For example, Lustre declares variables before their
+    use (see Figure~\ref{fig:lustre}).
 \end{itemize}
 
 \begin{table}
-  \centerline{\small\begin{tabular}{@{}l@{ }c@{ }cc@{}}
+  \centerline{\small\begin{tabular}{@{}l@{ }c@{ }c@{ }c@{ }c@{\hspace*{2mm}}c@{ }c@{ }c@{ }c@{\hspace*{2mm}}c@{ }c@{ }c@{ }c@{}}
     \toprule
-    \emph{Language} & \emph{Performance} & \emph{Generality} & \emph{Productivity}\\
+    \emph{Language} & \multicolumn{4}{@{}c}{\emph{Performance}}       & \multicolumn{4}{@{}c}{\emph{Generality}} & \multicolumn{4}{@{}c}{\emph{Productivity}}\\
     \midrule
-    CQL          & $\mathbf{P_1 P_2}$ P$_3$       & $\mathbf{P_5}$             P$_8$
-& $\mathbf{P_9}$\\
-    Lustre       &                   P$_4$ & $\mathbf{P_5}$ P$_6$ P$_7$ P$_8$
-& $\mathbf{P_9}$ P$_{10}$ P$_{11}$ P$_{12}$\\
-    SPL          & $\mathbf{P_1 P_2}$ P$_3$       & $\mathbf{P_5}$ P$_6$       P$_8$
-& $\mathbf{P_9}$          P$_{11}$ P$_{12}$\\
-    MatchRegex   &       $\mathbf{P_2}$             & $\mathbf{P_5}$ P$_6$       P$_8$
-& $\mathbf{P_9}$ P$_{10}$          P$_{12}$\\
-    YFilter      & P$_4$ & $\mathbf{P_5}$ P$_6$ & $\mathbf{P_9}$ P$_{10}$\\
-    RSP-QL       &       $\mathbf{P_1}$ P$_3$    & $\mathbf{P_5}$ P$_6$  P$_8$ &
-$\mathbf{P_9}$ P$_{10}$ P$_{11}$         \\
-    ActiveSheets & $\mathbf{P_1 P_2}$       P$_4$ & $\mathbf{P_5}$ P$_6$ P$_7$ P$_8$
-& $\mathbf{P_9}$ P$_{10}$                  \\
+    CQL             & P$_1$ & P$_2$ & P$_3$ &       & $\mathbf{P_5}$ &       &       & P$_8$ & $\mathbf{P_9}$ &          &          &         \\
+    Lustre          &       &       &       & P$_4$ & $\mathbf{P_5}$ & P$_6$ & P$_7$ & P$_8$ & $\mathbf{P_9}$ & P$_{10}$ & P$_{11}$ & P$_{12}$\\
+    SPL             & P$_1$ & P$_2$ & P$_3$ &       & $\mathbf{P_5}$ & P$_6$ &       & P$_8$ & $\mathbf{P_9}$ &          & P$_{11}$ & P$_{12}$\\
+    MatchRegex      &       & P$_2$ &       &       & $\mathbf{P_5}$ & P$_6$ &       & P$_8$ & $\mathbf{P_9}$ & P$_{10}$ &          & P$_{12}$\\
+    YFilter         &       &       &       & P$_4$ & $\mathbf{P_5}$ & P$_6$ &       &       & $\mathbf{P_9}$ & P$_{10}$ &          &         \\
+    RSP-QL          & P$_1$ &       & P$_3$ &       & $\mathbf{P_5}$ & P$_6$ &       & P$_8$ & $\mathbf{P_9}$ & P$_{10}$ & P$_{11}$ &         \\
+    ActiveSheets    & P$_1$ & P$_2$ &       & P$_4$ & $\mathbf{P_5}$ & P$_6$ & P$_7$ & P$_8$ & $\mathbf{P_9}$ & P$_{10}$ &          &         \\
     \bottomrule
   \end{tabular}
   }
   \caption{\label{tab:principles}Which of the languages that served as
     examples in Section~\ref{sec:languages} satisfy which of the
-    language design principles in Section~\ref{sec:principles}
-    (in bold the most occurring principles per requirement).}
+    language design principles in Section~\ref{sec:principles}.}
 \end{table}
+
+\subsection{Principles Summary}
 
 Good language design is driven by principles, but it is also an
 exercise in prioritizing among these principles. For instance, CQL
 satisfies P$_9$ (familiarity principle) by adopting SQL's syntax and
 CQL violates P$_{12}$ (backward reference principle) by adopting SQL's
 scoping rules. Table~\ref{tab:principles} summarizes principles by
-language. We can observe that among 
-all principles only two of them (P$_5$ and P$_9$, respectively) 
-are uniformly covered by all languages, while P$_1$ and P$_2$
-are the most occurring principles of the performance 
-requirement. By opposite, some 
-of the languages exhibit less principles overall or less 
-principles per requirement, respectively. 
-Whereas Table~\ref{tab:principles} is informative in terms of 
-boolean coverage of principles per language, it does not 
-provide a comparative metric~\footnote{Such a metric would not be trivial
-to define.} for quantifying the coverage of each principle.
-As a consequence, we observe that satisfying more principles does not automatically
-imply satisfying the associated requirement better.
-
-Also, note that while
+language.  Only two of the twelve principles (P$_5$ and P$_9$, shown
+in bold) are uniformly covered, both related to the ease of use of the
+language (separation of concerns and syntax familiarity).  Although
+some of the languages exhibit fewer principles,
+Table~\ref{tab:principles} does not provide a comparative metric for
+quantifying the coverage of each principle; such a metric would be
+hard to agree upon. Satisfying more principles does not automatically
+imply satisfying the associated requirement better. While
 we formulated the principles from the perspective of streaming
 languages, we do not claim to have invented them: many are well-known
 from the design of other programming languages. For instance, the
-orthogonality principle was a stated aim in the Algol~68 language
+orthogonality principle was a stated aim of the Algol~68 language
 specification~\cite{vanwijngaarden_et_al_1975}. Now that we have seen
 concepts that are \emph{present} in most streaming languages, the next
 section will explore what is commonly \emph{missing or
